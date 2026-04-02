@@ -33,8 +33,19 @@ This scaffold is ready for implementation. Everything below tells you what's don
 - `src/demo/DemoProvider.tsx` — context provider that replaces Supabase calls with fixture data
 - `src/demo/DemoBanner.tsx` — persistent, dismissible demo banner with signup CTA
 
+### Community resilience features (Strong Towns + Local Futures alignment)
+- `src/components/FoodSystemMap.tsx` — Interactive US SVG map with seed markers for Hortus users + color-coded food system points (farmers markets, CSAs, seed libraries, etc.)
+- `src/components/FoodResilienceScore.tsx` — 0-100 circular gauge, 9 weighted metrics (lbs produced, days of food, seeds saved, crops shared, etc.)
+- `src/components/YieldDashboard.tsx` — lbs/sqft per bed, season totals, most/least productive callouts
+- `src/components/SeedExchangeBoard.tsx` — Community seed sharing with offer/request/swap tabs, heirloom tracking, shipping flags
+- `src/components/EconomicImpact.tsx` — Grocery value saved, local spend, donated value, compost value, local multiplier effect
+- `src/components/CompostTracker.tsx` — Pile management with green/brown ratio, temperature gauge, entry timeline
+- `src/components/GardenReadyFinder.tsx` — Vacant lot scoring (0-100) with NRI soil assessment, public/private filter
+- `src/components/ScreenToSoil.tsx` — Session timer nudges, one-tap quick-log, task-complete auto-close, seed SVG icon
+- `supabase/migrations/00002_food_system_features.sql` — 6 new tables: `food_system_points`, `user_map_pins`, `seed_exchanges`, `compost_logs`, `compost_entries`, `food_resilience_snapshots`
+
 ### Service layer
-- Typed service modules in `src/services/` for: `profile`, `land`, `plot`, `observation`, `harvest`, `plan`, `seedLibrary`, `community`, `nri`, `affiliate`
+- Typed service modules in `src/services/` for: `profile`, `land`, `plot`, `observation`, `harvest`, `plan`, `seedLibrary`, `community`, `nri`, `affiliate`, `foodSystemMap`, `seedExchange`, `compost`, `resilience`
 - All queries go through these services — components use TanStack Query hooks only
 
 ### Hooks
@@ -74,12 +85,25 @@ Create in `supabase/functions/`:
 - `stripe-webhook/` — handles Stripe webhook events, updates profiles
 - `get-subscription-status/` — returns current tier for authed user
 - `log-affiliate-click/` — logs Seeds Now clicks before redirect
+- `search-food-systems/` — uses Perplexity to find farmers markets, CSAs, seed libraries near a zip code; stores results in `food_system_points`
+- `compute-resilience/` — computes food resilience score from harvest logs, seed library, compost, sharing data
+- `sync-user-map-pin/` — updates `user_map_pins` aggregate when a user creates/updates a land record
 - `_shared/rateLimiter.ts` — shared rate limit utility
 
 Every Edge Function must follow the template in `specs/hortus-lovable-prompt.md` Rule 5 (CORS, auth check, rate limit).
 
 ### Routing
-See the complete route table in `specs/hortus-lovable-prompt.md` → ROUTING section.
+See the complete route table in `specs/hortus-lovable-prompt.md` → ROUTING section, plus these new routes:
+
+```
+/app/food-map         → Local Food System Map (public view also at /food-map)
+/app/resilience       → Food Resilience Score dashboard
+/app/yield            → Yield-per-square-foot dashboard
+/app/seed-exchange    → Seed Exchange Board
+/app/impact           → Economic Impact summary
+/app/compost          → Compost Tracker
+/app/garden-ready     → Garden-Ready vacant lot finder
+```
 
 ### Stripe integration
 Two products, four prices:
