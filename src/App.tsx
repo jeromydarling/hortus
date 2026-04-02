@@ -146,6 +146,37 @@ export function App() {
           </div>
         </section>
 
+        {/* New Features — Strong Towns + Local Futures Alignment */}
+        <section style={{ marginBottom: 40 }}>
+          <h2 style={sectionHeading}>New Features — Community Resilience Layer</h2>
+          <p style={{ color: "#706b63", fontSize: 14, margin: "0 0 16px" }}>
+            Inspired by Strong Towns and Local Futures. Food resilience, local economy, seed sovereignty, and land stewardship.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+            {[
+              { icon: "\ud83d\uddfa\ufe0f", name: "Local Food System Map", desc: "Interactive US map showing Hortus gardens (seed markers) + farmers markets, CSAs, seed libraries, community gardens. Auto-updates with every new member.", route: "/app/food-map", status: "scaffold" },
+              { icon: "\ud83c\udf31", name: "Food Resilience Score", desc: "Household score (0-100) measuring food security: pounds produced, varieties grown, days of food, seeds saved, crops shared. Inspired by Strong Towns Strength Test #8.", route: "/app/resilience", status: "scaffold" },
+              { icon: "\ud83d\udcca", name: "Yield Dashboard", desc: "Production per square foot across all beds. Identifies most and least productive plots. Value-per-acre methodology applied to garden beds.", route: "/app/yield", status: "scaffold" },
+              { icon: "\ud83c\udf3e", name: "Seed Exchange Board", desc: "Community seed sharing — offers, requests, swaps. Heirloom tracking, germination history, willing-to-ship flags. 90% of crop diversity is gone; every seed shared fights that.", route: "/app/seed-exchange", status: "scaffold" },
+              { icon: "\ud83d\udcb0", name: "Economic Impact", desc: "Grocery value saved, local nursery spend, donated food value, compost value. Local multiplier effect — money at garden centers circulates 3-5x more locally.", route: "/app/impact", status: "scaffold" },
+              { icon: "\u267b\ufe0f", name: "Compost Tracker", desc: "Pile management: green/brown ratio, temperature, moisture, turn reminders. The most impactful thing you can do for soil. Closes the nutrient loop.", route: "/app/compost", status: "scaffold" },
+              { icon: "\ud83c\udfde\ufe0f", name: "Garden-Ready Lot Finder", desc: "Identifies vacant/underutilized land near you. NRI assesses soil, sun, water, zoning. Public land scored higher for community garden potential.", route: "/app/garden-ready", status: "scaffold" },
+              { icon: "\u23f1\ufe0f", name: "Screen-to-Soil Design", desc: "Gentle nudges after 10min in-app. Quick-log one-tap observations. Auto-close prompts after tasks. Technology as bridge to soil, not replacement.", route: "#", status: "system" },
+            ].map((feature) => (
+              <div key={feature.name} style={{ ...card, borderLeft: `3px solid ${feature.status === "system" ? "#aa6d22" : "#5d7d4a"}` }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                  <span style={{ fontSize: 20 }}>{feature.icon}</span>
+                  <strong style={{ fontSize: 14 }}>{feature.name}</strong>
+                  <span style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.5px", padding: "2px 6px", borderRadius: 4, background: feature.status === "system" ? "#faf0e0" : "#e8f0e0", color: feature.status === "system" ? "#aa6d22" : "#3d5a2e" }}>
+                    {feature.status === "system" ? "Design system" : "Component ready"}
+                  </span>
+                </div>
+                <p style={{ ...cardDesc, marginTop: 0 }}>{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Common Year Phases */}
         <section style={{ marginBottom: 40 }}>
           <h2 style={sectionHeading}>The Common Year — 8 Phases</h2>
@@ -202,6 +233,14 @@ export function App() {
               { label: "Auth Hook", status: "done", detail: "useAuth, useGardenMode, useEntitlement" },
               { label: "Test Setup", status: "done", detail: "Vitest + jsdom + browser mocks" },
               { label: "Seeds Now Utility", status: "done", detail: "seedsNowUrl() with affiliate tag" },
+              { label: "Food System Map", status: "done", detail: "US map with seed markers + food resources" },
+              { label: "Food Resilience Score", status: "done", detail: "0-100 score, 9 weighted dimensions" },
+              { label: "Yield Dashboard", status: "done", detail: "lbs/sqft per bed, season totals" },
+              { label: "Seed Exchange Board", status: "done", detail: "Offers, requests, swaps with heirloom tracking" },
+              { label: "Economic Impact", status: "done", detail: "Grocery value, local spend, multiplier" },
+              { label: "Compost Tracker", status: "done", detail: "Pile management, green/brown ratio, temp" },
+              { label: "Garden-Ready Finder", status: "done", detail: "Vacant lot scoring with NRI assessment" },
+              { label: "Screen-to-Soil", status: "done", detail: "Nudges, quick-log, auto-close" },
               { label: "Auth Screens", status: "lovable", detail: "Step 3 of build order" },
               { label: "Stripe Integration", status: "lovable", detail: "Step 4 of build order" },
               { label: "Onboarding Flow", status: "lovable", detail: "Step 5 of build order" },
