@@ -105,6 +105,72 @@ See the complete route table in `specs/hortus-lovable-prompt.md` → ROUTING sec
 /app/garden-ready     → Garden-Ready vacant lot finder
 ```
 
+### Local Food System Map — Perplexity Integration
+
+The map at `/app/food-map` is the public-facing showpiece of Hortus. It shows every Hortus garden (anonymous seed markers by zip code) and every local food resource discovered via Perplexity. The component is built (`src/components/FoodSystemMap.tsx`) using `us-atlas` TopoJSON for state outlines.
+
+**What goes on the map (stored in `food_system_points` table):**
+
+| Type | Icon/Color | Source | How discovered |
+|---|---|---|---|
+| `hortus_user` | Teal seed marker (#0d6f74), sized by count | `user_map_pins` table | Auto-created when user saves a land record (zip-level only, anonymous) |
+| `farmers_market` | Green circle (#5d7d4a) | Perplexity search + USDA AMS API | Edge Function `search-food-systems` queries by zip/state |
+| `csa` | Light green circle (#7a9b5a) | Perplexity search | "CSA farms near {zip}" |
+| `seed_library` | Amber circle (#aa6d22) | Perplexity search | "Seed libraries near {zip}" |
+| `community_garden` | Brown circle (#8b5e3c) | Perplexity search | "Community gardens near {zip}" |
+| `nursery` | Gray circle (#706b63) | Perplexity search | "Independent garden centers near {zip}" |
+| `food_co_op` | Teal-green circle (#4a7d6a) | Perplexity search | "Food co-ops near {zip}" |
+| `urban_farm` | Green circle (#5d7d4a) | Perplexity search | "Urban farms near {zip}" |
+| `food_forest` | Dark green circle (#3d6a3e) | Perplexity search | "Food forests near {zip}" |
+| `compost_site` | Brown circle (#8b6e3c) | Perplexity search | "Community compost sites near {zip}" |
+
+**Edge Function: `search-food-systems`**
+
+This is the key integration. When called with a zip code:
+
+1. Calls Perplexity with structured queries for each food system type near that zip
+2. Parses results to extract: name, address, lat/lon, description, hours, website
+3. Upserts results into `food_system_points` table with `source: 'perplexity'`
+4. Returns the points for immediate display
+
+**Perplexity prompt template:**
+```
+System: You are a local food system researcher. Return results as JSON arrays.
+User: Find all {type} within 25 miles of zip code {zip}. For each, return:
+- name (string)
+- address (string)  
+- description (1 sentence — hours, season, notable features)
+- lat (number)
+- lon (number)
+- website (string or null)
+
+Types to search: farmers markets, CSA farms, seed libraries, community gardens, 
+independent garden centers/nurseries, food co-ops, urban farms, food forests, 
+community compost sites.
+
+Return only verified, currently operating locations. No chains. No big-box stores.
+```
+
+**When to call:**
+- On user signup/onboarding — search their zip code
+- On admin trigger — batch search for a state or region
+- Never on passive page view — cache results in `food_system_points`
+
+**Auto-updating user pins:**
+When a user creates or updates a land record, the `sync-user-map-pin` Edge Function calls `upsert_user_map_pin(zip, lat, lon, state_code)` to increment the anonymous aggregate count. The map shows these as seed-shaped markers sized by count. No individual addresses are ever exposed.
+
+**Map placement:**
+- `/app/food-map` — full interactive map for authenticated users, centered on their location
+- Marketing page — static preview with demo data (Lovable renders the React component when marketing page becomes a React route)
+- `/food-map` — optional public route, unauthenticated, shows all data
+
+**USDA AMS supplemental data (free, no key):**
+For farmers markets specifically, also pull from the USDA Agricultural Marketing Service API:
+```
+GET https://www.usdalocalfoodportal.com/api/farmersmarket/?apikey=API_KEY&zip={zip}&radius=25
+```
+This gives verified market data including SNAP/EBT acceptance. Merge with Perplexity results, dedup by name/address proximity.
+
 ### Stripe integration
 Two products, four prices:
 - `hortus_solo` — $4.99/month, $39/year (14-day trial)
