@@ -1,0 +1,26 @@
+{
+  "community": {
+    "id": "demo-community",
+    "name": "Sundown Edge Garden Co-op",
+    "memberCount": 6
+  },
+  "members": [
+    { "id": "dm-1", "displayName": "Maya R.", "role": "coordinator", "plotId": "demo-plot-1", "volunteerHoursYTD": 14, "engagementScore": 0.92 },
+    { "id": "dm-2", "displayName": "Marcus T.", "role": "member", "plotId": "demo-plot-2", "volunteerHoursYTD": 3, "engagementScore": 0.41 },
+    { "id": "dm-3", "displayName": "Li W.", "role": "mentor", "plotId": null, "volunteerHoursYTD": 22, "engagementScore": 0.88 },
+    { "id": "dm-4", "displayName": "Priya S.", "role": "member", "plotId": null, "volunteerHoursYTD": 8, "engagementScore": 0.67 },
+    { "id": "dm-5", "displayName": "James K.", "role": "member", "plotId": null, "volunteerHoursYTD": 1, "engagementScore": 0.18 },
+    { "id": "dm-6", "displayName": "Demo Gardener", "role": "member", "plotId": "demo-plot-1", "volunteerHoursYTD": 0, "engagementScore": 0.5 }
+  ],
+  "nriSignals": [
+    { "personId": "dm-2", "type": "checkin", "severity": "caution", "reason": "Marcus hasn't logged in 11 days and missed the last workday." },
+    { "personId": "dm-3", "type": "mentor_candidate", "severity": "info", "reason": "Li is in her third season with consistent records. She may be ready to mentor a newer member." }
+  ],
+  "workdays": [
+    { "id": "wd-1", "scheduledDateOffset": 2, "startTime": "9:00 AM", "focus": "Spring bed prep and chip refresh", "rsvps": 4 }
+  ],
+  "sharingPosts": [
+    { "id": "sp-1", "authorId": "dm-1", "type": "surplus", "item": "Surplus kale starts — 6 plants", "status": "available" },
+    { "id": "sp-2", "authorId": "dm-3", "type": "announcement", "item": "Garlic order arriving Friday — pick up at the shed", "status": "available" }
+  ]
+}

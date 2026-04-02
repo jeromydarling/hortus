@@ -1,0 +1,89 @@
+{
+  "resilience": {
+    "score": 42,
+    "lbsProduced": 67,
+    "sqftCultivated": 64,
+    "varietiesGrown": 8,
+    "daysOfFood": 11,
+    "groceryValueSaved": 218.50,
+    "seedVarietiesSaved": 2,
+    "cropsShared": 4,
+    "compostProducedGallons": 15,
+    "localSpendPct": 65
+  },
+  "yield": {
+    "beds": [
+      { "name": "Bed 1", "sqft": 32, "totalLbs": 38, "crops": [{ "name": "Lettuce mix", "lbs": 12 }, { "name": "Sugar Snap Peas", "lbs": 18 }, { "name": "Radish", "lbs": 8 }] },
+      { "name": "Bed 2", "sqft": 32, "totalLbs": 29, "crops": [{ "name": "Tomatoes", "lbs": 22 }, { "name": "Basil", "lbs": 7 }] }
+    ],
+    "seasonTotal": { "lbs": 67, "sqft": 64 }
+  },
+  "economicImpact": {
+    "groceryValueSaved": 218.50,
+    "localSpend": 45.00,
+    "seedsNowSpend": 8.97,
+    "donatedValue": 32.00,
+    "compostValue": 22.50,
+    "totalImpact": 327.00,
+    "monthlyBreakdown": [
+      { "month": "Mar", "saved": 0, "spent": 28 },
+      { "month": "Apr", "saved": 12, "spent": 17 },
+      { "month": "May", "saved": 35, "spent": 8 },
+      { "month": "Jun", "saved": 58, "spent": 0 },
+      { "month": "Jul", "saved": 72, "spent": 0 },
+      { "month": "Aug", "saved": 41, "spent": 0 }
+    ]
+  },
+  "seedExchanges": [
+    { "id": "se-1", "type": "offer", "cropName": "Lacinato Kale", "variety": "Dinosaur", "seedType": "heirloom", "yearHarvested": 2025, "quantity": "~50 seeds", "description": "Saved from my strongest plant. Great germination last year.", "userName": "Maya R.", "zip": "55378", "status": "available", "willingToShip": true },
+    { "id": "se-2", "type": "request", "cropName": "Brandywine Tomato", "variety": "Brandywine", "seedType": "heirloom", "yearHarvested": null, "quantity": "10-20 seeds", "description": "Looking for locally-adapted Brandywine seeds. Zone 4b.", "userName": "Demo Gardener", "zip": "55378", "status": "available", "willingToShip": false },
+    { "id": "se-3", "type": "swap", "cropName": "Sugar Snap Peas", "variety": "Oregon Sugar Pod", "seedType": "open_pollinated", "yearHarvested": 2025, "quantity": "1 packet worth", "description": "Will swap for any bean variety. Grew great in clay soil.", "userName": "Li W.", "zip": "55378", "status": "available", "willingToShip": true },
+    { "id": "se-4", "type": "offer", "cropName": "Cilantro", "variety": "Santo", "seedType": "open_pollinated", "yearHarvested": 2025, "quantity": "200+ seeds", "description": "Slow-bolt variety. Let one plant go to seed — produced a ton.", "userName": "Priya S.", "zip": "55378", "status": "available", "willingToShip": false }
+  ],
+  "compostPiles": [
+    {
+      "id": "cp-1",
+      "name": "Main pile",
+      "type": "pile",
+      "status": "active",
+      "startedAt": "2026-03-01",
+      "estimatedReadyAt": "2026-06-01",
+      "lastEntry": { "type": "green", "material": "Kitchen scraps", "date": "2026-03-30" },
+      "temperatureF": 132,
+      "entries": [
+        { "type": "green", "material": "Kitchen scraps", "date": "2026-03-30" },
+        { "type": "turn", "material": null, "date": "2026-03-28" },
+        { "type": "brown", "material": "Shredded leaves", "date": "2026-03-25" },
+        { "type": "temperature", "material": "138°F", "date": "2026-03-24" },
+        { "type": "green", "material": "Coffee grounds (5 gal)", "date": "2026-03-20" }
+      ]
+    },
+    {
+      "id": "cp-2",
+      "name": "Worm bin",
+      "type": "worm_bin",
+      "status": "active",
+      "startedAt": "2025-11-15",
+      "estimatedReadyAt": null,
+      "lastEntry": { "type": "green", "material": "Vegetable peels", "date": "2026-03-29" },
+      "temperatureF": null,
+      "entries": [
+        { "type": "green", "material": "Vegetable peels", "date": "2026-03-29" },
+        { "type": "moisture", "material": "Damp", "date": "2026-03-25" },
+        { "type": "note", "material": "Worms very active, population growing", "date": "2026-03-20" }
+      ]
+    }
+  ],
+  "gardenReadyLots": [
+    { "id": "lot-1", "address": "412 River St (vacant lot)", "lat": 44.73, "lon": -93.33, "areaAcres": 0.18, "landUseCode": "100", "landUseLabel": "Vacant residential", "ownerType": "public", "zoningSuitable": true, "estimatedSunHours": 7.5, "soilAssessment": "Sandy loam, well-drained. Good for raised beds.", "waterAccess": "hydrant_nearby", "gardenScore": 88, "distanceMiles": 0.3, "notes": "City-owned. South-facing. Previously cleared 2024." },
+    { "id": "lot-2", "address": "1801 Cedar Ave (unused church lot)", "lat": 44.74, "lon": -93.34, "areaAcres": 0.42, "landUseCode": "170", "landUseLabel": "Institutional - unused portion", "ownerType": "private", "zoningSuitable": true, "estimatedSunHours": 6.0, "soilAssessment": "Clay loam. Would benefit from raised beds or No-Dig approach.", "waterAccess": "hydrant_nearby", "gardenScore": 74, "distanceMiles": 0.8, "notes": "Church may be open to community garden lease." },
+    { "id": "lot-3", "address": "2205 Industrial Blvd (brownfield edge)", "lat": 44.72, "lon": -93.31, "areaAcres": 0.65, "landUseCode": "200", "landUseLabel": "Vacant commercial", "ownerType": "unknown", "zoningSuitable": false, "estimatedSunHours": 8.0, "soilAssessment": null, "waterAccess": "unknown", "gardenScore": 35, "distanceMiles": 1.4, "notes": "Potential contamination — soil testing required before food production." }
+  ],
+  "foodMapPoints": [
+    { "id": "fm-1", "type": "farmers_market", "lat": 44.73, "lon": -93.31, "name": "Savage Farmers Market", "zip": "55378", "description": "Saturdays 8am-1pm, May-Oct" },
+    { "id": "fm-2", "type": "community_garden", "lat": 44.78, "lon": -93.28, "name": "Burnsville Community Garden", "zip": "55337", "description": "40 plots, waiting list" },
+    { "id": "fm-3", "type": "seed_library", "lat": 44.85, "lon": -93.35, "name": "Scott County Seed Library", "zip": "55378", "description": "At the county library, free seeds" },
+    { "id": "fm-4", "type": "nursery", "lat": 44.76, "lon": -93.25, "name": "Gertens Garden Center", "zip": "55306", "description": "Full-service nursery, local plants" },
+    { "id": "fm-5", "type": "csa", "lat": 44.69, "lon": -93.40, "name": "Open Hands Farm CSA", "zip": "55352", "description": "20-week share, June-October" }
+  ]
+}
