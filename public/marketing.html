@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hortus — Know Your Land. Tend It Faithfully.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--text-xs:clamp(.75rem,.7rem + .25vw,.875rem);--text-sm:clamp(.875rem,.8rem + .35vw,1rem);--text-base:clamp(1rem,.95rem + .25vw,1.125rem);--text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);--text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);--text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);--space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--radius-sm:.375rem;--radius-md:.65rem;--radius-lg:1rem;--radius-xl:1.35rem;--radius-2xl:1.65rem;--radius-full:9999px;--transition:180ms cubic-bezier(.16,1,.3,1)}
+:root,[data-theme="light"]{--color-bg:#f7f6f2;--color-surface:#fbfaf7;--color-surface-2:#f5f1ea;--color-surface-3:#eee8de;--color-surface-4:#e4dccf;--color-border:#d7d2c8;--color-divider:#e5e0d8;--color-text:#26231d;--color-text-muted:#706b63;--color-text-faint:#a9a39b;--color-primary:#0d6f74;--color-primary-soft:#d7e7e6;--color-accent:#5d7d4a;--color-accent-soft:#dee7d8;--color-warn:#aa6d22;--color-warn-soft:#ecdcc3;--shadow-sm:0 1px 3px rgba(30,25,18,.05),0 6px 18px rgba(30,25,18,.04);--shadow-md:0 8px 24px rgba(30,25,18,.08),0 18px 50px rgba(30,25,18,.05);--shadow-lg:0 18px 60px rgba(30,25,18,.12),0 34px 100px rgba(30,25,18,.08)}
+[data-theme="dark"]{--color-bg:#181715;--color-surface:#211f1c;--color-surface-2:#272420;--color-surface-3:#2f2c28;--color-surface-4:#35312d;--color-border:#3c3832;--color-divider:#312e2a;--color-text:#e4ddd2;--color-text-muted:#b3aba0;--color-text-faint:#7f776f;--color-primary:#4f98a3;--color-primary-soft:#263739;--color-accent:#84a56e;--color-accent-soft:#2e3d2d;--color-warn:#d2a05d;--color-warn-soft:#4c3d2a;--shadow-sm:0 2px 8px rgba(0,0,0,.22);--shadow-md:0 10px 24px rgba(0,0,0,.32);--shadow-lg:0 24px 64px rgba(0,0,0,.45)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;background:var(--color-bg);color:var(--color-text);font-size:var(--text-base);line-height:1.6;overflow-x:hidden}
+
+/* NOISE TEXTURE */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:var(--space-4) var(--space-8);background:rgba(247,246,242,.88);backdrop-filter:blur(18px) saturate(1.5);border-bottom:1px solid var(--color-divider);transition:padding var(--transition)}
+[data-theme="dark"] nav{background:rgba(24,23,21,.88)}
+.nav-logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.nav-logo-icon{width:38px;height:38px;border-radius:50%;background:var(--color-surface-3);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo-text{}
+.nav-logo-name{font-family:'Instrument Serif',serif;font-size:1.35rem;letter-spacing:-.01em;color:var(--color-text);display:block;line-height:1.15}
+.nav-logo-sub{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-text-muted);font-family:'Work Sans',sans-serif;font-weight:500;display:block;line-height:1}
+.nav-links{display:flex;align-items:center;gap:var(--space-6)}
+.nav-links a{font-size:var(--text-sm);color:var(--color-text-muted);text-decoration:none;transition:color var(--transition)}
+.nav-links a:hover{color:var(--color-text)}
+.nav-cta{padding:var(--space-2) var(--space-5);background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-full);font-family:'Work Sans',sans-serif;font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#0a5a5f;transform:translateY(-1px)}
+.btn-theme{background:none;border:1px solid var(--color-border);border-radius:var(--radius-full);padding:5px 12px;color:var(--color-text-muted);cursor:pointer;font-size:12px;font-family:'Work Sans',sans-serif;transition:all var(--transition)}
+.btn-theme:hover{border-color:var(--color-text-muted);color:var(--color-text)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem var(--space-8) 5rem;position:relative;text-align:center}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at 50% 30%,var(--color-primary-soft) 0%,transparent 65%);pointer-events:none;z-index:-1}
+[data-theme="dark"] .hero-glow{background:radial-gradient(ellipse at 50% 30%,rgba(15,50,55,.6) 0%,transparent 65%)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--color-primary);background:var(--color-primary-soft);border:1px solid rgba(13,111,116,.2);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);margin-bottom:var(--space-6);animation:fadeUp .8s ease both}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(3rem,2rem + 4vw,7rem);line-height:1.04;letter-spacing:-.025em;color:var(--color-text);margin-bottom:var(--space-6);animation:fadeUp .8s .08s ease both}
+.hero h1 em{font-style:italic;color:var(--color-primary)}
+.hero-sub{font-size:var(--text-lg);color:var(--color-text-muted);max-width:46ch;line-height:1.55;margin-bottom:var(--space-8);animation:fadeUp .8s .16s ease both}
+.hero-btns{display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .24s ease both}
+.btn-primary{padding:.75rem 2rem;background:var(--color-primary);color:#fff;border:none;border-radius:var(--radius-full);font-family:'Work Sans',sans-serif;font-size:var(--text-base);font-weight:500;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-flex;align-items:center;line-height:1}
+.btn-primary:hover{background:#0a5a5f;transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-ghost{padding:.75rem 2rem;background:transparent;color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-full);font-family:'Work Sans',sans-serif;font-size:var(--text-base);cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-flex;align-items:center;line-height:1}
+.btn-ghost:hover{border-color:var(--color-text-muted);background:var(--color-surface)}
+
+/* PHONE */
+.hero-phone-area{margin-top:var(--space-16);position:relative;display:flex;justify-content:center;animation:fadeUp .8s .32s ease both}
+.phone-wrap{position:relative;width:270px}
+.phone-frame{width:270px;height:540px;background:var(--color-surface);border:2px solid var(--color-border);border-radius:42px;overflow:hidden;position:relative;box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.4)}
+.phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:78px;height:20px;background:var(--color-bg);border-radius:0 0 13px 13px;z-index:10}
+/* PHONE SCREEN — faithful app UI */
+.phone-screen{width:100%;height:100%;display:flex;flex-direction:column;background:var(--color-bg);overflow:hidden;padding:0}
+.ps-topbar{display:flex;align-items:center;justify-content:space-between;padding:32px 10px 8px;background:color-mix(in srgb,var(--color-surface) 92%,transparent);border-bottom:1px solid var(--color-divider);flex-shrink:0}
+.ps-topbar-icon{width:24px;height:24px;border-radius:50%;border:1px solid var(--color-border);background:var(--color-surface);display:flex;align-items:center;justify-content:center;color:var(--color-text-muted)}
+.ps-brand{font-family:'Instrument Serif',serif;font-size:10px;color:var(--color-primary);display:flex;align-items:center;gap:3px}
+.ps-hero{background:linear-gradient(135deg,color-mix(in srgb,#dee7d8 70%,var(--color-surface)),color-mix(in srgb,#d7e7e6 50%,var(--color-surface)));padding:10px 10px 8px;flex-shrink:0}
+.ps-nri-greeting{font-family:'Instrument Serif',serif;font-style:italic;font-size:7px;color:#5d7d4a;margin-bottom:4px}
+.ps-place{font-family:'Instrument Serif',serif;font-size:13px;color:var(--color-text);line-height:1.2;margin-bottom:5px}
+.ps-season-badge{display:inline-flex;align-items:center;gap:3px;background:color-mix(in srgb,#0d6f74 12%,transparent);border:1px solid color-mix(in srgb,#0d6f74 25%,transparent);border-radius:999px;padding:2px 6px;font-size:7px;font-weight:700;letter-spacing:.05em;color:#0d6f74}
+.ps-dot{width:4px;height:4px;border-radius:50%;background:#0d6f74;animation:pulse 2s ease-in-out infinite}
+.ps-stats{display:flex;gap:5px;padding:7px 10px;flex-shrink:0;overflow:hidden}
+.ps-stat{flex:1;background:var(--color-surface);border:1px solid var(--color-border);border-radius:7px;padding:5px 5px;min-width:0}
+.ps-stat-l{display:block;font-size:6px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:1px}
+.ps-stat-v{display:block;font-size:8px;font-weight:600;color:var(--color-text)}
+.ps-hazard{display:flex;gap:5px;align-items:flex-start;margin:0 10px 6px;background:#ecdcc3;border:1px solid #aa6d22;border-radius:7px;padding:5px 7px;flex-shrink:0}
+.ps-hazard-icon{font-size:8px;flex-shrink:0;color:#aa6d22}
+.ps-hazard-title{font-size:7px;font-weight:700;color:#aa6d22;display:block;margin-bottom:1px}
+.ps-hazard-body{font-size:6px;color:var(--color-text-muted);line-height:1.4}
+.ps-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px;padding:7px 8px;margin:0 10px 6px;flex-shrink:0}
+.ps-card-label{font-size:6px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:3px}
+.ps-nri-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:8px;color:var(--color-text-muted);line-height:1.5}
+.ps-week{background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px;overflow:hidden;margin:0 10px 6px;flex-shrink:0}
+.ps-week-header{background:linear-gradient(90deg,#0d6f74,color-mix(in srgb,#0d6f74 70%,#5d7d4a));padding:5px 8px;display:flex;justify-content:space-between;align-items:center}
+.ps-week-title{font-family:'Instrument Serif',serif;font-size:8px;color:#fff}
+.ps-week-phase{font-size:6px;color:rgba(255,255,255,.7);font-weight:600}
+.ps-week-body{padding:6px 8px;font-size:7px;color:var(--color-text-muted);line-height:1.5}
+/* Bottom nav in phone */
+.ps-bottomnav{display:flex;align-items:flex-end;justify-content:space-around;background:var(--color-surface);border-top:1px solid var(--color-divider);padding:5px 4px 6px;margin-top:auto;flex-shrink:0}
+.ps-bnav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:6px;font-weight:600;color:var(--color-text-faint);flex:1;cursor:default}
+.ps-bnav-item.ps-bnav-active{color:#0d6f74}
+.ps-bnav-item.ps-bnav-active svg{stroke:#0d6f74}
+.ps-bnav-compass{width:28px;height:28px;border-radius:50%;background:#0d6f74;display:flex;align-items:center;justify-content:center;position:relative;bottom:6px;box-shadow:0 2px 10px rgba(13,111,116,.5),0 0 0 2px var(--color-surface),0 0 0 3px var(--color-divider)}
+
+/* FLOATING BADGES */
+.fbadge{position:absolute;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-3) var(--space-4);box-shadow:var(--shadow-md);font-size:11px;color:var(--color-text-muted);max-width:152px}
+.fbadge strong{display:block;color:var(--color-text);font-weight:600;margin-bottom:2px;font-size:12px}
+.fb-l{left:-88px;top:110px;animation:float1 4s ease-in-out infinite}
+.fb-r{right:-88px;top:190px;animation:float2 4s 1.5s ease-in-out infinite}
+.fb-b{left:-30px;bottom:70px;animation:float1 4s .7s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* SHARED LAYOUT */
+section{padding:var(--space-16) var(--space-8);position:relative;z-index:1}
+.container{max-width:1160px;margin:0 auto}
+.eyebrow{font-size:var(--text-xs);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--space-3)}
+.s-heading{font-family:'Instrument Serif',serif;font-size:var(--text-2xl);line-height:1.1;letter-spacing:-.02em;margin-bottom:var(--space-4)}
+.s-sub{font-size:var(--text-lg);color:var(--color-text-muted);max-width:50ch;line-height:1.5;margin-bottom:0}
+
+/* COMPARE */
+.compare-bg{background:var(--color-surface-2)}
+.compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-top:var(--space-10)}
+.ccard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8)}
+.ccard h3{font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:var(--space-5);color:var(--color-text-muted)}
+.ccard.hortus h3{color:var(--color-primary)}
+.ccard.them{opacity:.65}
+.ci{display:flex;align-items:flex-start;gap:var(--space-3);margin-bottom:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5}
+.ci-i{flex-shrink:0;font-size:.95rem;margin-top:1px}
+
+/* MODULES */
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);margin-top:var(--space-10)}
+.mcard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:2.25rem 2rem 1.75rem;transition:all var(--transition);position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column}
+.mcard-bg{position:absolute;bottom:-10px;right:-10px;width:170px;height:170px;opacity:.065;pointer-events:none;transition:opacity var(--transition)}
+[data-theme="dark"] .mcard-bg{opacity:.04}
+.mcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--color-border)}
+.mcard:hover .mcard-bg{opacity:.1}
+.mcard-content{position:relative;z-index:1;display:flex;flex-direction:column;flex:1}
+.mnum{font-family:'Instrument Serif',serif;font-size:3.6rem;line-height:1;color:var(--color-text);opacity:.18;margin-bottom:1.25rem;letter-spacing:-.02em;font-style:italic}
+.mname{font-family:'Instrument Serif',serif;font-size:1.65rem;margin-bottom:.85rem;letter-spacing:-.01em;color:var(--color-text);line-height:1.15}
+.mdesc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7;flex:1}
+.mtags{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-5)}
+.tag{font-size:var(--text-xs);padding:5px 12px;border-radius:var(--radius-full);border:1px solid var(--color-border);color:var(--color-text-muted);background:var(--color-surface-2);font-weight:500}
+@media(max-width:960px){.modules-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.modules-grid{grid-template-columns:1fr}}
+
+/* COMMON YEAR */
+.cy-bg{background:var(--color-surface-2)}
+.cy-timeline{position:relative;margin-top:var(--space-10)}
+.cy-track{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:var(--space-4);scrollbar-width:thin;scrollbar-color:var(--color-border) transparent;position:relative}
+.cy-track::before{content:'';position:absolute;top:28px;left:0;right:0;height:1px;background:var(--color-border);z-index:0;pointer-events:none}
+.cy-node{flex:0 0 auto;width:148px;display:flex;flex-direction:column;align-items:center;position:relative;padding:0 8px}
+.cy-dot{width:11px;height:11px;border-radius:50%;background:var(--color-surface-3);border:2px solid var(--color-border);z-index:1;flex-shrink:0;margin-bottom:var(--space-4);transition:all var(--transition)}
+.cy-node.active .cy-dot{background:var(--color-primary);border-color:var(--color-primary);box-shadow:0 0 0 4px var(--color-primary-soft)}
+.cy-arrow{position:absolute;top:23px;right:-4px;z-index:2;color:var(--color-border);font-size:10px;line-height:1}
+.cy-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4) var(--space-4);width:100%;transition:all var(--transition)}
+.cy-node.active .cy-card{background:var(--color-primary);border-color:transparent;box-shadow:0 6px 20px rgba(13,111,116,.28)}
+.cy-num{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-1);font-family:'Work Sans',sans-serif}
+.cy-node.active .cy-num{color:rgba(255,255,255,.55)}
+.cy-name{font-family:'Instrument Serif',serif;font-size:1rem;color:var(--color-text);margin-bottom:var(--space-2);line-height:1.2}
+.cy-node.active .cy-name{color:#fff}
+.cy-desc{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.45}
+.cy-node.active .cy-desc{color:rgba(255,255,255,.7)}
+
+/* NRI */
+.nri-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:start;margin-top:var(--space-10)}
+.nri-signals{display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-6)}
+.nsig{display:flex;align-items:flex-start;gap:var(--space-3);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4) var(--space-5);transition:all var(--transition)}
+.nsig:hover{transform:translateX(4px);box-shadow:var(--shadow-sm)}
+.ndot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.ndot-g{background:var(--color-accent)}
+.ndot-a{background:var(--color-warn)}
+.ndot-t{background:var(--color-primary)}
+.nsig-text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5}
+.nsig-label{font-weight:600;color:var(--color-text);display:block;margin-bottom:2px}
+.nri-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8);box-shadow:var(--shadow-md)}
+.nri-salute{font-size:var(--text-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--color-primary);font-weight:600;margin-bottom:var(--space-4)}
+.nri-quote-big{font-family:'Instrument Serif',serif;font-style:italic;font-size:var(--text-lg);line-height:1.5;color:var(--color-text);margin-bottom:var(--space-6)}
+.nri-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+.nri-mini{background:var(--color-surface-2);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);font-size:var(--text-xs)}
+.nri-mini-l{letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:3px}
+.nri-mini-v{color:var(--color-text-muted);font-weight:500}
+
+/* LOAM MAP */
+.loam-bg{background:var(--color-surface-2)}
+.loam-layout{display:grid;grid-template-columns:1.45fr 1fr;gap:var(--space-8);align-items:start;margin-top:var(--space-10)}
+.loam-section-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-md)}
+.loam-layer{padding:var(--space-4) var(--space-6);display:flex;align-items:center;gap:var(--space-4);border-bottom:1px solid var(--color-divider);transition:background var(--transition)}
+.loam-layer:last-child{border-bottom:none}
+.loam-layer:hover{background:var(--color-surface-2)}
+.loam-swatch{width:32px;height:32px;border-radius:var(--radius-md);flex-shrink:0}
+.loam-li h4{font-size:var(--text-sm);font-weight:600;margin-bottom:2px}
+.loam-li p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.4}
+.loam-right{display:flex;flex-direction:column;gap:var(--space-5)}
+.loam-toggle-box{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+.tabs{display:flex;border:1px solid var(--color-border);border-radius:var(--radius-full);overflow:hidden;margin-bottom:var(--space-5)}
+.tab-btn{flex:1;padding:var(--space-2) var(--space-3);background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:var(--text-xs);font-weight:500;color:var(--color-text-muted);transition:all var(--transition)}
+.tab-btn.on{background:var(--color-primary);color:#fff}
+.loam-text{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7}
+.loam-text strong{color:var(--color-text);font-weight:600}
+.readiness-box{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-5)}
+.r-label{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-3)}
+.r-row{display:flex;justify-content:space-between;align-items:center;font-size:var(--text-sm);margin-bottom:var(--space-2)}
+.r-dots{display:flex;gap:3px}
+.rdot{width:11px;height:11px;border-radius:3px}
+
+/* RULE OF LIFE */
+.rule-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-top:var(--space-10)}
+.rcard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);text-align:center;transition:all var(--transition)}
+.rcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.rnumeral{font-family:'Instrument Serif',serif;font-style:italic;font-size:2.8rem;color:var(--color-primary);opacity:.3;line-height:1;margin-bottom:var(--space-2)}
+.rname{font-family:'Instrument Serif',serif;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.rdesc{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5}
+
+/* PHILOSOPHY */
+.phil-bg{background:var(--color-surface-2)}
+.phil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4);margin-top:var(--space-10)}
+.pcard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-6);transition:all var(--transition)}
+.pcard:hover{border-color:var(--color-primary);box-shadow:var(--shadow-sm)}
+.picon{width:40px;height:40px;border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:var(--space-4)}
+.pname{font-family:'Instrument Serif',serif;font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.pdesc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5}
+.ptags{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-3)}
+
+/* DATA SOURCES */
+.src-bg{background:var(--color-surface-2)}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--space-3);margin-top:var(--space-8)}
+.scard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-4) var(--space-5)}
+.stype{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-2);font-weight:600}
+.sname{font-weight:600;font-size:var(--text-sm);color:var(--color-text);margin-bottom:var(--space-1)}
+.sdesc{color:var(--color-text-muted);font-size:var(--text-xs);line-height:1.4}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-5);margin-top:var(--space-10)}
+.tcard{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8);box-shadow:var(--shadow-sm)}
+.tquote{font-family:'Instrument Serif',serif;font-style:italic;font-size:var(--text-lg);line-height:1.5;color:var(--color-text);margin-bottom:var(--space-5)}
+.tauthor{font-size:var(--text-sm);color:var(--color-text-muted)}
+.tname{font-weight:600;color:var(--color-text)}
+
+/* CTA */
+.cta-sec{background:var(--color-primary);padding:var(--space-16) var(--space-8);text-align:center;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.15),transparent 70%)}
+.cta-sec h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,1.5rem + 2.5vw,4.5rem);color:#fff;margin-bottom:var(--space-4);position:relative}
+.cta-sec h2 em{font-style:italic}
+.cta-sub{color:rgba(255,255,255,.8);font-size:var(--text-lg);margin-bottom:var(--space-8);max-width:48ch;margin-left:auto;margin-right:auto;position:relative}
+.cta-form{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;position:relative}
+.cta-input{padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-family:'Work Sans',sans-serif;font-size:var(--text-base);width:300px;outline:none;transition:border-color var(--transition);backdrop-filter:blur(8px)}
+.cta-input::placeholder{color:rgba(255,255,255,.6)}
+.cta-input:focus{border-color:rgba(255,255,255,.7)}
+.cta-btn{padding:var(--space-3) var(--space-8);border-radius:var(--radius-full);background:#fff;color:var(--color-primary);border:none;font-family:'Work Sans',sans-serif;font-size:var(--text-base);font-weight:600;cursor:pointer;transition:all var(--transition)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.cta-note{margin-top:var(--space-4);font-size:var(--text-xs);color:rgba(255,255,255,.5);position:relative}
+
+/* FOOTER */
+footer{background:var(--color-surface);border-top:1px solid var(--color-border);padding:var(--space-12) var(--space-8)}
+.footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-5)}
+.footer-logo{font-family:'Instrument Serif',serif;font-size:1.2rem;color:var(--color-text);text-decoration:none}
+.footer-tag{font-size:var(--text-sm);color:var(--color-text-faint);margin-top:3px}
+.footer-links{display:flex;gap:var(--space-6);flex-wrap:wrap}
+.footer-links a{font-size:var(--text-sm);color:var(--color-text-muted);text-decoration:none;transition:color var(--transition)}
+.footer-links a:hover{color:var(--color-text)}
+.footer-note{font-size:var(--text-xs);color:var(--color-text-faint)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .compare-cols,.nri-grid,.loam-layout{grid-template-columns:1fr}
+  .rule-grid{grid-template-columns:repeat(3,1fr)}
+  .fb-l,.fb-r,.fb-b{display:none}
+}
+@media(max-width:600px){
+  nav .nav-links a:not(.nav-cta):not(.btn-theme){display:none}
+  .rule-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:clamp(2.4rem,8vw,3.5rem)}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stem -->
+        <path d="M10 17 C10 17 10 9 10 7" stroke="var(--color-text)" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Left leaf -->
+        <path d="M10 11 C10 11 7 10 5.5 7.5 C5 6.5 5.5 5 7 5.5 C8.5 6 9.5 8 10 11Z" fill="var(--color-accent)" opacity="0.8"/>
+        <!-- Right leaf -->
+        <path d="M10 9 C10 9 13 8 14.5 5.5 C15 4.5 14.5 3 13 3.5 C11.5 4 10.5 6 10 9Z" fill="var(--color-accent)"/>
+        <!-- Two small sprout tips -->
+        <path d="M10 7 C10 7 9 5.5 9.5 4" stroke="var(--color-accent)" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Hortus</span>
+      <span class="nav-logo-sub">Land &middot; Season &middot; Memory</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#modules">Modules</a>
+    <a href="#nri">NRI</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#sources">Data</a>
+    <button class="btn-theme" onclick="toggleTheme()">☀ / ☾</button>
+    <a class="nav-cta" href="#waitlist">Early access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">🌱 A tool for those who tend land with intention</div>
+  <h1>Know Your Land.<br><em>Tend It Well.</em></h1>
+  <p class="hero-sub">Hortus reads your soil, season, and site — then guides you toward a garden that lasts and a household that remembers. Built for the land under your feet, not a hypothetical somewhere else.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#waitlist">Request early access →</a>
+    <a class="btn-ghost" href="#modules">How it works</a>
+  </div>
+
+  <div class="hero-phone-area">
+    <div class="phone-wrap">
+      <div class="fbadge fb-l">
+        <strong>Zone 4b · Burnsville</strong>
+        USDA hardiness verified
+      </div>
+      <div class="fbadge fb-r">
+        <strong>Silty clay loam</strong>
+        Moderate drainage · mulch-ready
+      </div>
+      <div class="fbadge fb-b">
+        <strong>Verso l'alto!</strong>
+        NRI · your gardening steward
+      </div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <!-- APP SCREEN — faithful recreation of the home screen -->
+        <div class="phone-screen">
+
+          <!-- Top bar -->
+          <div class="ps-topbar">
+            <div class="ps-topbar-icon">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <line x1="1" y1="2.5" x2="10" y2="2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="1" y1="5.5" x2="10" y2="5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="1" y1="8.5" x2="10" y2="8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="ps-brand">
+              <svg width="9" height="9" viewBox="0 0 20 20" fill="none"><path d="M10 17C10 17 10 9 10 7" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round"/><path d="M10 11C10 11 7 10 5.5 7.5C5 6.5 5.5 5 7 5.5C8.5 6 9.5 8 10 11Z" fill="#5d7d4a" opacity="0.9"/><path d="M10 9C10 9 13 8 14.5 5.5C15 4.5 14.5 3 13 3.5C11.5 4 10.5 6 10 9Z" fill="#5d7d4a"/></svg>
+              Hortus
+            </div>
+            <div class="ps-topbar-icon">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+          </div>
+
+          <!-- Hero gradient area -->
+          <div class="ps-hero">
+            <div class="ps-nri-greeting">Verso l'alto — the soil is waking.</div>
+            <div class="ps-place">Sundown Edge<br>Savage, MN</div>
+            <div class="ps-season-badge"><span class="ps-dot"></span> First Signs</div>
+          </div>
+
+          <!-- Stat chips -->
+          <div class="ps-stats">
+            <div class="ps-stat"><span class="ps-stat-l">Zone</span><span class="ps-stat-v">4b</span></div>
+            <div class="ps-stat"><span class="ps-stat-l">Frost</span><span class="ps-stat-v">Fri ⚠</span></div>
+            <div class="ps-stat"><span class="ps-stat-l">Soil</span><span class="ps-stat-v">Silt loam</span></div>
+          </div>
+
+          <!-- Hazard banner -->
+          <div class="ps-hazard">
+            <span class="ps-hazard-icon">⚠</span>
+            <div>
+              <div class="ps-hazard-title">Frost risk Thursday night</div>
+              <div class="ps-hazard-body">29°F forecast. Hold warm-season transplants.</div>
+            </div>
+          </div>
+
+          <!-- NRI card -->
+          <div class="ps-card">
+            <div class="ps-card-label">NRI · Field reading</div>
+            <div class="ps-nri-text">"This patch holds water like a bowl. Begin with mulch — the soil will reward you quickly."</div>
+          </div>
+
+          <!-- Week card -->
+          <div class="ps-week">
+            <div class="ps-week-header">
+              <span class="ps-week-title">This Week · Observe</span>
+              <span class="ps-week-phase">Phase III</span>
+            </div>
+            <div class="ps-week-body">Watch where snow melts first. Note wet corners. Photograph one question.</div>
+          </div>
+
+          <!-- Bottom nav -->
+          <div class="ps-bottomnav">
+            <div class="ps-bnav-item ps-bnav-active">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>Home</span>
+            </div>
+            <div class="ps-bnav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              <span>Plots</span>
+            </div>
+            <div class="ps-bnav-compass">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/>
+                <path d="M12 5L13.5 10.5L12 9.5L10.5 10.5Z" fill="#fff"/>
+                <path d="M12 19L13.5 13.5L12 14.5L10.5 13.5Z" fill="rgba(255,255,255,.4)"/>
+                <circle cx="12" cy="12" r="1.2" fill="#fff"/>
+              </svg>
+            </div>
+            <div class="ps-bnav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="15.5" y2="8.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+              <span>Seasons</span>
+            </div>
+            <div class="ps-bnav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+              <span>Memory</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE -->
+<section class="compare-bg" id="compare">
+  <div class="container">
+    <p class="eyebrow">Why Hortus</p>
+    <h2 class="s-heading">Other apps tell you what to plant.<br>Hortus reads <em>where you are planted.</em></h2>
+    <div class="compare-cols reveal">
+      <div class="ccard them">
+        <h3>🚫 Generic garden apps</h3>
+        <div class="ci"><span class="ci-i">—</span><span>Generic planting calendars not tied to your actual zone or phenology</span></div>
+        <div class="ci"><span class="ci-i">—</span><span>No knowledge of your soil, slope, drainage, or microclimate</span></div>
+        <div class="ci"><span class="ci-i">—</span><span>Treat all gardens the same regardless of philosophy or region</span></div>
+        <div class="ci"><span class="ci-i">—</span><span>No hazard logic — will suggest planting right into a frost</span></div>
+        <div class="ci"><span class="ci-i">—</span><span>Disconnected features, no guiding intelligence</span></div>
+        <div class="ci"><span class="ci-i">—</span><span>No memory. No learning. No relationship with your land across generations.</span></div>
+      </div>
+      <div class="ccard hortus">
+        <h3>✦ Hortus</h3>
+        <div class="ci"><span class="ci-i">✓</span><span>Real-time planting windows from NWS, USA-NPN, and your exact hardiness zone</span></div>
+        <div class="ci"><span class="ci-i">✓</span><span>NRCS soil data, USGS terrain, and parcel-level loam intelligence</span></div>
+        <div class="ci"><span class="ci-i">✓</span><span>Six philosophy lenses — Back to Eden, no-dig, permaculture, and more</span></div>
+        <div class="ci"><span class="ci-i">✓</span><span>Weather hazard logic that suppresses risky tasks before you step outside</span></div>
+        <div class="ci"><span class="ci-i">✓</span><span>NRI ties everything together — a patient, land-aware monastic steward</span></div>
+        <div class="ci"><span class="ci-i">✓</span><span>Keeps memory across seasons. Gets better the longer you tend.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="modules">
+  <div class="container">
+    <p class="eyebrow">Six Core Modules</p>
+    <h2 class="s-heading">Everything the land asks of you,<br><em>organized.</em></h2>
+    <p class="s-sub">From parcel reading to seed saving — a complete operating system for your place.</p>
+    <div class="modules-grid reveal">
+
+      <!-- 01 LAND -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="85" cy="122" rx="72" ry="28" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <ellipse cx="85" cy="110" rx="55" ry="21" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <ellipse cx="85" cy="99" rx="40" ry="15" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <ellipse cx="85" cy="90" rx="26" ry="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <ellipse cx="85" cy="83" rx="14" ry="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="85" y1="30" x2="85" y2="52" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M80 41 L85 30 L90 41" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <rect x="22" y="62" width="126" height="88" rx="6" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 4" fill="none"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">01</div>
+          <div class="mname">Land</div>
+          <p class="mdesc">Property measurement, parcel map, sun and water layers, loam notes, and zone suitability. NRI redraws your site in beautiful SVG, then shows you what's possible here.</p>
+          <div class="mtags"><span class="tag">Parcel GIS</span><span class="tag">SSURGO soil</span><span class="tag">USGS terrain</span></div>
+        </div>
+      </div>
+
+      <!-- 02 PLOTS -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="20" width="55" height="35" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <rect x="80" y="20" width="75" height="35" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <rect x="15" y="68" width="35" height="55" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <rect x="60" y="68" width="95" height="55" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <rect x="15" y="136" width="140" height="24" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="15" y1="32" x2="70" y2="32" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+          <line x1="15" y1="44" x2="70" y2="44" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+          <line x1="60" y1="83" x2="155" y2="83" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+          <line x1="60" y1="97" x2="155" y2="97" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+          <line x1="60" y1="111" x2="155" y2="111" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">02</div>
+          <div class="mname">Plots</div>
+          <p class="mdesc">Bed assignment, stewardship history, crop rotation, compost and mulch status. Your garden is a living ledger — every season recorded, every decision remembered. The land keeps an honest account of its stewards.</p>
+          <div class="mtags"><span class="tag">Layout planner</span><span class="tag">Crop calendar</span><span class="tag">Rotation logic</span></div>
+        </div>
+      </div>
+
+      <!-- 03 SEASONS -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="85" cy="78" r="26" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <line x1="85" y1="20" x2="85" y2="38" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="85" y1="118" x2="85" y2="136" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="27" y1="78" x2="45" y2="78" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="125" y1="78" x2="143" y2="78" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="44" y1="35" x2="56" y2="47" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="114" y1="109" x2="126" y2="121" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="126" y1="35" x2="114" y2="47" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="56" y1="109" x2="44" y2="121" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M10 148 Q42 138 75 148 Q108 158 142 148 Q156 143 166 146" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          <path d="M10 160 Q45 153 80 160 Q115 167 155 160" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">03</div>
+          <div class="mname">Seasons</div>
+          <p class="mdesc">Climate-aware planting dates, crop suggestions, task calendars, and succession reminders — all tuned to your actual phenology, not a region averaged to uselessness.</p>
+          <div class="mtags"><span class="tag">USA-NPN</span><span class="tag">NWS alerts</span><span class="tag">UMN Extension</span></div>
+        </div>
+      </div>
+
+      <!-- 04 HARVESTS -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M35 92 Q35 152 85 157 Q135 152 135 92" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <path d="M35 92 Q60 82 85 87 Q110 82 135 92" stroke="currentColor" stroke-width="1.6" fill="none"/>
+          <path d="M38 108 Q85 100 132 108" stroke="currentColor" stroke-width="1" fill="none"/>
+          <path d="M40 121 Q85 114 130 121" stroke="currentColor" stroke-width="1" fill="none"/>
+          <path d="M44 134 Q85 128 126 134" stroke="currentColor" stroke-width="1" fill="none"/>
+          <path d="M51 146 Q85 141 119 146" stroke="currentColor" stroke-width="1" fill="none"/>
+          <path d="M57 90 Q57 47 85 42 Q113 47 113 90" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="70" cy="84" r="9" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="92" cy="80" r="11" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="113" cy="84" r="8" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">04</div>
+          <div class="mname">Harvests</div>
+          <p class="mdesc">Record yield, destination, waste, donations, and seed saving. The harvest memory becomes an honest account of what this bed and this steward can reliably produce.</p>
+          <div class="mtags"><span class="tag">Yield tracking</span><span class="tag">Seed saving</span><span class="tag">Donations log</span></div>
+        </div>
+      </div>
+
+      <!-- 05 COMMONS -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="52" width="52" height="68" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M28 66 L54 81 L80 66" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <ellipse cx="47" cy="98" rx="4" ry="5.5" stroke="currentColor" stroke-width="1" fill="none"/>
+          <ellipse cx="60" cy="104" rx="3.5" ry="4.5" stroke="currentColor" stroke-width="1" fill="none"/>
+          <ellipse cx="54" cy="112" rx="3" ry="4" stroke="currentColor" stroke-width="1" fill="none"/>
+          <line x1="112" y1="22" x2="112" y2="112" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M98 82 Q98 117 112 117 Q126 117 126 82 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="105" y1="82" x2="105" y2="102" stroke="currentColor" stroke-width=".9"/>
+          <ellipse cx="40" cy="147" rx="13" ry="5" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(-15 40 147)"/>
+          <ellipse cx="67" cy="152" rx="11" ry="4" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(10 67 152)"/>
+          <ellipse cx="93" cy="145" rx="10" ry="4" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(-8 93 145)"/>
+          <ellipse cx="118" cy="150" rx="9" ry="3.5" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(5 118 150)"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">05</div>
+          <div class="mname">Commons</div>
+          <p class="mdesc">Seed library, tool sharing, wood-chip requests and offers, compost inputs, and mentor requests. The neighborhood infrastructure that keeps communities genuinely self-reliant.</p>
+          <div class="mtags"><span class="tag">Seed library</span><span class="tag">Chip exchange</span><span class="tag">Tool sharing</span></div>
+        </div>
+      </div>
+
+      <!-- 06 PEOPLE -->
+      <div class="mcard">
+        <svg class="mcard-bg" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="14" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M28 103 Q28 73 50 73 Q72 73 72 103" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="92" cy="40" r="17" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M66 103 Q66 66 92 66 Q118 66 118 103" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="133" cy="53" r="13" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M113 103 Q113 74 133 74 Q153 74 153 103" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <line x1="18" y1="103" x2="158" y2="103" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M56 70 Q72 58 82 63" stroke="currentColor" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+          <path d="M101 63 Q117 56 123 66" stroke="currentColor" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+          <path d="M85 103 Q75 124 68 144" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          <path d="M85 112 Q95 133 102 150" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          <path d="M85 120 Q80 140 79 156" stroke="currentColor" stroke-width=".9" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="mcard-content">
+          <div class="mnum">06</div>
+          <div class="mname">People</div>
+          <p class="mdesc">Volunteer scheduling, workdays, roles, team communication, and the NRI relational layer that surfaces who's overwhelmed, who needs a check-in, and who's ready to step up.</p>
+          <div class="mtags"><span class="tag">Volunteer scheduling</span><span class="tag">NRI signals</span><span class="tag">Mentor matching</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMMON YEAR -->
+<section class="cy-bg">
+  <div class="container">
+    <p class="eyebrow">The Common Year Engine</p>
+    <h2 class="s-heading">Eight seasons.<br>One continuous <em>rhythm.</em></h2>
+    <p class="s-sub">The Common Year doesn't give you a task list. It reads where you are in the land's own progression — the way our ancestors read it — and guides you from there.</p>
+    <div class="cy-timeline reveal">
+      <div class="cy-track">
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">I</div>
+            <div class="cy-name">Rest</div>
+            <div class="cy-desc">Ground lies quiet. Observe without acting. The garden is teaching.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">II</div>
+            <div class="cy-name">Preparation</div>
+            <div class="cy-desc">Gather materials, amend soil. Patience is work.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node active">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">III · Now</div>
+            <div class="cy-name">First Signs</div>
+            <div class="cy-desc">Frost softens. Early indicators appear. Not yet — but almost.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">IV</div>
+            <div class="cy-name">Planting</div>
+            <div class="cy-desc">The brief, generous window. Act swiftly and with good sequence.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">V</div>
+            <div class="cy-name">Establishment</div>
+            <div class="cy-desc">Roots take hold. The most fragile stretch — tend faithfully.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">VI</div>
+            <div class="cy-name">Abundance</div>
+            <div class="cy-desc">The garden is full. Harvest, share, hold back from oversowing.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">VII</div>
+            <div class="cy-name">Preservation</div>
+            <div class="cy-desc">Save seeds. Store food. Clear what doesn't belong to next year.</div>
+          </div>
+          <div class="cy-arrow">›</div>
+        </div>
+
+        <div class="cy-node">
+          <div class="cy-dot"></div>
+          <div class="cy-card">
+            <div class="cy-num">VIII</div>
+            <div class="cy-name">Return</div>
+            <div class="cy-desc">Lay mulch. Write the year's record. Hand the land back to rest.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NRI -->
+<section id="nri">
+  <div class="container">
+    <p class="eyebrow">NRI — Relational Intelligence</p>
+    <h2 class="s-heading">An ancient steward who<br>knows <em>your ground.</em></h2>
+    <p class="s-sub">NRI isn't a chatbot. It's a patient, land-aware intelligence that reads pastoral signals, speaks plainly, and never rushes you. Formed in the tradition of those who understood that the land is held — never merely owned.</p>
+    <div class="nri-grid reveal">
+      <div>
+        <p style="color:var(--color-text-muted);margin-bottom:var(--space-6);font-size:var(--text-base);line-height:1.75">NRI watches your place the way a good steward does — quietly, consistently, attentively. It keeps the memory your garden deserves. When it needs to say something, it says it once. It greets you in Italian because some truths deserve a different register: <strong style="color:var(--color-text)">Verso l'alto.</strong></p>
+        <div class="nri-signals">
+          <div class="nsig"><div class="ndot ndot-a"></div><div class="nsig-text"><span class="nsig-label">Could use a check-in</span>Low engagement during establishment phase. The seedlings are fine. The gardener may not be.</div></div>
+          <div class="nsig"><div class="ndot ndot-t"></div><div class="nsig-text"><span class="nsig-label">Possible overwhelm</span>Three simultaneous projects, no log entries in two weeks. Consider simplifying this week's intention.</div></div>
+          <div class="nsig"><div class="ndot ndot-g"></div><div class="nsig-text"><span class="nsig-label">Strong mentor candidate</span>Third season, consistent records, patient with difficulty. Ready to guide a newer gardener.</div></div>
+          <div class="nsig"><div class="ndot ndot-g"></div><div class="nsig-text"><span class="nsig-label">Ready for more responsibility</span>Has mastered the basics reliably. A larger stewardship role would fit this season.</div></div>
+        </div>
+      </div>
+      <div class="nri-card">
+        <div class="nri-salute">NRI · Verso l'alto!</div>
+        <div class="nri-quote-big">"This patch holds water like a bowl. Begin with mulch and the soil will reward you more quickly than you expect."</div>
+        <div class="nri-mini-grid">
+          <div class="nri-mini"><div class="nri-mini-l">Field</div><div class="nri-mini-v">Silty clay loam · south aspect · moisture-retentive</div></div>
+          <div class="nri-mini"><div class="nri-mini-l">Phase</div><div class="nri-mini-v">First Signs · frost risk clears Thursday</div></div>
+          <div class="nri-mini"><div class="nri-mini-l">This week</div><div class="nri-mini-v">Observe · note water movement in low corners</div></div>
+          <div class="nri-mini"><div class="nri-mini-l">Caution</div><div class="nri-mini-v">Soil too wet for bed work — wait until Saturday</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOAM MAP -->
+<section class="loam-bg" id="loam">
+  <div class="container">
+    <p class="eyebrow">The Loam Map</p>
+    <h2 class="s-heading">Four data sources.<br>One honest portrait of <em>your ground.</em></h2>
+    <p class="s-sub">NRCS soil science. USGS terrain. USDA hardiness. Parcel geometry. Translated into language you can actually use in a garden.</p>
+    <div class="loam-layout reveal">
+      <div class="loam-section-card">
+        <div style="padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--color-divider)">
+          <div style="font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:4px">Soil profile · 0–36 inches</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:var(--text-lg)">Your ground in cross-section</div>
+        </div>
+        <div class="loam-layer">
+          <div class="loam-swatch" style="background:linear-gradient(135deg,#3b2a1e,#573c2a)"></div>
+          <div class="loam-li"><h4>Surface · 0–8 in.</h4><p>Dark, organic-rich topsoil. Good tilth. Keep protected with mulch year-round.</p></div>
+        </div>
+        <div class="loam-layer">
+          <div class="loam-swatch" style="background:linear-gradient(135deg,#7a5c3a,#9e7a52)"></div>
+          <div class="loam-li"><h4>A horizon · 8–18 in.</h4><p>Silty clay loam. Moderate drainage. Improves significantly with organic matter.</p></div>
+        </div>
+        <div class="loam-layer">
+          <div class="loam-swatch" style="background:linear-gradient(135deg,#b89a70,#d4b88c)"></div>
+          <div class="loam-li"><h4>B horizon · 18–30 in.</h4><p>Clay accumulation. Slow permeability. Raised beds recommended for this layer.</p></div>
+        </div>
+        <div class="loam-layer">
+          <div class="loam-swatch" style="background:linear-gradient(135deg,#c4b095,#ddd0b0)"></div>
+          <div class="loam-li"><h4>Subsoil · 30–36 in.</h4><p>Parent material. Gravelly in places. Drainage limits at this depth.</p></div>
+        </div>
+        <div style="padding:var(--space-4) var(--space-6);background:var(--color-warn-soft);display:flex;gap:var(--space-3);align-items:flex-start">
+          <span>⚠</span>
+          <div style="font-size:var(--text-xs);color:var(--color-warn);line-height:1.5"><strong>Drainage caution:</strong> Low corner shows pooling risk after heavy rain. Delay bed work 24 hours post-precipitation.</div>
+        </div>
+      </div>
+      <div class="loam-right">
+        <div class="loam-toggle-box">
+          <div style="font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-3)">Language mode</div>
+          <div class="tabs">
+            <button class="tab-btn on" onclick="setTab(this,'p')">Plain</button>
+            <button class="tab-btn" onclick="setTab(this,'g')">Gardener</button>
+            <button class="tab-btn" onclick="setTab(this,'s')">Source</button>
+          </div>
+          <div class="loam-text" id="lt-p"><p><strong>This ground holds water longer than average.</strong> After rain it stays wet a day or two before you can work it. That's not a flaw — it means once you get something growing, it won't dry out fast. Keep the surface covered with mulch and wait a day after heavy rain before digging.</p></div>
+          <div class="loam-text" style="display:none" id="lt-g"><p><strong>Somewhat poorly drained silty clay loam.</strong> High water-holding capacity, moderate CEC. Classic conditions for Back to Eden or no-dig — the clay structure benefits greatly from added organic matter. Compaction risk if worked wet. Permanent mulch paths recommended.</p></div>
+          <div class="loam-text" style="display:none" id="lt-s"><p><strong>NRCS map unit: Nicollet loam.</strong> Drainage class: somewhat poorly drained. Hydrologic group: C/D. Available water capacity: 0.19 in/in. Permeability: 0.2–0.6 in/hr. Slope: 0–2% (A phase). Farmland class: Prime if drained. Source: SSURGO via Soil Data Access.</p></div>
+        </div>
+        <div class="readiness-box">
+          <div class="r-label">Site readiness</div>
+          <div class="r-row">
+            <span style="font-size:var(--text-sm)">Water retention</span>
+            <div class="r-dots">
+              <div class="rdot" style="background:var(--color-primary)"></div>
+              <div class="rdot" style="background:var(--color-primary)"></div>
+              <div class="rdot" style="background:var(--color-primary)"></div>
+              <div class="rdot" style="background:var(--color-primary);opacity:.25"></div>
+            </div>
+          </div>
+          <div class="r-row">
+            <span style="font-size:var(--text-sm)">Workability</span>
+            <div class="r-dots">
+              <div class="rdot" style="background:var(--color-accent)"></div>
+              <div class="rdot" style="background:var(--color-accent)"></div>
+              <div class="rdot" style="background:var(--color-accent);opacity:.25"></div>
+              <div class="rdot" style="background:var(--color-accent);opacity:.25"></div>
+            </div>
+          </div>
+          <div class="r-row" style="margin-bottom:0">
+            <span style="font-size:var(--text-sm)">Perennial suitability</span>
+            <div class="r-dots">
+              <div class="rdot" style="background:var(--color-accent)"></div>
+              <div class="rdot" style="background:var(--color-accent)"></div>
+              <div class="rdot" style="background:var(--color-accent)"></div>
+              <div class="rdot" style="background:var(--color-accent)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULE OF LIFE -->
+<section id="rule">
+  <div class="container">
+    <p class="eyebrow">The Rule of Life</p>
+    <h2 class="s-heading">Five movements.<br><em>One faithful week.</em></h2>
+    <p class="s-sub">A Cistercian-inspired weekly rhythm rooted in <em>ora et labora</em> — pray and work. Adapted from 900 years of monastic land stewardship. The monks understood what we are relearning: the garden is not a project. It is a practice.</p>
+    <div class="rule-grid reveal">
+      <div class="rcard"><div class="rnumeral">I</div><div class="rname">Observe</div><p class="rdesc">Notice what the land is doing without you. Watch water, sun, and life before acting.</p></div>
+      <div class="rcard"><div class="rnumeral">II</div><div class="rname">Tend</div><p class="rdesc">Do the smallest faithful tasks that move things forward. Consistency over intensity.</p></div>
+      <div class="rcard"><div class="rnumeral">III</div><div class="rname">Restrain</div><p class="rdesc">Say no to the urge to overbuild or overplant. The garden asks for less than you think.</p></div>
+      <div class="rcard"><div class="rnumeral">IV</div><div class="rname">Receive</div><p class="rdesc">Enjoy what has already come into being. Pause in the abundance before it passes.</p></div>
+      <div class="rcard"><div class="rnumeral">V</div><div class="rname">Record</div><p class="rdesc">Give the week a line in your long memory. What you don't record, time will take.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="phil-bg" id="philosophy">
+  <div class="container">
+    <p class="eyebrow">Six Philosophy Lenses</p>
+    <h2 class="s-heading">Which path fits<br>your land <em>and your household?</em></h2>
+    <p class="s-sub">Hortus doesn't impose a doctrine. It offers six paths — each with real gifts and real costs. Discern slowly. The land will help you choose.</p>
+    <div class="phil-grid reveal">
+      <div class="pcard"><div class="picon">🪵</div><div class="pname">Back to Eden</div><p class="pdesc">Heavy mulch, high microbial life, minimal disturbance. Slow to establish, forgiving to maintain. Rewards patience and material intelligence.</p><div class="ptags"><span class="tag">Low-disturbance</span><span class="tag">Wood chip</span><span class="tag">Soil life</span></div></div>
+      <div class="pcard"><div class="picon">🥕</div><div class="pname">No-Dig</div><p class="pdesc">Compost on top, permanent beds, no tilling. Preserves soil structure. Ideal for clay-heavy ground and gardeners wanting less hard labor over time.</p><div class="ptags"><span class="tag">Compost first</span><span class="tag">Permanent beds</span></div></div>
+      <div class="pcard"><div class="picon">🌀</div><div class="pname">Permaculture</div><p class="pdesc">Whole-system design, stacking functions, edge effects. Plant guilds, water harvesting, and long-term ecological intelligence in every decision.</p><div class="ptags"><span class="tag">Whole-system</span><span class="tag">Guilds</span></div></div>
+      <div class="pcard"><div class="picon">🌿</div><div class="pname">Kitchen Garden</div><p class="pdesc">Small, precise, beautiful. Herbs and greens in reach of your door. Suits busy households wanting intimate daily harvests over large-scale production.</p><div class="ptags"><span class="tag">Succession</span><span class="tag">Daily harvest</span></div></div>
+      <div class="pcard"><div class="picon">🦋</div><div class="pname">Native Habitat</div><p class="pdesc">Ecological restoration, pollinator support, native plant communities. The land as habitat first, garden second. Deeply regional and deeply needed.</p><div class="ptags"><span class="tag">Pollinators</span><span class="tag">Native plants</span></div></div>
+      <div class="pcard"><div class="picon">🏡</div><div class="pname">Homestead</div><p class="pdesc">Utility, yield, preservation, resilience. Practical food systems, seed saving, and long-range planning. The garden as the economic and moral foundation of a household that owns its means of subsistence.</p><div class="ptags"><span class="tag">Yield focus</span><span class="tag">Preservation</span><span class="tag">Household economy</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="src-bg" id="sources">
+  <div class="container">
+    <p class="eyebrow">Real Data, Not Guesses</p>
+    <h2 class="s-heading">Official sources. Translated into<br><em>gardening language.</em></h2>
+    <p class="s-sub">Hortus plugs into federal, state, and academic data sources to give you site-specific truth — not generic advice designed for an average garden that exists nowhere.</p>
+    <div class="src-grid reveal">
+      <div class="scard"><div class="stype">Soil</div><div class="sname">NRCS SSURGO</div><div class="sdesc">Soil texture, drainage, hydrologic group, organic matter, farmland class, capability</div></div>
+      <div class="scard"><div class="stype">Terrain</div><div class="sname">USGS National Map</div><div class="sdesc">Elevation, slope, hydrography, topographic context, land-surface framing</div></div>
+      <div class="scard"><div class="stype">Climate</div><div class="sname">USDA Hardiness</div><div class="sdesc">Official zone and subzone classification for perennial and crop suitability</div></div>
+      <div class="scard"><div class="stype">Phenology</div><div class="sname">USA-NPN</div><div class="sdesc">Plant and animal phenology, seasonal progression tracking, real-time timing data</div></div>
+      <div class="scard"><div class="stype">Weather</div><div class="sname">NWS Alerts API</div><div class="sdesc">Watches, warnings, advisories for frost, storm, heat, wind, flooding — real-time</div></div>
+      <div class="scard"><div class="stype">Air Quality</div><div class="sname">AirNow / EnviroFlash</div><div class="sdesc">AQI and smoke burden — outdoor labor safety, especially for vulnerable users</div></div>
+      <div class="scard"><div class="stype">Parcel</div><div class="sname">MetroGIS / State GIS</div><div class="sdesc">Property boundaries, land-use, ownership, parcel geometry for site framing</div></div>
+      <div class="scard"><div class="stype">Calendars</div><div class="sname">UMN Extension</div><div class="sdesc">Regional planting calendars and growing guides specific to Upper Midwest conditions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <p class="eyebrow">From the Field</p>
+    <h2 class="s-heading">Early voices</h2>
+    <div class="tgrid reveal">
+      <div class="tcard"><div class="tquote">"For the first time, I understood why my garden failed every spring — the drainage. Hortus showed me before I dug a single hole."</div><div class="tauthor"><span class="tname">Miriam K.</span> · Third-year gardener, Burnsville MN</div></div>
+      <div class="tcard"><div class="tquote">"The Rule of Life changed how I relate to the garden. Not as a task list — as a weekly devotion. I actually look forward to Mondays now. It feels like a small office of the land."</div><div class="tauthor"><span class="tname">Thomas R.</span> · Community garden steward, Roseville MN</div></div>
+      <div class="tcard"><div class="tquote">"We've been trying to build a homestead that our children will inherit. Hortus is the first tool that treats the land as something to be handed on — not just managed."</div><div class="tauthor"><span class="tname">Carolyn M.</span> · Catholic homesteader, St. Paul MN</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST CTA -->
+<section class="cta-sec" id="waitlist">
+  <div class="container" style="position:relative">
+    <h2>Your ground is waiting<br>to be <em>known and kept.</em></h2>
+    <p class="cta-sub">Request early access. We're starting with a small group of gardeners, homesteaders, and community gardens in the Upper Midwest.</p>
+    <div class="cta-form">
+      <input type="email" class="cta-input" id="cta-email" placeholder="your@email.com">
+      <button class="cta-btn" onclick="joinWaitlist()">Join the waitlist</button>
+    </div>
+    <p class="cta-note">No spam. No selling your email. A quiet note when we're ready for you.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="footer-logo" href="#" style="display:flex;align-items:center;gap:.6rem">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--color-surface-3);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 17 C10 17 10 9 10 7" stroke="var(--color-text)" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M10 11 C10 11 7 10 5.5 7.5 C5 6.5 5.5 5 7 5.5 C8.5 6 9.5 8 10 11Z" fill="var(--color-accent)" opacity="0.8"/>
+            <path d="M10 9 C10 9 13 8 14.5 5.5 C15 4.5 14.5 3 13 3.5 C11.5 4 10.5 6 10 9Z" fill="var(--color-accent)"/>
+            <path d="M10 7 C10 7 9 5.5 9.5 4" stroke="var(--color-accent)" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
+          </svg>
+        </div>
+        <span>Hortus</span>
+      </a>
+      <div class="footer-tag">Know Your Land. Tend It Faithfully.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Philosophy</a>
+      <a href="#">Data sources</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-note">Built for those who understand that land is not owned — it is held in trust.</div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+}
+function setTab(el,t){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  ['p','g','s'].forEach(id=>{ document.getElementById('lt-'+id).style.display=id===t?'block':'none'; });
+}
+function joinWaitlist(){
+  const i=document.getElementById('cta-email');
+  if(i.value.includes('@')){
+    const b=document.querySelector('.cta-btn');
+    b.textContent="Verso l'alto! ✓";
+    b.style.background='#5d7d4a';b.style.color='#fff';
+    i.value='';
+  }
+}
+// Scroll nav
+window.addEventListener('scroll',()=>{
+  const n=document.getElementById('main-nav');
+  n.style.padding=window.scrollY>50?'var(--space-3) var(--space-8)':'var(--space-4) var(--space-8)';
+});
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
