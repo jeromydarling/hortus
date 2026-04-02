@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useTranslation } from "react-i18next";
 import { DEMO_FIXTURE } from "@/demo/fixture";
 
@@ -129,7 +129,7 @@ export default function Home() {
       {/* ── Screen content ── */}
       <div style={{ padding: "1.25rem" }}>
         {/* ── Weather hazard ── */}
-        {weather.state !== "clear" && (
+        {weather.state as string !== "clear" && (
           <div
             style={{
               background: T.warnSoft,
