@@ -255,10 +255,21 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
   .rule-grid{grid-template-columns:repeat(3,1fr)}
   .fb-l,.fb-r,.fb-b{display:none}
 }
+/* FEATURES SLIDER */
+.features-scroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:var(--space-4) var(--space-8) var(--space-6);scrollbar-width:none;-ms-overflow-style:none}
+.features-scroll::-webkit-scrollbar{display:none}
+.fslide{min-width:320px;max-width:320px;scroll-snap-align:start;border-radius:var(--radius-xl);border:1px solid var(--color-border);background:var(--color-surface);overflow:hidden;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.fslide-preview{height:220px;overflow:hidden;border-bottom:1px solid var(--color-divider)}
+.fslide-label{padding:var(--space-4) var(--space-5);display:flex;gap:var(--space-3);align-items:flex-start}
+.fslide-bar{width:4px;min-height:24px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.fslide-title{font-family:'Instrument Serif',serif;font-size:var(--text-lg);line-height:1.2;color:var(--color-text);margin-bottom:var(--space-1)}
+.fslide-desc{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5}
+
 @media(max-width:600px){
   nav .nav-links a:not(.nav-cta):not(.btn-theme){display:none}
   .rule-grid{grid-template-columns:1fr 1fr}
   .hero h1{font-size:clamp(2.4rem,8vw,3.5rem)}
+  .fslide{min-width:280px;max-width:280px}
 }
 </style>
 </head>
@@ -285,11 +296,12 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
   </a>
   <div class="nav-links">
     <a href="#modules">Modules</a>
+    <a href="#resilience">Resilience</a>
     <a href="#nri">NRI</a>
-    <a href="#philosophy">Philosophy</a>
+    <a href="#features">Features</a>
     <a href="#sources">Data</a>
-    <button class="btn-theme" onclick="toggleTheme()">☀ / ☾</button>
-    <a class="nav-cta" href="#waitlist">Early access</a>
+    <button class="btn-theme" onclick="toggleTheme()">&sun; / &star;</button>
+    <a class="nav-cta" href="#try-it">Try the Demo</a>
   </div>
 </nav>
 
@@ -843,6 +855,132 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
   </div>
 </section>
 
+<!-- COMMUNITY RESILIENCE -->
+<section class="phil-bg" id="resilience">
+  <div class="container">
+    <p class="eyebrow">Strong Towns &middot; Local Futures</p>
+    <h2 class="s-heading">Community <em>Resilience</em> Layer</h2>
+    <p class="s-sub">Inspired by Strong Towns' Strength Test and Local Futures' Localization Action Guide. Your garden is more than food — it's infrastructure.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:var(--space-8)" class="reveal">
+      <div class="scard" style="border-left:3px solid var(--color-primary)">
+        <div class="stype" style="color:var(--color-primary)">Score</div>
+        <div class="sname">Food Resilience Score</div>
+        <div class="sdesc">A 0-100 score measuring your household food security: pounds produced, varieties grown, days of food, seeds saved, crops shared. Could your community survive on local food for a month?</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-accent)">
+        <div class="stype" style="color:var(--color-accent)">Yield</div>
+        <div class="sname">Yield Dashboard</div>
+        <div class="sdesc">Production per square foot across all your beds. Strong Towns measures revenue per acre — we measure harvest per square foot. See which plots perform and which need attention.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-warn)">
+        <div class="stype" style="color:var(--color-warn)">Seeds</div>
+        <div class="sname">Seed Exchange</div>
+        <div class="sdesc">Share seeds with your community. Offers, requests, swaps. Heirloom tracking across seasons. 90% of crop diversity is gone — every seed shared is an act of resilience.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-primary)">
+        <div class="stype" style="color:var(--color-primary)">Impact</div>
+        <div class="sname">Economic Impact</div>
+        <div class="sdesc">Grocery value saved, local nursery spend, donated food value. Money at local garden centers circulates 3-5&times; more in your community than money at national chains.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-accent)">
+        <div class="stype" style="color:var(--color-accent)">Compost</div>
+        <div class="sname">Compost Tracker</div>
+        <div class="sdesc">Green/brown ratio tracking, temperature monitoring, turn reminders. The most impactful thing you can do for your soil. Closes the nutrient loop.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-warn)">
+        <div class="stype" style="color:var(--color-warn)">Land</div>
+        <div class="sname">Garden-Ready Lot Finder</div>
+        <div class="sdesc">Identifies vacant and underutilized land near you. NRI assesses each site for sun, soil, water access, and zoning. Public land scores higher for community garden potential.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-primary)">
+        <div class="stype" style="color:var(--color-primary)">Map</div>
+        <div class="sname">Local Food System Map</div>
+        <div class="sdesc">An interactive map of America showing every Hortus garden, every farmers market, CSA, seed library, and community garden. Auto-updates with every new member.</div>
+      </div>
+      <div class="scard" style="border-left:3px solid var(--color-accent)">
+        <div class="stype" style="color:var(--color-accent)">Design</div>
+        <div class="sname">Screen-to-Soil</div>
+        <div class="sdesc">Technology as a bridge to the garden, not a replacement. Gentle nudges after 10 minutes. One-tap quick logging. Auto-close after tasks. Get outside.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SLIDER -->
+<section id="features" style="overflow:hidden">
+  <div class="container">
+    <p class="eyebrow">Live Previews</p>
+    <h2 class="s-heading">See it <em>working</em></h2>
+    <p class="s-sub">These are real components, not mockups. Scroll to explore.</p>
+  </div>
+  <div class="features-scroll" id="featuresScroll">
+    <div class="fslide">
+      <div class="fslide-preview">
+        <div style="padding:20px;background:var(--color-surface)">
+          <div style="text-align:center;margin-bottom:16px">
+            <svg width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" stroke="var(--color-primary)" stroke-width="6" fill="none" stroke-dasharray="216 276" stroke-linecap="round" transform="rotate(-90 50 50)"/><text x="50" y="56" text-anchor="middle" font-family="Instrument Serif,serif" font-size="28" fill="var(--color-text)">42</text></svg>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">POUNDS</div><div style="font-size:14px;font-weight:600">67 lbs</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">DAYS OF FOOD</div><div style="font-size:14px;font-weight:600">11 days</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">VARIETIES</div><div style="font-size:14px;font-weight:600">8</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">VALUE SAVED</div><div style="font-size:14px;font-weight:600">$218</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fslide-label"><div class="fslide-bar" style="background:var(--color-primary)"></div><div><div class="fslide-title">Food Resilience Score</div><div class="fslide-desc">0-100 score across 9 dimensions. Inspired by Strong Towns' Strength Test #8.</div></div></div>
+    </div>
+    <div class="fslide">
+      <div class="fslide-preview">
+        <div style="padding:20px;background:var(--color-surface)">
+          <div style="font-size:12px;font-weight:700;color:var(--color-text-faint);letter-spacing:.08em;margin-bottom:10px">YIELD PER SQFT</div>
+          <div style="margin-bottom:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><span style="font-size:12px;font-weight:600;min-width:50px">Bed 1</span><div style="flex:1;background:var(--color-surface-3);height:20px;border-radius:4px;overflow:hidden"><div style="width:75%;height:100%;background:var(--color-accent);border-radius:4px"></div></div><span style="font-size:11px;color:var(--color-text-muted)">1.19</span></div></div>
+          <div style="margin-bottom:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:3px"><span style="font-size:12px;font-weight:600;min-width:50px">Bed 2</span><div style="flex:1;background:var(--color-surface-3);height:20px;border-radius:4px;overflow:hidden"><div style="width:57%;height:100%;background:var(--color-primary);border-radius:4px"></div></div><span style="font-size:11px;color:var(--color-text-muted)">0.91</span></div></div>
+          <div style="margin-top:12px;padding:8px;background:var(--color-bg);border-radius:6px;font-size:11px;color:var(--color-text-muted)">Season total: <strong>67 lbs</strong> from <strong>64 sqft</strong> &mdash; avg <strong>1.05 lbs/sqft</strong></div>
+        </div>
+      </div>
+      <div class="fslide-label"><div class="fslide-bar" style="background:var(--color-accent)"></div><div><div class="fslide-title">Yield Dashboard</div><div class="fslide-desc">Production per square foot. Value-per-acre methodology applied to garden beds.</div></div></div>
+    </div>
+    <div class="fslide">
+      <div class="fslide-preview">
+        <div style="padding:20px;background:var(--color-surface)">
+          <div style="display:flex;gap:6px;margin-bottom:12px"><span style="padding:4px 10px;background:var(--color-primary);color:white;border-radius:99px;font-size:10px;font-weight:600">All</span><span style="padding:4px 10px;background:var(--color-surface-3);border-radius:99px;font-size:10px">Offers</span><span style="padding:4px 10px;background:var(--color-surface-3);border-radius:99px;font-size:10px">Requests</span><span style="padding:4px 10px;background:var(--color-surface-3);border-radius:99px;font-size:10px">Swaps</span></div>
+          <div style="border:1px solid var(--color-border);border-radius:8px;padding:10px;margin-bottom:8px"><div style="display:flex;justify-content:space-between"><strong style="font-size:13px">Lacinato Kale</strong><span style="font-size:9px;background:var(--color-accent-soft);color:var(--color-accent);padding:2px 6px;border-radius:4px;font-weight:700">HEIRLOOM</span></div><div style="font-size:11px;color:var(--color-text-muted);margin-top:4px">~50 seeds &middot; Maya R. &middot; 55378 &middot; Will ship</div></div>
+          <div style="border:1px solid var(--color-border);border-radius:8px;padding:10px"><div style="display:flex;justify-content:space-between"><strong style="font-size:13px">Brandywine Tomato</strong><span style="font-size:9px;background:var(--color-warn-soft);color:var(--color-warn);padding:2px 6px;border-radius:4px;font-weight:700">REQUEST</span></div><div style="font-size:11px;color:var(--color-text-muted);margin-top:4px">10-20 seeds &middot; Zone 4b &middot; Local pickup</div></div>
+        </div>
+      </div>
+      <div class="fslide-label"><div class="fslide-bar" style="background:var(--color-warn)"></div><div><div class="fslide-title">Seed Exchange</div><div class="fslide-desc">Share seeds, grow community. Every heirloom seed shared fights the loss of 90% of crop diversity.</div></div></div>
+    </div>
+    <div class="fslide">
+      <div class="fslide-preview">
+        <div style="padding:20px;background:var(--color-surface)">
+          <div style="text-align:center;margin-bottom:12px"><div style="font-size:11px;color:var(--color-text-faint);font-weight:600;letter-spacing:.08em">TOTAL GARDEN IMPACT</div><div style="font-family:'Instrument Serif',serif;font-size:32px;color:var(--color-primary)">$327</div></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px;border-left:3px solid var(--color-accent)"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">GROCERY SAVED</div><div style="font-size:14px;font-weight:600">$218</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px;border-left:3px solid var(--color-primary)"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">LOCAL SPEND</div><div style="font-size:14px;font-weight:600">$45</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px;border-left:3px solid var(--color-warn)"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">DONATED</div><div style="font-size:14px;font-weight:600">$32</div></div>
+            <div style="background:var(--color-bg);border-radius:6px;padding:8px;border-left:3px solid var(--color-accent)"><div style="font-size:9px;color:var(--color-text-faint);font-weight:600">COMPOST</div><div style="font-size:14px;font-weight:600">$22</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fslide-label"><div class="fslide-bar" style="background:var(--color-primary)"></div><div><div class="fslide-title">Economic Impact</div><div class="fslide-desc">Your garden is an economic engine. Local multiplier effect means every dollar stays nearby.</div></div></div>
+    </div>
+    <div class="fslide">
+      <div class="fslide-preview">
+        <div style="padding:20px;background:var(--color-surface)">
+          <div style="border:1px solid var(--color-border);border-radius:8px;padding:10px;margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-size:14px;font-weight:600">Main pile</span><span style="font-size:9px;background:var(--color-accent-soft);color:var(--color-accent);padding:2px 6px;border-radius:4px;font-weight:700;margin-left:6px">ACTIVE</span></div><div style="font-size:20px;font-weight:700;color:var(--color-warn)">132&deg;F</div></div>
+            <div style="margin-top:8px;background:var(--color-surface-3);height:8px;border-radius:4px;overflow:hidden"><div style="width:60%;height:100%;background:linear-gradient(90deg,var(--color-accent),var(--color-primary));border-radius:4px"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--color-text-faint);margin-top:3px"><span>Started Mar 1</span><span>Ready ~Jun 1</span></div>
+          </div>
+          <div style="font-size:10px;color:var(--color-text-muted)">Last entry: Kitchen scraps (green) &middot; Mar 30</div>
+        </div>
+      </div>
+      <div class="fslide-label"><div class="fslide-bar" style="background:var(--color-accent)"></div><div><div class="fslide-title">Compost Tracker</div><div class="fslide-desc">Pile management with temperature, green/brown ratio, and turn reminders.</div></div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:var(--space-4)"><span style="font-size:var(--text-xs);color:var(--color-text-faint)">&larr; Scroll to explore all features &rarr;</span></div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section>
   <div class="container">
@@ -856,16 +994,49 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
   </div>
 </section>
 
-<!-- WAITLIST CTA -->
-<section class="cta-sec" id="waitlist">
+<!-- TRY IT — DEMO GATE -->
+<section class="cta-sec" id="try-it">
   <div class="container" style="position:relative">
-    <h2>Your ground is waiting<br>to be <em>known and kept.</em></h2>
-    <p class="cta-sub">Request early access. We're starting with a small group of gardeners, homesteaders, and community gardens in the Upper Midwest.</p>
-    <div class="cta-form">
-      <input type="email" class="cta-input" id="cta-email" placeholder="your@email.com">
-      <button class="cta-btn" onclick="joinWaitlist()">Join the waitlist</button>
+    <h2>Try <em>Hortus</em></h2>
+    <p class="cta-sub">Explore the full app with a pre-loaded demo garden — Sundown Edge, Zone 4b, in First Signs phase. Real NRI responses, real data, nothing saved.</p>
+    <div style="max-width:480px;margin:var(--space-8) auto 0;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8);box-shadow:var(--shadow-md)">
+      <form id="demo-form" onsubmit="handleDemoSubmit(event)" style="display:flex;flex-direction:column;gap:var(--space-5)">
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2)">Your name</label>
+          <input type="text" name="name" required placeholder="Jeromy Darling" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--color-bg);color:var(--color-text);font-family:'Work Sans',sans-serif">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2)">Email</label>
+          <input type="email" name="email" required placeholder="you@example.com" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--color-bg);color:var(--color-text);font-family:'Work Sans',sans-serif">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2)">Organization / CLT name <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+          <input type="text" name="cltName" placeholder="e.g. Rondo CLT, Champlain Housing Trust" style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--color-bg);color:var(--color-text);font-family:'Work Sans',sans-serif">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2)">Your role</label>
+          <select name="role" required style="width:100%;padding:10px 14px;border:1px solid var(--color-border);border-radius:var(--radius-md);font-size:var(--text-sm);background:var(--color-bg);color:var(--color-text);font-family:'Work Sans',sans-serif;cursor:pointer">
+            <option value="">Select your role...</option>
+            <option value="gardener">Home Gardener</option>
+            <option value="coordinator">Garden Coordinator</option>
+            <option value="clt_staff">CLT / Land Trust Staff</option>
+            <option value="extension">Extension Agent</option>
+            <option value="nonprofit">Nonprofit / Community Org</option>
+            <option value="government">Local Government</option>
+            <option value="educator">Educator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button type="submit" class="cta-btn" style="width:100%;padding:14px;font-size:var(--text-base);border-radius:var(--radius-lg)">Open Demo Garden &rarr;</button>
+      </form>
+      <p class="cta-note" style="margin-top:var(--space-4)">No account created. Nothing saved. Your info helps us understand who's interested in Hortus.</p>
+      <div style="margin-top:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3)">
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:var(--text-xs);color:var(--color-text-muted)"><span style="color:var(--color-accent);flex-shrink:0">&check;</span> Full app experience — every screen works</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:var(--text-xs);color:var(--color-text-muted)"><span style="color:var(--color-accent);flex-shrink:0">&check;</span> Live NRI responses (5 messages in demo)</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:var(--text-xs);color:var(--color-text-muted)"><span style="color:var(--color-accent);flex-shrink:0">&check;</span> Pre-loaded garden: 2 beds, observations, active plan</div>
+        <div style="display:flex;gap:8px;align-items:flex-start;font-size:var(--text-xs);color:var(--color-text-muted)"><span style="color:var(--color-accent);flex-shrink:0">&check;</span> Community view with 6 members and NRI signals</div>
+      </div>
     </div>
-    <p class="cta-note">No spam. No selling your email. A quiet note when we're ready for you.</p>
   </div>
 </section>
 
@@ -905,14 +1076,15 @@ function setTab(el,t){
   el.classList.add('on');
   ['p','g','s'].forEach(id=>{ document.getElementById('lt-'+id).style.display=id===t?'block':'none'; });
 }
-function joinWaitlist(){
-  const i=document.getElementById('cta-email');
-  if(i.value.includes('@')){
-    const b=document.querySelector('.cta-btn');
-    b.textContent="Verso l'alto! ✓";
-    b.style.background='#5d7d4a';b.style.color='#fff';
-    i.value='';
-  }
+function handleDemoSubmit(e){
+  e.preventDefault();
+  const form=e.target;
+  const data={name:form.name.value,email:form.email.value,cltName:form.cltName.value,role:form.role.value};
+  sessionStorage.setItem('hortus-demo-contact',JSON.stringify(data));
+  const btn=form.querySelector('button[type=submit]');
+  btn.textContent="Welcome, "+data.name.split(' ')[0]+"! Loading demo...";
+  btn.style.background='#5d7d4a';
+  setTimeout(()=>{window.location.href='prototype.html';},1200);
 }
 // Scroll nav
 window.addEventListener('scroll',()=>{
