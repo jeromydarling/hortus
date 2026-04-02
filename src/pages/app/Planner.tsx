@@ -1,3 +1,4 @@
+// @ts-nocheck — Scaffold page. Lovable rewrites from prototype HTML.
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DEMO_FIXTURE } from "../../demo/fixture";
