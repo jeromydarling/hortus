@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { FeaturesSlider } from "./components/FeaturesSlider";
+import { DemoGate } from "./components/DemoGate";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -120,6 +122,12 @@ export function App() {
           </p>
         </div>
       </header>
+
+      {/* Features Slider — live component previews */}
+      <FeaturesSlider />
+
+      {/* Demo Gate */}
+      <DemoGate />
 
       <main style={{ maxWidth: 960, margin: "0 auto", padding: "24px" }}>
         {/* Prototype Links */}
