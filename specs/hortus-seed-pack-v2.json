@@ -1,0 +1,1032 @@
+{
+  "_meta": {
+    "name": "hortus-seed-pack",
+    "version": "2.0.0",
+    "description": "Complete content backbone for Hortus. Ships with the app — no API calls needed.",
+    "generated": "2026-03-31",
+    "changes": "v2: phase names corrected to match app prototype; Seeds Now affiliate URLs updated with ?ref= tag; added Community, Harvest, SeedLibrary, NRISignal, Person, Workday, SharingPost, Message schemas; added NRI guardrails section; added source taxonomy table"
+  },
+
+  "_affiliateConfig": {
+    "_about": "One place to update. All seedsNowUrl values in this file are base paths. The app appends ?ref={affiliateTag} at render time using this constant.",
+    "affiliateTag": "HORTUS_AFFILIATE",
+    "baseUrl": "https://www.seedsnow.com",
+    "urlPattern": "https://www.seedsnow.com{path}?ref=HORTUS_AFFILIATE",
+    "note": "Replace HORTUS_AFFILIATE with your live Refersion tag before launch. All 6 crop patterns and the seed supplier section will update automatically."
+  },
+
+  "fieldDictionary": {
+    "_about": "Trilingual labels for every land concept. plain = what a beginner sees. gardener = what someone with a season under their belt sees. source = the NRCS/USGS term.",
+    "entries": [
+      {
+        "key": "texture",
+        "plain": "What your dirt feels like",
+        "gardener": "Soil texture",
+        "source": "USDA textural class",
+        "vision": "Tells you how water moves and roots grow.",
+        "firstAction": "Grab a handful of damp soil and squeeze — sandy crumbles, clay ribbons, loam holds then breaks."
+      },
+      {
+        "key": "drainage",
+        "plain": "How fast water disappears",
+        "gardener": "Drainage class",
+        "source": "NRCS drainage class (A–D)",
+        "vision": "Fast drainage means more watering. Slow means raised beds or swales.",
+        "firstAction": "After rain, check your yard. Puddles gone in an hour? Fast. Still there next morning? Slow."
+      },
+      {
+        "key": "slope",
+        "plain": "How tilted your land is",
+        "gardener": "Slope / grade",
+        "source": "Percent slope from DEM",
+        "vision": "Flat ground is easiest to garden. Slopes move water and erode soil.",
+        "firstAction": "Stand at the high point of your yard and look down. Gentle? Steep? That's your slope."
+      },
+      {
+        "key": "waterHolding",
+        "plain": "How well soil holds a drink",
+        "gardener": "Water-holding capacity",
+        "source": "Available water capacity (AWC) in/in",
+        "vision": "High means less watering. Low means mulch is your best friend.",
+        "firstAction": "Water a patch and come back in 2 hours. Still damp an inch down? Good holder."
+      },
+      {
+        "key": "organicMatter",
+        "plain": "The life in your soil",
+        "gardener": "Organic matter content",
+        "source": "Soil organic matter (SOM) %",
+        "vision": "More organic matter means healthier plants, less fertilizer, better water retention.",
+        "firstAction": "Dark soil usually has more life in it. Pale, dusty soil needs compost."
+      },
+      {
+        "key": "pH",
+        "plain": "Is your soil sweet or sour?",
+        "gardener": "Soil pH",
+        "source": "pH (1:1 water method)",
+        "vision": "Most vegetables like a pH around 6.0–7.0. Too high or low locks out nutrients.",
+        "firstAction": "A $10 soil test kit from any garden center will tell you in minutes."
+      },
+      {
+        "key": "depth",
+        "plain": "How deep before you hit rock or clay",
+        "gardener": "Effective rooting depth",
+        "source": "Depth to restrictive layer (cm)",
+        "vision": "Deeper soil = happier roots. Shallow soil means raised beds.",
+        "firstAction": "Push a stick into the ground. If it stops at 6 inches, your roots will too."
+      },
+      {
+        "key": "frost",
+        "plain": "When cold can still kill your plants",
+        "gardener": "Last frost / first frost dates",
+        "source": "NOAA 50% probability frost dates",
+        "vision": "Everything you plant outdoors revolves around these two dates.",
+        "firstAction": "Hortus calculates this from your address. It's the most important number in your garden."
+      },
+      {
+        "key": "hardinessZone",
+        "plain": "Your climate zone number",
+        "gardener": "USDA hardiness zone",
+        "source": "USDA Plant Hardiness Zone (2023 map)",
+        "vision": "This tells you which perennials survive your winters. Every seed packet references it.",
+        "firstAction": "Hortus finds this automatically. You're in a zone — that zone has a personality."
+      },
+      {
+        "key": "sunExposure",
+        "plain": "How much sun your yard gets",
+        "gardener": "Sun exposure hours",
+        "source": "Solar insolation / aspect analysis",
+        "vision": "Most vegetables need 6+ hours of direct sun. Shade means leafy greens and herbs.",
+        "firstAction": "On a sunny day, check your garden spot at 9am, noon, and 3pm. Count the sunny visits."
+      },
+      {
+        "key": "floodRisk",
+        "plain": "Could your garden flood?",
+        "gardener": "Flood zone status",
+        "source": "FEMA flood zone designation",
+        "vision": "If you're in a flood zone, raised beds and good drainage planning matter more.",
+        "firstAction": "Hortus checks this automatically. If flagged, it adjusts your plan."
+      },
+      {
+        "key": "workability",
+        "plain": "How easy is your ground to dig?",
+        "gardener": "Workability / tilth",
+        "source": "Derived from texture, moisture, and compaction indicators",
+        "vision": "Easy-to-work soil means less back pain and faster bed prep.",
+        "firstAction": "Try pushing a shovel in. Slides in easy? Great. Bounces off? You'll want to build up, not dig down."
+      }
+    ]
+  },
+
+  "phases": {
+    "_about": "The eight phases of the Common Year. These are the canonical names used throughout the app, marketing site, and NRI. Phase transitions are detected by NRI from weather, observations, and phenological cues.",
+    "entries": [
+      {
+        "id": "rest",
+        "name": "Rest",
+        "icon": "moon",
+        "description": "Ground lies quiet. Observe without acting. The garden is teaching.",
+        "typicalMonths": "Dec 1 – Feb 15",
+        "ruleOfLife": {
+          "observe": "How the land looks at rest. Where water pools. When shadows shift.",
+          "tend": "Sharpen tools. Mend beds. Review seed orders. Turn compost.",
+          "restrain": "Don't start seeds too early indoors. Let go — the land doesn't need you right now.",
+          "receive": "Quiet. The year's memory settling. Read, watch, let stillness teach.",
+          "record": "Season summary. Gratitude list. Seed order intentions for next year."
+        },
+        "transitionCues": [
+          "Daylight lengthening past 10.5 hours",
+          "Soil temp consistently above 35°F",
+          "First birdsong changes",
+          "Snow retreating from south-facing slopes"
+        ]
+      },
+      {
+        "id": "preparation",
+        "name": "Preparation",
+        "icon": "tool",
+        "description": "Gather materials, amend soil. Patience is work.",
+        "typicalMonths": "Feb 15 – Mar 20",
+        "ruleOfLife": {
+          "observe": "Watch south-facing edges. What's pushing through first?",
+          "tend": "Order seeds. Prep beds if soil is workable. Source compost and chips.",
+          "restrain": "Don't uncover perennials yet. One warm week isn't spring.",
+          "receive": "The anticipation. Seed packets arriving. Plans forming.",
+          "record": "What you plan to plant. What you're sourcing and from where."
+        },
+        "transitionCues": [
+          "Soil temp at 4\" reaches 38°F",
+          "Snowdrops or crocus emerging",
+          "Forsythia buds swelling",
+          "Ground workable on south-facing spots"
+        ]
+      },
+      {
+        "id": "firstSigns",
+        "name": "First Signs",
+        "icon": "sprout",
+        "description": "Frost softens. Early indicators appear. Not yet — but almost.",
+        "typicalMonths": "Mar 20 – Apr 30",
+        "ruleOfLife": {
+          "observe": "Soil temperature at planting depth. What's blooming. First earthworms.",
+          "tend": "Start cold-hardy seeds indoors. Direct sow peas and spinach when soil allows.",
+          "restrain": "Tomatoes and peppers stay inside. Don't be fooled by warm spells.",
+          "receive": "The first green shoot is a gift. The smell of warming earth.",
+          "record": "Date of first signs. Compare to last year. Note what's early or late."
+        },
+        "transitionCues": [
+          "Soil temp at 4\" reaches 40°F",
+          "Crocus or snowdrop bloom",
+          "Earthworms active at surface",
+          "Forsythia at 50% bloom — the key signal"
+        ]
+      },
+      {
+        "id": "planting",
+        "name": "Planting",
+        "icon": "sun-medium",
+        "description": "The brief, generous window. Act swiftly and with good sequence.",
+        "typicalMonths": "May 1 – May 25",
+        "ruleOfLife": {
+          "observe": "Soil temperature daily. Last frost risk. Moisture before digging.",
+          "tend": "Direct sow peas, lettuce, radish, spinach. Transplant hardened starts after frost-free date.",
+          "restrain": "Don't plant warm crops before frost window closes. Sequence matters.",
+          "receive": "The first row planted. The smell of turned earth. The season beginning.",
+          "record": "What you planted, where, and when. This is the record NRI needs."
+        },
+        "transitionCues": [
+          "Last frost date passed",
+          "Soil temp at 4\" reaches 50°F",
+          "Dandelions blooming",
+          "Lilac leaves fully emerged"
+        ]
+      },
+      {
+        "id": "establishment",
+        "name": "Establishment",
+        "icon": "zap",
+        "description": "Roots take hold. The most fragile stretch — tend faithfully.",
+        "typicalMonths": "May 25 – Jun 30",
+        "ruleOfLife": {
+          "observe": "Growth rate. Pest pressure. Water stress signals. Weed emergence.",
+          "tend": "Water deeply. Mulch heavily. Thin seedlings. Stake tomatoes. First greens harvests.",
+          "restrain": "Don't let weeds go to seed this month. Stay one week ahead.",
+          "receive": "Abundance arriving. Eat the first lettuce. The garden is alive.",
+          "record": "Pest sightings. What's thriving. What's struggling. First harvest dates."
+        },
+        "transitionCues": [
+          "Nighttime temps consistently above 50°F",
+          "Soil temp above 60°F",
+          "Iris blooming",
+          "Rapid weed and crop growth simultaneously"
+        ]
+      },
+      {
+        "id": "abundance",
+        "name": "Abundance",
+        "icon": "sun",
+        "description": "The garden is full. Harvest, share, hold back from oversowing.",
+        "typicalMonths": "Jul – Aug",
+        "ruleOfLife": {
+          "observe": "Water stress. Fruit set. Pollinator activity. Heat tolerance.",
+          "tend": "Water deeply and early. Harvest daily or it goes to seed. Succession plant greens.",
+          "restrain": "Don't over-fertilize in heat. Don't neglect mulch. Share before you waste.",
+          "receive": "This is the feast. Share what you grow. The garden is giving.",
+          "record": "Harvest weights. Varieties that performed. Heat tolerance notes."
+        },
+        "transitionCues": [
+          "Summer solstice passed",
+          "Tomatoes ripening",
+          "Consistent 85°F+ days",
+          "Cicada or cricket chorus beginning"
+        ]
+      },
+      {
+        "id": "preservation",
+        "name": "Preservation",
+        "icon": "leaf",
+        "description": "Save seeds. Store food. Clear what doesn't belong to next year.",
+        "typicalMonths": "Aug – Oct",
+        "ruleOfLife": {
+          "observe": "Day length shortening. Which crops are done? What can go to seed?",
+          "tend": "Plant fall lettuce, kale, radish, garlic. Remove spent plants. Begin preserving.",
+          "restrain": "Don't abandon the garden. Fall is a second spring. Frost sweetens kale.",
+          "receive": "Late tomatoes. First cool nights. The harvest coming in.",
+          "record": "What succeeded this summer. Seed saving notes. What to change next year."
+        },
+        "transitionCues": [
+          "Day length under 13.5 hours",
+          "Nighttime temps dropping below 60°F",
+          "First goldenrod blooming",
+          "Tomato plants slowing production"
+        ]
+      },
+      {
+        "id": "return",
+        "name": "Return",
+        "icon": "moon",
+        "description": "Lay mulch. Write the year's record. Hand the land back to rest.",
+        "typicalMonths": "Oct – Nov 30",
+        "ruleOfLife": {
+          "observe": "First frost approaching. What needs protection? Where water pools at rest.",
+          "tend": "Mulch perennials. Plant cover crops. Final harvest root crops. Tool maintenance.",
+          "restrain": "Let go. The land is done for the year. Don't force another row.",
+          "receive": "The full pantry. The seed saved. The season's story complete.",
+          "record": "Final harvest totals. Lessons learned. Gratitude. Seed order for next year."
+        },
+        "transitionCues": [
+          "First hard frost occurred",
+          "Ground approaching frozen",
+          "Most perennials dormant",
+          "Under 10 hours daylight"
+        ]
+      }
+    ]
+  },
+
+  "philosophies": {
+    "_about": "Gardening approaches the user selects during onboarding. Each shapes how NRI gives advice, what it prioritizes, and what language it uses. philosophy never overrides land reality — NRI always surfaces soil, weather, and site truth even when it contradicts philosophy preference.",
+    "entries": [
+      {
+        "id": "backToEden",
+        "name": "Back to Eden",
+        "tagline": "Cover the ground and let it do the work.",
+        "description": "Deep wood chip mulching. No tilling. Minimal watering once established. Based on Paul Gautschi's observation that forest floors grow without human intervention.",
+        "gifts": [
+          "Very low maintenance once established",
+          "Almost no weeding",
+          "Builds incredible soil over time",
+          "Free or cheap materials (arborist chips)"
+        ],
+        "costs": [
+          "Heavy upfront labor (chip hauling)",
+          "Takes 1–2 seasons to break in",
+          "Not ideal for root crops year one"
+        ],
+        "bestFor": [
+          "Patient beginners",
+          "Large plots",
+          "People who hate weeding",
+          "Anyone near free wood chips"
+        ],
+        "soilFit": ["Works on any soil — the chips create their own layer"],
+        "hortusAdapts": "NRI prioritizes mulch-based bed prep, suggests chip sourcing first, and suppresses tilling recommendations. Source desk leads with ChipDrop and local arborists before any retail option."
+      },
+      {
+        "id": "noDig",
+        "name": "No-Dig",
+        "tagline": "Build up. Never break the soil.",
+        "description": "Charles Dowding's method. Layer compost on top of existing ground. Plant directly into compost. Never disturb soil biology.",
+        "gifts": [
+          "Fast to start — beds can be planted same day",
+          "Excellent soil biology preservation",
+          "Great yields from year one",
+          "Less physical strain"
+        ],
+        "costs": [
+          "Compost can be expensive if buying",
+          "Needs annual top-dressing",
+          "Requires good compost sourcing"
+        ],
+        "bestFor": [
+          "Urban gardeners",
+          "Small to medium plots",
+          "People who want results this season",
+          "Anyone with access to compost"
+        ],
+        "soilFit": ["Excellent on clay (builds on top)", "Good on any soil type"],
+        "hortusAdapts": "NRI never suggests tilling. Bed prep instructions focus on layering. Source desk prioritizes bulk compost first."
+      },
+      {
+        "id": "kitchenGarden",
+        "name": "Kitchen Garden",
+        "tagline": "Grow what you eat. Eat what you grow.",
+        "description": "Traditional raised-bed vegetable gardening focused on feeding the household. Practical, beautiful, productive.",
+        "gifts": [
+          "Direct connection between garden and table",
+          "Organized and manageable",
+          "Great for families",
+          "Visually beautiful"
+        ],
+        "costs": [
+          "Raised bed materials cost money",
+          "Requires regular attention",
+          "Soil amendments needed"
+        ],
+        "bestFor": ["Families", "Cooks", "People who want a pretty, productive garden", "Suburban yards"],
+        "soilFit": ["Best with amended or imported soil in raised beds"],
+        "hortusAdapts": "NRI emphasizes crop selection by kitchen use. Planner prioritizes succession planting for continuous harvest. Harvest log tracks by meal rather than weight."
+      },
+      {
+        "id": "habitatFirst",
+        "name": "Habitat First",
+        "tagline": "Grow for the birds, the bees, and the soil.",
+        "description": "Prioritize native plants, pollinator support, and ecological function. Food production is a bonus, not the goal.",
+        "gifts": [
+          "Low maintenance once established",
+          "Supports local ecosystem",
+          "Beautiful and wild",
+          "Resilient to climate swings"
+        ],
+        "costs": [
+          "Less food production",
+          "Can look 'messy' to neighbors",
+          "Native plant sourcing takes effort"
+        ],
+        "bestFor": [
+          "Nature lovers",
+          "People with large or wild spaces",
+          "Community gardens with ecological goals",
+          "Anyone wanting to help pollinators"
+        ],
+        "soilFit": ["Works with existing native soil — that's the point"],
+        "hortusAdapts": "NRI suggests native plants alongside food crops. Phase guidance includes wildlife observation prompts. Phenology log highlights pollinator and bird activity."
+      },
+      {
+        "id": "homestead",
+        "name": "Homestead",
+        "tagline": "Grow enough to matter.",
+        "description": "Scale-up food production for real self-sufficiency. Preservation, storage crops, calorie crops, year-round planning.",
+        "gifts": [
+          "Meaningful food independence",
+          "Deep seasonal knowledge",
+          "Real cost savings at scale",
+          "Preservation skills"
+        ],
+        "costs": [
+          "Significant time commitment",
+          "Larger space needed",
+          "Steeper learning curve",
+          "Preservation equipment costs"
+        ],
+        "bestFor": [
+          "Rural properties",
+          "Serious food growers",
+          "Families committed to self-sufficiency",
+          "People with half-acre or more"
+        ],
+        "soilFit": ["Benefits most from soil testing and amendment planning"],
+        "hortusAdapts": "NRI scales up crop quantities. Planner includes storage crops, preservation timing, and calorie calculations. Harvest log tracks storage quantities and pantry projections."
+      },
+      {
+        "id": "communityGarden",
+        "name": "Community Garden",
+        "tagline": "Grow together.",
+        "description": "Shared space, shared work, shared harvest. Whether it's a church plot, neighborhood garden, or school project.",
+        "gifts": [
+          "Social connection",
+          "Shared costs and labor",
+          "Learning from others",
+          "Community resilience"
+        ],
+        "costs": [
+          "Coordination overhead",
+          "Shared decision-making",
+          "Plot size usually limited",
+          "Rules and schedules"
+        ],
+        "bestFor": [
+          "Apartment dwellers",
+          "New gardeners who want mentorship",
+          "Community organizers",
+          "Schools and churches"
+        ],
+        "soilFit": ["Usually raised beds with imported soil"],
+        "hortusAdapts": "NRI supports shared plot planning. Memory tracks multiple contributors. Source desk consolidates group orders. People module surfaces mentor candidates and wellbeing signals."
+      }
+    ]
+  },
+
+  "cropPatterns": {
+    "_about": "Beginner-friendly crop sets matched to goals, zones, and soil. Seeds Now URLs are base paths — the app appends ?ref=HORTUS_AFFILIATE at render time using _affiliateConfig.affiliateTag.",
+    "entries": [
+      {
+        "id": "firstGarden",
+        "name": "Your First Garden",
+        "tagline": "Five easy wins to build your confidence.",
+        "crops": [
+          { "name": "Sugar Snap Peas", "why": "Almost impossible to fail. Kids love eating them off the vine.", "seedsNowUrl": "https://www.seedsnow.com/collections/pea-seeds", "daysToHarvest": "60–70", "season": "cool" },
+          { "name": "Lettuce (mixed)", "why": "Harvestable in 30 days as baby greens. Instant gratification.", "seedsNowUrl": "https://www.seedsnow.com/collections/lettuce-seeds", "daysToHarvest": "30–60", "season": "cool" },
+          { "name": "Radish (Cherry Belle)", "why": "Ready in 25 days. Fastest reward in gardening.", "seedsNowUrl": "https://www.seedsnow.com/collections/radish-seeds", "daysToHarvest": "22–30", "season": "cool" },
+          { "name": "Basil (Genovese)", "why": "Smells incredible. Makes pesto. Grows fast in warm weather.", "seedsNowUrl": "https://www.seedsnow.com/collections/basil-seeds", "daysToHarvest": "60–90", "season": "warm" },
+          { "name": "Zucchini", "why": "Produces so much you'll be giving it away. That's the point.", "seedsNowUrl": "https://www.seedsnow.com/collections/zucchini-seeds", "daysToHarvest": "45–55", "season": "warm" }
+        ],
+        "zoneRange": "3–9",
+        "soilFit": "Any — these are forgiving crops.",
+        "estimatedCost": "$5–$15 in seeds",
+        "bedSize": "4×8 ft raised bed or equivalent ground space"
+      },
+      {
+        "id": "saladEveryDay",
+        "name": "Salad Every Day",
+        "tagline": "Cut-and-come-again greens all season.",
+        "crops": [
+          { "name": "Mesclun Mix", "why": "Multiple greens in one packet. Cut at 4 inches, they regrow.", "seedsNowUrl": "https://www.seedsnow.com/collections/lettuce-seeds", "daysToHarvest": "21–30", "season": "cool" },
+          { "name": "Arugula", "why": "Peppery kick. Grows fast, tolerates cold.", "seedsNowUrl": "https://www.seedsnow.com/collections/arugula-seeds", "daysToHarvest": "20–40", "season": "cool" },
+          { "name": "Spinach", "why": "Nutrient powerhouse. Loves cool weather.", "seedsNowUrl": "https://www.seedsnow.com/collections/spinach-seeds", "daysToHarvest": "37–45", "season": "cool" },
+          { "name": "Cherry Tomato", "why": "The jewel of any salad. One plant produces hundreds.", "seedsNowUrl": "https://www.seedsnow.com/collections/tomato-seeds", "daysToHarvest": "60–80", "season": "warm" },
+          { "name": "Cucumber", "why": "Refreshing. Prolific. Great in water or on a plate.", "seedsNowUrl": "https://www.seedsnow.com/collections/cucumber-seeds", "daysToHarvest": "50–70", "season": "warm" }
+        ],
+        "zoneRange": "3–10",
+        "soilFit": "Prefers loamy, well-drained soil. Amend clay with compost.",
+        "estimatedCost": "$8–$18 in seeds",
+        "bedSize": "4×8 ft or two containers"
+      },
+      {
+        "id": "salsaGarden",
+        "name": "Salsa Garden",
+        "tagline": "Grow your own chips-and-dip night.",
+        "crops": [
+          { "name": "Roma Tomato", "why": "Meaty, low moisture. Born for salsa.", "seedsNowUrl": "https://www.seedsnow.com/collections/tomato-seeds", "daysToHarvest": "75–80", "season": "warm" },
+          { "name": "Jalapeño Pepper", "why": "Reliable heat. Productive all summer.", "seedsNowUrl": "https://www.seedsnow.com/collections/hot-pepper-seeds", "daysToHarvest": "70–80", "season": "warm" },
+          { "name": "Cilantro", "why": "Essential salsa herb. Succession plant every 3 weeks.", "seedsNowUrl": "https://www.seedsnow.com/collections/cilantro-coriander-seeds", "daysToHarvest": "45–70", "season": "cool" },
+          { "name": "Onion (Bunching)", "why": "Green onions in 60 days. No curing needed.", "seedsNowUrl": "https://www.seedsnow.com/collections/onion-seeds", "daysToHarvest": "60–70", "season": "cool" },
+          { "name": "Tomatillo", "why": "Salsa verde. Unique and prolific. Needs two plants for pollination.", "seedsNowUrl": "https://www.seedsnow.com/collections/tomatillo-seeds", "daysToHarvest": "75–100", "season": "warm" }
+        ],
+        "zoneRange": "4–10",
+        "soilFit": "Warm, well-drained. Peppers and tomatoes love heat.",
+        "estimatedCost": "$8–$20 in seeds",
+        "bedSize": "4×8 ft minimum — tomatoes and tomatillos need room"
+      },
+      {
+        "id": "herbWindowsill",
+        "name": "Windowsill Herbs",
+        "tagline": "No yard? No problem.",
+        "crops": [
+          { "name": "Basil (Genovese)", "why": "Thrives in a sunny window. Pinch and it bushes out.", "seedsNowUrl": "https://www.seedsnow.com/collections/basil-seeds", "daysToHarvest": "60–90", "season": "warm" },
+          { "name": "Chives", "why": "Perennial. Cut-and-come-again. Onion flavor for everything.", "seedsNowUrl": "https://www.seedsnow.com/collections/chive-seeds", "daysToHarvest": "60–90", "season": "any" },
+          { "name": "Cilantro", "why": "Fast grower. Succession sow for continuous supply.", "seedsNowUrl": "https://www.seedsnow.com/collections/cilantro-coriander-seeds", "daysToHarvest": "45–70", "season": "cool" },
+          { "name": "Parsley", "why": "Slow to start but lasts all season. Flat-leaf has best flavor.", "seedsNowUrl": "https://www.seedsnow.com/collections/parsley-seeds", "daysToHarvest": "70–90", "season": "cool" },
+          { "name": "Mint", "why": "Unkillable. Keep in its own pot or it takes over everything.", "seedsNowUrl": "https://www.seedsnow.com/collections/mint-seeds", "daysToHarvest": "90", "season": "any" }
+        ],
+        "zoneRange": "Any (indoor)",
+        "soilFit": "Potting mix. No garden soil needed.",
+        "estimatedCost": "$5–$12 in seeds + containers",
+        "bedSize": "Sunny windowsill or small balcony"
+      },
+      {
+        "id": "feedTheFamily",
+        "name": "Feed the Family",
+        "tagline": "Real food from real ground.",
+        "crops": [
+          { "name": "Bush Beans (Provider)", "why": "Prolific. Freeze well. Kids can pick them.", "seedsNowUrl": "https://www.seedsnow.com/collections/bean-seeds", "daysToHarvest": "50–60", "season": "warm" },
+          { "name": "Zucchini", "why": "Overwhelming abundance. Grill it, bake it, spiral it.", "seedsNowUrl": "https://www.seedsnow.com/collections/zucchini-seeds", "daysToHarvest": "45–55", "season": "warm" },
+          { "name": "Tomato (Celebrity or Better Boy)", "why": "Disease resistant. Heavy producer. The backbone of a family garden.", "seedsNowUrl": "https://www.seedsnow.com/collections/tomato-seeds", "daysToHarvest": "70–85", "season": "warm" },
+          { "name": "Carrot (Danvers)", "why": "Store well. Sweet from the ground. Kids love pulling them.", "seedsNowUrl": "https://www.seedsnow.com/collections/carrot-seeds", "daysToHarvest": "65–80", "season": "cool" },
+          { "name": "Kale (Lacinato)", "why": "Frost-tolerant. Nutrient-dense. Lasts into winter.", "seedsNowUrl": "https://www.seedsnow.com/collections/kale-seeds", "daysToHarvest": "55–65", "season": "cool" },
+          { "name": "Sugar Snap Peas", "why": "Spring snack straight from the vine.", "seedsNowUrl": "https://www.seedsnow.com/collections/pea-seeds", "daysToHarvest": "60–70", "season": "cool" },
+          { "name": "Butternut Squash", "why": "Stores for months. One plant feeds many meals.", "seedsNowUrl": "https://www.seedsnow.com/collections/squash-seeds", "daysToHarvest": "85–100", "season": "warm" },
+          { "name": "Garlic", "why": "Plant in fall, harvest next summer. Zero effort in between.", "seedsNowUrl": "https://www.seedsnow.com/collections/all", "daysToHarvest": "240 (fall-planted)", "season": "fall" }
+        ],
+        "zoneRange": "3–9",
+        "soilFit": "Amend with compost. These crops reward good soil.",
+        "estimatedCost": "$15–$30 in seeds",
+        "bedSize": "Two 4×8 ft beds or 100 sq ft of ground"
+      },
+      {
+        "id": "pollinatorPatch",
+        "name": "Pollinator Patch",
+        "tagline": "Feed the bees. They'll feed you back.",
+        "crops": [
+          { "name": "Sunflower (Mammoth)", "why": "Dramatic. Feeds birds. Kids love them.", "seedsNowUrl": "https://www.seedsnow.com/collections/sunflower-seeds", "daysToHarvest": "80–100", "season": "warm" },
+          { "name": "Zinnia (mixed)", "why": "Endless cut flowers. Butterflies love them.", "seedsNowUrl": "https://www.seedsnow.com/collections/zinnia-seeds", "daysToHarvest": "60–70", "season": "warm" },
+          { "name": "Marigold", "why": "Pest deterrent. Cheerful. Easy.", "seedsNowUrl": "https://www.seedsnow.com/collections/marigold-seeds", "daysToHarvest": "50–60", "season": "warm" },
+          { "name": "Borage", "why": "Edible blue flowers. Bees go crazy for it.", "seedsNowUrl": "https://www.seedsnow.com/collections/borage-seeds", "daysToHarvest": "55–75", "season": "cool" },
+          { "name": "Lavender", "why": "Perennial. Fragrant. Medicinal. Beautiful dried.", "seedsNowUrl": "https://www.seedsnow.com/collections/lavender-seeds", "daysToHarvest": "90–200", "season": "warm" }
+        ],
+        "zoneRange": "3–10",
+        "soilFit": "Most flowers aren't picky. Even poor soil works.",
+        "estimatedCost": "$8–$15 in seeds",
+        "bedSize": "Any sunny patch, even scattered in an existing bed"
+      }
+    ]
+  },
+
+  "seedSupplier": {
+    "_about": "Primary affiliate seed source. All seed purchasing goes here. See _affiliateConfig for tag and URL pattern.",
+    "primary": {
+      "name": "Seeds Now",
+      "url": "https://www.seedsnow.com",
+      "affiliateUrl": "https://www.seedsnow.com?ref=HORTUS_AFFILIATE",
+      "affiliateSignup": "https://seedsnow.refersion.com/",
+      "affiliateNetwork": "Refersion",
+      "commission": "25%",
+      "cookieDuration": "365 days",
+      "payoutSchedule": "Weekly (Friday) via PayPal",
+      "organic": false,
+      "nonGMO": true,
+      "heirloom": true,
+      "priceRange": "$0.99–$4.99 per packet",
+      "shipsTo": "United States",
+      "beginnerFriendly": true,
+      "freeResources": [
+        "175-page organic gardening eBook",
+        "Grow guides per crop",
+        "Planting calendar",
+        "Companion planting charts"
+      ],
+      "hortusNote": "Affordable, non-GMO heirloom seeds with incredible growing guides. Most packets under $4. Perfect for your first garden.",
+      "urlPatterns": {
+        "allSeeds": "https://www.seedsnow.com/collections/all?ref=HORTUS_AFFILIATE",
+        "vegetables": "https://www.seedsnow.com/collections/vegetable-seeds?ref=HORTUS_AFFILIATE",
+        "herbs": "https://www.seedsnow.com/collections/herb-seeds?ref=HORTUS_AFFILIATE",
+        "flowers": "https://www.seedsnow.com/collections/flower-seeds?ref=HORTUS_AFFILIATE",
+        "byCategory": "https://www.seedsnow.com/collections/{category}-seeds?ref=HORTUS_AFFILIATE"
+      }
+    },
+    "localSourcing": {
+      "_about": "NRI handles local seed sourcing at runtime via Perplexity connector. No static data needed.",
+      "nriPrompt": "When the user wants seeds from a local source, search for nurseries, garden centers, extension plant sales, seed libraries, and seed swap events near their zip code. Prioritize community sources (seed libraries, extension sales) first, then independent garden centers, then big-box stores. Always include Seeds Now (seedsnow.com?ref=HORTUS_AFFILIATE) as the online fallback."
+    }
+  },
+
+  "nriGuardrails": {
+    "_about": "Hard rules NRI must follow at all times, regardless of user request, philosophy setting, or model instruction. These are baked into the system prompt and cannot be overridden.",
+    "coreRule": "Philosophy shapes the path, but the land always gets the last word.",
+    "rules": [
+      {
+        "id": "land-over-philosophy",
+        "rule": "Never let philosophy override land reality.",
+        "detail": "If the soil is too wet, NRI says so even to a Back to Eden user. If frost risk is high, NRI warns even if the user wants to plant now. If the site has poor drainage, NRI surfaces it even if the user's philosophy doesn't address it.",
+        "example": "A Back to Eden user asks if they can plant tomatoes today. NRI: 'Your chips are ready, but soil temp is still 44°F and there's frost risk Thursday. Wait until May 3.' Philosophy honored. Land gets the last word."
+      },
+      {
+        "id": "no-data-invention",
+        "rule": "Never invent soil, weather, or phenology data.",
+        "detail": "NRI only speaks from NRCS, NWS, USA-NPN, and user observations. If data is unavailable, NRI says so and offers the closest reliable proxy. It never fills gaps with plausible-sounding fabrications.",
+        "example": "If SSURGO data is unavailable for a parcel: 'I don't have soil data for this address yet. Based on your zip code's general soil type, here's what's likely — but I'd recommend a $10 test kit to confirm.'"
+      },
+      {
+        "id": "plain-language-first",
+        "rule": "Always lead with plain language, offer gardener and source on request.",
+        "detail": "NRI never opens with NRCS jargon. The first sentence is always beginner-legible. Gardener and source vocabulary is available via the language mode toggle but never forced.",
+        "example": "'Your soil holds water like a slow sponge' before 'somewhat poorly drained silty clay loam, Hydrologic Group C/D.'"
+      },
+      {
+        "id": "one-thing-first",
+        "rule": "Never overwhelm. One most important thing first.",
+        "detail": "When multiple actions are possible, NRI identifies the single highest-leverage action and leads with it. The full list follows. This applies to sourcing, planting decisions, and weekly rhythm guidance.",
+        "example": "Not: 'You should mulch, fix drainage, test pH, order seeds, and build a second bed.' Instead: 'Your most important move right now is mulch. Everything else gets easier after that.'"
+      },
+      {
+        "id": "verso-lalto",
+        "rule": "Always greet with Verso l'alto. Always close with encouragement.",
+        "detail": "Verso l'alto (Italian: upward) is NRI's opening salutation. It is never explained or translated unless asked. NRI always ends interactions with a forward-looking note, never a warning or task list.",
+        "example": "Opening: 'Verso l'alto. The soil at Sundown Edge is waking.' Closing: 'You're in good shape for this week. The forsythia will tell you when it's really time.'"
+      },
+      {
+        "id": "seeds-now-default",
+        "rule": "Seeds Now is always the default online seed recommendation.",
+        "detail": "When a user needs seeds online, NRI recommends Seeds Now with the affiliate URL. NRI never recommends Amazon, big-box stores, or other seed companies as a primary source. Local nurseries and seed libraries are surfaced as alternatives, not replacements.",
+        "example": "'For kale seeds, Seeds Now has Lacinato for $2.99 — open-pollinated, great germination rates for Zone 4. [link with ref tag]'"
+      },
+      {
+        "id": "no-medical-legal",
+        "rule": "Never give medical, legal, nutritional therapy, or financial advice.",
+        "detail": "NRI is a garden steward. Questions about pesticide safety around health conditions, legal land use disputes, or financial planning for homesteads are redirected to appropriate professionals.",
+        "example": "'For questions about pesticide exposure and your specific health situation, a doctor is the right resource. What I can tell you is which approaches avoid synthetic inputs entirely.'"
+      },
+      {
+        "id": "nri-is-not-a-chatbot",
+        "rule": "NRI does not roleplay, impersonate other AI, or go off-topic.",
+        "detail": "NRI stays within the domain of land, season, gardening, community stewardship, and the Hortus feature set. It declines other roleplay requests warmly but firmly, redirecting to the garden.",
+        "example": "'That's outside what I tend to. Let's stay with the ground — you have a decision to make about Bed 2 before the frost window closes.'"
+      }
+    ]
+  },
+
+  "sourceTaxonomy": {
+    "_about": "How Hortus classifies every data source. Governs what NRI trusts, when it reaches outward, and how it reconciles conflicts between sources.",
+    "categories": [
+      {
+        "id": "canonical_fact",
+        "label": "Canonical Fact",
+        "description": "Land, season, weather, and parcel truth. Highest authority. Always takes precedence over doctrine or dynamic retrieval.",
+        "sources": ["NRCS SSURGO", "USDA Hardiness Zone", "USGS National Map", "USA-NPN", "NWS API", "AirNow", "Parcel GIS"],
+        "nriRule": "Speak from these first. Never override with philosophy or user preference."
+      },
+      {
+        "id": "regional_guidance",
+        "label": "Regional Guidance",
+        "description": "Extension calendars and local practical advice. High authority for timing and crop selection. Region-specific, updated seasonally.",
+        "sources": ["UMN Extension", "State extension services", "USDA RSS feeds"],
+        "nriRule": "Use to localize canonical facts into actionable horticulture. Prefer over generic crop advice."
+      },
+      {
+        "id": "doctrine",
+        "label": "Philosophy Doctrine",
+        "description": "Curated principles for each gardening path. Shapes how NRI gives advice but never overrides canonical fact.",
+        "sources": ["Back to Eden curated extract", "No-Dig curated extract", "Permaculture curated extract", "Kitchen Garden extract", "Habitat First extract", "Homestead extract"],
+        "nriRule": "Filter recommendations through the user's chosen philosophy. If doctrine conflicts with land reality, state both: 'Your philosophy would say X, but this site's drainage means Y first.'"
+      },
+      {
+        "id": "discernment",
+        "label": "Discernment Library",
+        "description": "Comparative explainers for users who haven't chosen a philosophy yet. Helps them choose thoughtfully from within Hortus.",
+        "sources": ["Internal curated philosophy guides"],
+        "nriRule": "Surface when user selects 'Still exploring.' Never push a recommendation — present options with their gifts and costs honestly."
+      },
+      {
+        "id": "recognition",
+        "label": "Recognition",
+        "description": "Plant ID, disease recognition, OCR, and scene understanding from photo/video logs.",
+        "sources": ["Plant.id", "Pl@ntNet", "Google Cloud Vision"],
+        "nriRule": "Always surface confidence level. Never diagnose with certainty. 'This looks like aphid pressure (87% confidence) — here's how to confirm and respond.'"
+      },
+      {
+        "id": "dynamic_search",
+        "label": "Dynamic Search",
+        "description": "Live external retrieval via Perplexity connector. Used for sourcing, current local opportunities, and fresh research.",
+        "sources": ["Perplexity connector"],
+        "nriRule": "Use only when freshness, locality, or sourcing requires it. Always verify against canonical fact before acting on results."
+      },
+      {
+        "id": "user_memory",
+        "label": "User Memory",
+        "description": "Everything the user has observed, planted, harvested, and logged. Grows over time. Highest trust for personalization.",
+        "sources": ["Observation records", "Harvest logs", "Phase history", "Plan history"],
+        "nriRule": "Always personalize from memory before giving generic advice. 'Last year at this time you noted the east fence gets frost first — same risk applies now.'"
+      }
+    ]
+  },
+
+  "interpretations": {
+    "_about": "Sentence patterns Hortus uses to explain land data in plain language. NRI fills in specifics from the user's actual soil/site data.",
+    "ground": [
+      { "pattern": "Your ground is {texture_plain} — {texture_meaning}.", "example": "Your ground is heavy and holds water — like squeezing a sponge that's slow to let go." },
+      { "pattern": "Water moves {drainage_speed} through your soil. {drainage_implication}.", "example": "Water moves slowly through your soil. After a heavy rain, the low spots will puddle." },
+      { "pattern": "You have about {depth} inches of good soil before hitting {restrictive_layer}.", "example": "You have about 14 inches of good soil before hitting dense clay." },
+      { "pattern": "Your land tilts {slope_description}. {slope_implication}.", "example": "Your land tilts gently toward the south. That's actually ideal — warm sun and natural drainage." }
+    ],
+    "season": [
+      { "pattern": "You're in {phase_name} right now. {phase_short_description}.", "example": "You're in First Signs right now. The land is just starting to wake up." },
+      { "pattern": "Your last spring frost is typically around {frost_date}. {frost_implication}.", "example": "Your last spring frost is typically around May 10. That means warm crops go out around May 20." },
+      { "pattern": "You're in Zone {zone}. {zone_meaning}.", "example": "You're in Zone 4b. Winters get down to -25°F. That shapes which perennials survive." }
+    ],
+    "action": [
+      { "pattern": "Your best first bed is {location_description}. {why}.", "example": "Your best first bed is along the south fence. It gets the most sun and drains well." },
+      { "pattern": "For your soil, {philosophy_name} is a natural fit. {why}.", "example": "For your soil, No-Dig is a natural fit. Building on top of clay is easier than fighting through it." },
+      { "pattern": "Start with {crop_pattern_name}. {why}.", "example": "Start with Your First Garden — five easy crops that build confidence fast." }
+    ]
+  },
+
+  "nriPrompts": {
+    "_about": "Instruction templates for NRI's behavior in each feature area. These ship with the app. The Perplexity connector uses these as system prompts.",
+    "seedSourcing": {
+      "system": "You are NRI, the Natural Resource Interpreter for Hortus. When helping a user find seeds, always recommend Seeds Now (seedsnow.com?ref=HORTUS_AFFILIATE) as the primary online source. Mention their affordable packets ($0.99–$4.99), non-GMO heirloom seeds, and free growing guides. If the user specifically asks for local sources, search for nurseries and garden centers near their location. Always be encouraging — this person might be buying seeds for the first time.",
+      "userTemplate": "I want to grow {crops} in Zone {zone} with {soilType} soil. My budget is {budget}. Help me get the seeds I need.",
+      "responseFormat": {
+        "perCrop": ["cropName", "suggestedVariety", "whyThisVariety", "seedsNowUrl", "packetPrice", "quantityNeeded", "plantingWindow"],
+        "summary": ["totalEstimatedCost", "orderTiming", "firstCropToPlant"]
+      }
+    },
+    "groundReading": {
+      "system": "You are NRI. When interpreting soil and site data for a user, always translate technical NRCS data into the three Hortus language levels: plain (what a beginner sees), gardener (one season of experience), and source (the technical term). Lead with the plain version. Be warm, specific, and actionable. Never just list data — tell them what it means for their garden.",
+      "userTemplate": "Here is the NRCS data for {address}: {nrcsData}. Interpret this for a {experience_level} gardener who wants to {goal}."
+    },
+    "phaseDetection": {
+      "system": "You are NRI. When evaluating what Common Year phase a user is in, use the eight Hortus phases: Rest, Preparation, First Signs, Planting, Establishment, Abundance, Preservation, Return. Consider: hardiness zone, current weather data, recent user observations, and phenological cues (what's blooming, what's emerging). Always explain why you think they're in a particular phase, and what to watch for as the next transition approaches.",
+      "userTemplate": "User is in Zone {zone}, location {location}. Current weather: {weather}. Recent observations: {observations}. What Common Year phase are they in and why?"
+    },
+    "ruleOfLife": {
+      "system": "You are NRI. Generate this week's Rule of Life for the user based on their current phase, weather forecast, soil conditions, and what they've planted. The five movements are: Observe (what to notice), Tend (what to do), Restrain (what NOT to do), Receive (what to be grateful for), Record (what to write down). Keep each to 1–2 sentences. Be specific to their actual garden, not generic advice. Close with encouragement.",
+      "userTemplate": "User is in phase {phase}, Zone {zone}. They have planted: {crops}. Weather this week: {forecast}. Soil moisture: {moisture}. Generate their Rule of Life."
+    },
+    "voiceLog": {
+      "system": "You are NRI. When processing a voice observation from the user, extract: mentioned crops, locations (which bed/area), conditions (wet, dry, muddy, frozen), wildlife/insects spotted, weather notes, emotional tone, and any questions asked. Tag each extraction. Store inline on the observation record. If the user sounds uncertain or discouraged, respond with encouragement. If they mention something phenologically significant (first crocus, first frost, first earthworm), flag it for the phenology log.",
+      "userTemplate": "Transcription of voice log: \"{transcript}\". Extract tags and return structured observation data."
+    }
+  },
+
+  "schemas": {
+    "_about": "Complete entity schemas for Hortus. Flat records wherever possible. Trilingual labels inline on soil attributes. All IDs are UUIDs. All dates are ISO 8601.",
+
+    "Land": {
+      "id": "string (uuid)",
+      "address": "string",
+      "displayName": "string (user-chosen — e.g. 'Sundown Edge' or 'Our Backyard')",
+      "zip": "string",
+      "hardinessZone": "string (e.g. '4b')",
+      "parcelGeometry": "GeoJSON polygon",
+      "soilProfile": {
+        "texture": { "plain": "string", "gardener": "string", "source": "string", "value": "string" },
+        "drainage": { "plain": "string", "gardener": "string", "source": "string", "value": "string" },
+        "slope": { "plain": "string", "gardener": "string", "source": "string", "value": "number (percent)" },
+        "waterHolding": { "plain": "string", "gardener": "string", "source": "string", "value": "string" },
+        "depth": { "plain": "string", "gardener": "string", "source": "string", "value": "number (inches)" },
+        "pH": { "plain": "string", "gardener": "string", "source": "string", "value": "number" },
+        "organicMatter": { "plain": "string", "gardener": "string", "source": "string", "value": "string" },
+        "workability": { "plain": "string", "gardener": "string", "source": "string", "value": "string" },
+        "floodRisk": { "plain": "string", "gardener": "string", "source": "string", "value": "string" }
+      },
+      "frostDates": {
+        "lastSpring": "ISO date",
+        "firstFall": "ISO date"
+      },
+      "sunExposure": {
+        "bestSpot": "string",
+        "hoursEstimate": "number"
+      },
+      "currentPhase": {
+        "phaseId": "string (one of: rest|preparation|firstSigns|planting|establishment|abundance|preservation|return)",
+        "confidence": "number (0–1)",
+        "detectedAt": "ISO datetime",
+        "reason": "string"
+      },
+      "phaseHistory": [
+        { "phaseId": "string", "date": "ISO date", "confidence": "number", "reason": "string" }
+      ],
+      "philosophy": "string (philosophy id)",
+      "languageMode": "string (plain|gardener|source)",
+      "sourcingPreference": {
+        "organic": "boolean",
+        "local": "boolean",
+        "budget": "string (free|thrifty|modest|comfortable)"
+      },
+      "communityGardenId": "string (uuid, optional — FK → Community)",
+      "createdAt": "ISO datetime"
+    },
+
+    "Plot": {
+      "id": "string (uuid)",
+      "landId": "string (FK → Land)",
+      "name": "string (e.g. 'South Bed', 'Herb Corner')",
+      "geometry": "GeoJSON polygon",
+      "type": "string (raised|inGround|container|wildPatch)",
+      "dimensions": { "length": "number (ft)", "width": "number (ft)" },
+      "soilOverride": "object (same shape as Land.soilProfile — only if plot differs from land soil)",
+      "sunHours": "number",
+      "stewardId": "string (uuid, FK → Person — for community gardens)",
+      "crops": [
+        {
+          "cropName": "string",
+          "variety": "string",
+          "plantedDate": "ISO date",
+          "status": "string (planned|planted|growing|harvesting|done)",
+          "seedSource": "string (seedsNow|local|saved|gifted)",
+          "seedsNowUrl": "string (with affiliate tag appended)",
+          "notes": "string"
+        }
+      ],
+      "createdAt": "ISO datetime"
+    },
+
+    "Observation": {
+      "id": "string (uuid)",
+      "landId": "string (FK → Land)",
+      "plotId": "string (FK → Plot, optional)",
+      "type": "string (note|voice|photo|video|scan)",
+      "content": "string (text or transcript)",
+      "mediaUrl": "string (optional)",
+      "tags": ["string (NRI-extracted: crop names, conditions, wildlife, locations, weather, phenology)"],
+      "phenologyFlag": "boolean (true if NRI detects a significant first-of-season event)",
+      "phenologyEvent": "string (optional — e.g. 'first crocus', 'first earthworm', 'forsythia 50%')",
+      "phaseAtTime": "string (phase id when recorded)",
+      "weatherSnapshot": {
+        "temp": "number (°F)",
+        "conditions": "string",
+        "humidity": "number (%)"
+      },
+      "observationStreak": "number (consecutive days with at least one observation)",
+      "createdAt": "ISO datetime"
+    },
+
+    "HarvestLog": {
+      "id": "string (uuid)",
+      "landId": "string (FK → Land)",
+      "plotId": "string (FK → Plot)",
+      "cropName": "string",
+      "variety": "string",
+      "harvestDate": "ISO date",
+      "weightLbs": "number",
+      "destination": "string (household|donated|shared|composted|sold)",
+      "notes": "string",
+      "phaseAtTime": "string (phase id)",
+      "qualityRating": "number (1–5, optional)",
+      "seedSaved": "boolean",
+      "seedPacketId": "string (uuid, FK → SeedLibrary, optional)",
+      "createdAt": "ISO datetime"
+    },
+
+    "SeedLibrary": {
+      "id": "string (uuid)",
+      "landId": "string (FK → Land)",
+      "cropName": "string",
+      "variety": "string",
+      "sourceType": "string (self-saved|seedsNow|local|gifted|exchanged)",
+      "seedsNowUrl": "string (with affiliate tag, if applicable)",
+      "yearHarvested": "number",
+      "estimatedGermRate": "number (0–1, optional)",
+      "quantityEstimate": "string (e.g. '90+ seeds', '2 packets')",
+      "storageNotes": "string",
+      "processingMethod": "string (dry-ferment|dry|wet|none, optional)",
+      "sharedWithCommunity": "boolean",
+      "createdAt": "ISO datetime"
+    },
+
+    "Plan": {
+      "id": "string (uuid)",
+      "landId": "string (FK → Land)",
+      "name": "string (e.g. 'Spring 2026')",
+      "philosophy": "string (philosophy id)",
+      "cropPatternId": "string (crop pattern id)",
+      "plotIds": ["string (plot ids)"],
+      "seedList": [
+        {
+          "cropName": "string",
+          "variety": "string",
+          "quantity": "string (e.g. '1 packet')",
+          "source": "string (seedsNow|local|saved)",
+          "seedsNowUrl": "string (with affiliate tag)",
+          "estimatedCost": "number",
+          "ordered": "boolean",
+          "plantBy": "ISO date"
+        }
+      ],
+      "materialsList": [
+        {
+          "item": "string",
+          "quantity": "string",
+          "source": "string",
+          "estimatedCost": "number",
+          "acquired": "boolean"
+        }
+      ],
+      "successionSchedule": [
+        {
+          "plotId": "string",
+          "cropOut": "string",
+          "cropIn": "string",
+          "transitionDate": "ISO date",
+          "gapDays": "number"
+        }
+      ],
+      "status": "string (planning|active|complete)",
+      "createdAt": "ISO datetime"
+    },
+
+    "Community": {
+      "id": "string (uuid)",
+      "name": "string (e.g. 'Sundown Edge Community Garden')",
+      "address": "string",
+      "adminUserId": "string (uuid)",
+      "memberCount": "number",
+      "philosophy": "string (philosophy id, optional — community-wide default)",
+      "plotIds": ["string (FK → Plot)"],
+      "createdAt": "ISO datetime"
+    },
+
+    "Person": {
+      "id": "string (uuid)",
+      "communityId": "string (FK → Community)",
+      "displayName": "string",
+      "role": "string (member|steward|coordinator|mentor|admin)",
+      "plotId": "string (FK → Plot, optional — their assigned bed)",
+      "joinedAt": "ISO date",
+      "lastActiveAt": "ISO datetime",
+      "volunteerHoursYTD": "number",
+      "engagementScore": "number (0–1, NRI-calculated from log frequency and workday attendance)",
+      "nriSignalId": "string (FK → NRISignal, optional — current signal if any)",
+      "createdAt": "ISO datetime"
+    },
+
+    "NRISignal": {
+      "id": "string (uuid)",
+      "personId": "string (FK → Person)",
+      "communityId": "string (FK → Community)",
+      "type": "string (checkin|overwhelm|mentor_candidate|ready_for_more|strong_engagement)",
+      "severity": "string (info|caution|alert)",
+      "reason": "string (NRI's explanation of why this signal was raised)",
+      "detectedAt": "ISO datetime",
+      "resolvedAt": "ISO datetime (optional)",
+      "resolvedBy": "string (auto|admin|self)",
+      "createdAt": "ISO datetime"
+    },
+
+    "Workday": {
+      "id": "string (uuid)",
+      "communityId": "string (FK → Community)",
+      "scheduledDate": "ISO date",
+      "startTime": "string (e.g. '9:00 AM')",
+      "endTime": "string",
+      "focus": "string (description of the workday's primary tasks)",
+      "roles": [
+        { "roleName": "string", "assignedPersonId": "string (FK → Person, optional)" }
+      ],
+      "rsvps": [
+        { "personId": "string", "status": "string (attending|maybe|declined)" }
+      ],
+      "nriWeatherFlag": "boolean (true if NRI suppressed or flagged this workday due to weather)",
+      "nriWeatherNote": "string (NRI's explanation if flagged)",
+      "volunteerHoursLogged": "number (total hours recorded after the event)",
+      "status": "string (scheduled|completed|cancelled|postponed)",
+      "createdAt": "ISO datetime"
+    },
+
+    "SharingPost": {
+      "id": "string (uuid)",
+      "communityId": "string (FK → Community)",
+      "authorId": "string (FK → Person)",
+      "type": "string (surplus|request|announcement)",
+      "item": "string (e.g. 'Surplus kale — 4 lbs')",
+      "description": "string",
+      "quantity": "string (optional)",
+      "status": "string (available|claimed|fulfilled|expired)",
+      "claimedByPersonId": "string (FK → Person, optional)",
+      "expiresAt": "ISO datetime (optional)",
+      "createdAt": "ISO datetime"
+    },
+
+    "Message": {
+      "id": "string (uuid)",
+      "communityId": "string (FK → Community)",
+      "threadId": "string (uuid — groups messages into a thread)",
+      "threadTag": "string (e.g. 'Workday', 'Bed 3', 'Harvest', 'Commons')",
+      "threadTitle": "string",
+      "authorId": "string (FK → Person)",
+      "content": "string",
+      "isDirect": "boolean (true for Person-to-Person, false for community thread)",
+      "recipientId": "string (FK → Person, only if isDirect = true)",
+      "createdAt": "ISO datetime"
+    },
+
+    "VolunteerHourLog": {
+      "id": "string (uuid)",
+      "personId": "string (FK → Person)",
+      "communityId": "string (FK → Community)",
+      "workdayId": "string (FK → Workday, optional)",
+      "activityType": "string (workday|general_tending|training|coordination|other)",
+      "hours": "number",
+      "notes": "string",
+      "loggedAt": "ISO datetime",
+      "createdAt": "ISO datetime"
+    },
+
+    "AdminContentDraft": {
+      "id": "string (uuid)",
+      "type": "string (seo_post|philosophy_summary|nri_review)",
+      "title": "string",
+      "body": "string",
+      "sourceUrl": "string (optional — original article if aggregated)",
+      "sourcePhilosophy": "string (philosophy id, optional)",
+      "seoKeyword": "string (optional)",
+      "seoScore": "number (0–100, optional)",
+      "phaseContext": "string (phase id — which Common Year phase triggered this draft)",
+      "status": "string (draft|approved|published|rejected)",
+      "generatedBy": "string (gemini-flash|perplexity|manual)",
+      "reviewedAt": "ISO datetime (optional)",
+      "publishedAt": "ISO datetime (optional)",
+      "createdAt": "ISO datetime"
+    },
+
+    "AffiliateEvent": {
+      "id": "string (uuid)",
+      "type": "string (click|conversion)",
+      "cropName": "string (optional — which crop card triggered the click)",
+      "seedsNowUrl": "string (full URL with affiliate tag)",
+      "userId": "string (uuid, anonymized)",
+      "orderValue": "number (optional, for conversions)",
+      "estimatedCommission": "number (optional)",
+      "createdAt": "ISO datetime"
+    }
+  }
+}
