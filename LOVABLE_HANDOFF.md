@@ -60,6 +60,66 @@ This scaffold is ready for implementation. Everything below tells you what's don
 
 ---
 
+### NRI Intelligence Layer (ported from thecros Compass architecture)
+
+NRI is not just a chat endpoint. It's a **layered intelligence system** with proactive nudges, posture detection, and knowledge base capabilities. The hooks are built (`src/hooks/useNRI*.ts`). Lovable wires them into the UI.
+
+**1. Nudge Engine** (`useNRINudgeEngine`)
+- Aggregates signals: weather, phase, planting windows, observation streaks, community, harvest, compost
+- Scores each by confidence (0-1), sorts by confidence then direction weight
+- Returns max 3 nudges — never overwhelm
+- Displays in NRI drawer "Today's Movement" section + home screen
+- Nudge directions map to Rule of Life: observe, tend, restrain, receive, record
+
+**2. Posture Detection** (`useNRIPosture`)
+- Infers NRI's conversational posture from current route:
+  - Loam Map / Weather / Phenology → `land_reading`
+  - Planner / Succession / Harvest / Compost → `action`
+  - Memory / Common Year / Philosophy → `reflection`
+  - People / Workdays / Messages → `community_care`
+  - Resilience / Impact / Seed Exchange → `stewardship`
+- NRI adapts its opening line and emphasis accordingly
+- No gamification — just legible orientation
+
+**3. Compass Glow** (`useNRIGlow`)
+- Soft visual glow on the compass button when NRI has something helpful
+- Triggers: frost alerts (4h), weather (2h), phase changes (8h), planting window (12h)
+- Only for high-confidence nudges (>0.6)
+- Cooldown after glow expires (30 min)
+- Never glow when drawer is open — user is already engaged
+
+**4. Auto-Open** (`useNRIAutoOpen`)
+- Opens NRI drawer on first login of the day when high-confidence nudges exist
+- 8-hour cooldown in localStorage
+- Only triggers for confidence >= 0.7
+- 600ms delay so the page renders first
+
+**5. First-Visit Guide** (`useNRIGuide`)
+- First 3 days after signup: NRI auto-opens when user visits a new screen
+- 13 guide entries, each with NRI-voiced explanation (not feature marketing)
+- Tracks which sections seen in localStorage
+- User can dismiss entire guide
+
+**6. NRI as Knowledge Base**
+NRI is also the company knowledge base. Users can ask any question about:
+- Gardening techniques (mulching, composting, crop rotation, pest management)
+- Soil science (texture, drainage, pH, organic matter — translated to their language mode)
+- Planting schedules and timing for their specific zone
+- Seed saving and heirloom variety guidance
+- Preservation and food storage
+- Philosophy-specific approaches (Back to Eden, No-Dig, etc.)
+- Community garden coordination best practices
+- Any feature in the app ("how do I log a harvest?", "what is the Common Year?")
+
+Scoping rules:
+- Solo users get personal garden guidance
+- Community coordinators get management + member wellbeing guidance
+- Admin/Master Gardener gets platform-level guidance
+- NRI never gives medical, legal, or financial advice (redirects warmly)
+- NRI's source hierarchy: canonical data > regional guidance > philosophy > user memory
+
+The NRI Edge Function should include the user's role and permissions in the context object so responses are appropriately scoped. The system prompt already handles this — see `specs/nri-system-prompt.md`.
+
 ## What Lovable Needs to Build
 
 ### Screens and components
