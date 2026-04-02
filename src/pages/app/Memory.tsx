@@ -231,7 +231,7 @@ export default function Memory() {
           </div>
         ) : (
           filtered.map((obs, i) => {
-            const badge = TYPE_BADGE[obs.type] ?? TYPE_BADGE.note!;
+            const badge = (TYPE_BADGE[obs.type] ?? TYPE_BADGE["note"])!;
             return (
               <div
                 key={obs.id}
