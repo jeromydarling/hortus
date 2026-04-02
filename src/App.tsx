@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { FoodSystemMap } from "./components/FoodSystemMap";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -86,6 +87,11 @@ export function App() {
               </div>
             </a>
           </div>
+        </section>
+
+        {/* Food System Map */}
+        <section style={{ marginBottom: 40 }}>
+          <FoodSystemMap />
         </section>
 
         {/* Common Year */}
