@@ -52,7 +52,7 @@ const DEMO_ALERTS = [
 export default function Weather() {
   const { t } = useTranslation();
   const weather = DEMO_FIXTURE.weather;
-  const stateStyle = STATE_STYLES[weather.state] ?? STATE_STYLES.clear!;
+  const stateStyle = (STATE_STYLES[weather.state] ?? STATE_STYLES["clear"])!;
 
   const aqiLabel =
     weather.aqi <= 50
