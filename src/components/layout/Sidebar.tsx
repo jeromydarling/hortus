@@ -83,6 +83,18 @@ export function Sidebar() {
     ],
   });
 
+  // Ancient Library
+  sections.push({
+    title: "Ancient Library",
+    items: [
+      { label: "Library Home", route: "/ancient" },
+      { label: "Plants & Herbs", route: "/ancient/plants" },
+      { label: "Techniques", route: "/ancient/techniques" },
+      { label: "Traditions", route: "/ancient/traditions" },
+      { label: "Seasonal Calendar", route: "/ancient/calendar" },
+    ],
+  });
+
   return (
     <aside style={sidebar}>
       {/* Logo */}

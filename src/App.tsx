@@ -86,6 +86,13 @@ export function App() {
                 <p style={cardDesc}>Landing page with features slider, demo gate form, resilience section, and pricing.</p>
               </div>
             </a>
+            <a href="/ancient" style={cardLink}>
+              <div style={{ ...card, borderLeft: "3px solid #a0522d" }}>
+                <div style={{ fontSize: 28, marginBottom: 8 }}>{"\ud83c\udfdb\ufe0f"}</div>
+                <strong>Ancient Library</strong>
+                <p style={cardDesc}>49 plants, 12 techniques, 4 traditions, seasonal calendar. Ever Ancient, Ever New.</p>
+              </div>
+            </a>
           </div>
         </section>
 
