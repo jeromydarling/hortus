@@ -44,6 +44,14 @@ import Messages from "@/pages/community/Messages";
 import Hours from "@/pages/community/Hours";
 import GardenMap from "@/pages/community/GardenMap";
 
+// Ancient Library pages
+import AncientHome from "@/pages/ancient/AncientHome";
+import AncientPlants from "@/pages/ancient/Plants";
+import AncientTechniques from "@/pages/ancient/Techniques";
+import AncientTraditions from "@/pages/ancient/Traditions";
+import AncientCalendar from "@/pages/ancient/Calendar";
+import { AncientLibraryProvider } from "@/ancientLibrary";
+
 // Resilience pages (use existing components directly)
 import { FoodSystemMap } from "@/components/FoodSystemMap";
 import { FoodResilienceScore } from "@/components/FoodResilienceScore";
@@ -98,6 +106,18 @@ export function AppRouter() {
         <Route path="community/sharing" element={<Sharing />} />
         <Route path="community/messages" element={<Messages />} />
         <Route path="community/hours" element={<Hours />} />
+      </Route>
+
+      {/* Ancient Library */}
+      <Route path="/ancient" element={<AncientLibraryProvider><AppShell /></AncientLibraryProvider>}>
+        <Route index element={<AncientHome />} />
+        <Route path="plants" element={<AncientPlants />} />
+        <Route path="plants/:plantId" element={<AncientPlants />} />
+        <Route path="techniques" element={<AncientTechniques />} />
+        <Route path="techniques/:techId" element={<AncientTechniques />} />
+        <Route path="traditions" element={<AncientTraditions />} />
+        <Route path="traditions/:tradId" element={<AncientTraditions />} />
+        <Route path="calendar" element={<AncientCalendar />} />
       </Route>
 
       {/* Fallback */}

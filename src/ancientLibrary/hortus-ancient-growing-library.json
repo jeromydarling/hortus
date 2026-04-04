@@ -1,0 +1,1827 @@
+{
+  "meta": {
+    "name": "Hortus Ancient Growing Library",
+    "version": "1.0.0",
+    "motto": "Ever Ancient, Ever New",
+    "description": "A comprehensive library of food and herb growing wisdom drawn from ancient and medieval sources, curated for modern gardeners learning timeless techniques.",
+    "sources": [
+      {
+        "id": "cato",
+        "title": "De Agri Cultura (On Agriculture)",
+        "author": "Cato the Elder (Marcus Porcius Cato)",
+        "date": "~160 BC",
+        "tradition": "Roman",
+        "archive_url": "https://archive.org/details/romanfarmmanagement02harruoft",
+        "description": "The oldest surviving complete prose work in Latin. Practical farming manual covering soil preparation, crop rotation, composting, orchard management, and herb cultivation."
+      },
+      {
+        "id": "varro",
+        "title": "Rerum Rusticarum (On Agriculture)",
+        "author": "Marcus Terentius Varro",
+        "date": "37 BC",
+        "tradition": "Roman",
+        "archive_url": "https://archive.org/details/cu31924000219505",
+        "description": "Systematic treatise on agriculture organized by topic: field crops, livestock, and villa farming. Scientific classification of soils and planting calendars."
+      },
+      {
+        "id": "columella",
+        "title": "De Re Rustica (On Agriculture)",
+        "author": "Lucius Junius Moderatus Columella",
+        "date": "~65 AD",
+        "tradition": "Roman",
+        "web_url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Columella/de_Re_Rustica/home.html",
+        "description": "The most comprehensive Roman agricultural encyclopedia. 12 books covering soil science, composting, vegetables, herbs, orchards, vines, and garden design."
+      },
+      {
+        "id": "pliny",
+        "title": "Naturalis Historia (Natural History)",
+        "author": "Pliny the Elder",
+        "date": "77 AD",
+        "tradition": "Roman",
+        "archive_url": "https://archive.org/details/naturalhistory01plinuoft",
+        "description": "Encyclopedic work covering botany, agriculture, and medicinal herbs. Books 17-19 cover horticulture, Books 20-27 cover medicinal plants."
+      },
+      {
+        "id": "palladius",
+        "title": "Opus Agriculturae",
+        "author": "Rutilius Taurus Aemilianus Palladius",
+        "date": "~4th century AD",
+        "tradition": "Late Roman",
+        "archive_url": "https://archive.org/details/palladiusonhusbo0000pall",
+        "description": "Month-by-month agricultural calendar. Each book covers tasks for a specific month \u2014 the original seasonal planting guide."
+      },
+      {
+        "id": "walahfrid",
+        "title": "Hortulus (The Little Garden)",
+        "author": "Walahfrid Strabo",
+        "date": "~840 AD",
+        "tradition": "Carolingian Monastic",
+        "web_url": "https://sites.uwm.edu/carlin/walafrid-stabo-hortulus-the-gourd/",
+        "description": "A 440-line Latin poem about the author's monastery garden at Reichenau Abbey. Describes 23 medicinal and culinary herbs with growing instructions and uses."
+      },
+      {
+        "id": "st_gall",
+        "title": "Plan of Saint Gall",
+        "author": "Anonymous Benedictine monks",
+        "date": "~820 AD",
+        "tradition": "Benedictine Monastic",
+        "description": "The earliest known garden plan in Western civilization. Shows a physic garden (16 medicinal herbs), a kitchen garden (18 vegetables), and an orchard-cemetery."
+      },
+      {
+        "id": "hildegard",
+        "title": "Physica (Natural History) & Causae et Curae",
+        "author": "Hildegard of Bingen",
+        "date": "~1150 AD",
+        "tradition": "Benedictine Monastic",
+        "archive_url": "https://archive.org/details/hildegardvonbing0000hilduoft",
+        "description": "Comprehensive herbal medicine and gardening treatise by a Benedictine abbess. Catalogs hundreds of plants with medicinal properties and growing guidance."
+      },
+      {
+        "id": "ibn_al_awwam",
+        "title": "Kitab al-Filaha (Book of Agriculture)",
+        "author": "Ibn al-'Awwam",
+        "date": "~12th century AD",
+        "tradition": "Andalusian Islamic",
+        "archive_url": "https://archive.org/details/lelivredelagricul01ibnauoft",
+        "description": "Monumental agricultural encyclopedia covering 585 plants and 50 fruit trees. Synthesizes Greek, Roman, and Islamic agricultural science."
+      },
+      {
+        "id": "tusser",
+        "title": "Five Hundred Points of Good Husbandry",
+        "author": "Thomas Tusser",
+        "date": "1573",
+        "tradition": "English Tudor",
+        "archive_url": "https://archive.org/details/fivehundredpoint00tussiala",
+        "description": "Versified month-by-month guide to farming and gardening. Lists herbs for the kitchen, strewing, medicine, and distillation."
+      },
+      {
+        "id": "rohde",
+        "title": "A Garden of Herbs",
+        "author": "Eleanour Sinclair Rohde",
+        "date": "1922",
+        "tradition": "English Historical",
+        "archive_url": "https://archive.org/details/gardenofherbs00rohd_0",
+        "description": "Comprehensive guide to growing and using herbs, drawing on centuries of herbalist tradition from medieval monks to Tudor gardeners."
+      },
+      {
+        "id": "medieval_gardens_collection",
+        "title": "Ancient and Medieval Gardens",
+        "author": "Robert Bedrosian (compiler)",
+        "date": "2019",
+        "tradition": "Scholarly Compilation",
+        "archive_url": "https://archive.org/details/ancientmedievalgardens",
+        "description": "961-page searchable compilation of scholarly sources on gardening in antiquity and the Middle Ages, including herbology, folklore, and mythology."
+      }
+    ],
+    "collection_stats": {
+      "total_plants": 49,
+      "categories": {
+        "herb": 23,
+        "vegetable": 25,
+        "fruit": 1
+      },
+      "positioning": "Expanded v2 starter library for new gardeners, emphasizing herbs, staple vegetables, pulses, roots, perennial herbs, and classic Mediterranean/monastic crops from ancient and medieval traditions."
+    }
+  },
+  "traditions": [
+    {
+      "id": "roman",
+      "name": "Roman Agriculture",
+      "period": "200 BC \u2013 400 AD",
+      "icon": "\ud83c\udfdb\ufe0f",
+      "summary": "The Romans developed systematic agriculture into a science. Key innovations include crop rotation, composting theory, raised beds, and detailed planting calendars tied to astronomical observations.",
+      "key_principles": [
+        "Soil classification by type (rich, lean, wet, dry, warm, cold)",
+        "Composting and manure management as a science",
+        "Crop rotation to prevent soil exhaustion",
+        "Raised bed construction for drainage and warmth",
+        "Planting by astronomical and weather signs",
+        "Companion planting observations",
+        "Seed selection and storage techniques"
+      ]
+    },
+    {
+      "id": "monastic",
+      "name": "Monastic Gardening",
+      "period": "500 \u2013 1500 AD",
+      "icon": "\u26ea",
+      "summary": "Monasteries preserved and refined ancient growing knowledge through the Dark Ages. The three-garden system (physic garden, kitchen garden, orchard) became the model for organized food production across Europe.",
+      "key_principles": [
+        "Three-garden system: physic, kitchen, and orchard",
+        "Enclosed gardens for microclimate control",
+        "Medicinal herb cultivation as sacred duty",
+        "Seed saving and exchange networks between monasteries",
+        "Lunar planting calendars integrated with liturgical seasons",
+        "Record-keeping of planting dates and yields",
+        "Raised beds with careful soil amendment",
+        "Sacred geometry in garden layout"
+      ]
+    },
+    {
+      "id": "islamic",
+      "name": "Islamic Golden Age Agriculture",
+      "period": "700 \u2013 1400 AD",
+      "icon": "\ud83d\udd4c",
+      "summary": "Islamic scholars synthesized Greek, Roman, Persian, and Indian agricultural knowledge, adding advanced irrigation, soil science, and the introduction of dozens of new crops to Europe via Al-Andalus.",
+      "key_principles": [
+        "Advanced irrigation systems (qanat, noria, saqiya)",
+        "Soil analysis and amendment",
+        "Introduction of citrus, rice, cotton, sugarcane to Europe",
+        "Botanical classification systems",
+        "Grafting and plant breeding techniques",
+        "Crop acclimatization methods",
+        "Water conservation and distribution"
+      ]
+    },
+    {
+      "id": "tudor_english",
+      "name": "Tudor & Stuart English Gardening",
+      "period": "1500 \u2013 1700 AD",
+      "icon": "\ud83c\udf39",
+      "summary": "The English cottage garden tradition combined monastic herb knowledge with practical food production. Herbalists like Gerard, Parkinson, and Culpeper documented centuries of accumulated wisdom.",
+      "key_principles": [
+        "Kitchen garden as extension of the household",
+        "Herb categories: pot herbs, salad herbs, strewing herbs, medicinal herbs",
+        "Monthly planting calendars in verse (Tusser)",
+        "Companion planting folklore",
+        "Preservation and stillroom techniques",
+        "Cold frame and cloche usage for season extension"
+      ]
+    }
+  ],
+  "techniques": [
+    {
+      "id": "roman_raised_beds",
+      "name": "Roman Raised Bed Construction",
+      "tradition": "roman",
+      "source": "columella",
+      "difficulty": "beginner",
+      "summary": "Columella describes raising garden beds above the surrounding paths for drainage, warmth, and ease of cultivation \u2014 the same technique used in modern raised bed gardening.",
+      "instructions": [
+        "Mark beds no wider than a person can reach across from either side (approximately 4 feet)",
+        "Dig pathways between beds to a depth of one spade, piling soil onto the bed area",
+        "Shape beds with a gentle crown so water drains to the paths",
+        "Amend soil with well-rotted manure from the second compost pit (aged at least one year)",
+        "Border beds with planks, stones, or woven willow if the soil is sandy"
+      ],
+      "modern_notes": "Essentially identical to modern raised bed practice. The 4-foot width recommendation has endured for 2,000 years."
+    },
+    {
+      "id": "roman_composting",
+      "name": "Roman Two-Pit Composting",
+      "tradition": "roman",
+      "source": "columella",
+      "difficulty": "beginner",
+      "summary": "Columella prescribes two manure pits: one for fresh material aging for a year, and one for mature compost ready for use. The pits are lined with packed earth to retain moisture.",
+      "instructions": [
+        "Dig two pits with gently sloping sides, like shallow fish ponds",
+        "Line the pits with packed clay or heavy earth to prevent moisture loss",
+        "Fill the first pit with fresh manure, straw, kitchen scraps, and garden waste",
+        "Keep the material consistently moist \u2014 never let it dry out",
+        "After one year, the compost moves conceptually to 'pit two' status \u2014 ready for the garden",
+        "Weed seeds and bramble seeds will have decayed during the year of decomposition"
+      ],
+      "modern_notes": "This is hot composting with a maturation period. The emphasis on moisture retention and weed seed destruction is remarkably modern."
+    },
+    {
+      "id": "roman_crop_rotation",
+      "name": "Roman Crop Rotation",
+      "tradition": "roman",
+      "source": "varro",
+      "difficulty": "intermediate",
+      "summary": "Varro and Columella describe alternating crops to maintain soil fertility. Legumes (beans, lupines, vetch) are used to restore what grain crops deplete.",
+      "instructions": [
+        "Never plant the same crop family in the same bed two years running",
+        "Follow grain crops with legumes (beans, peas, lentils, lupines) to restore the soil",
+        "Follow legumes with root vegetables or brassicas",
+        "Allow fields to lie fallow every third year if possible, or plant a green manure crop",
+        "Lupines can be turned into the soil as green manure \u2014 they enrich even poor ground"
+      ],
+      "modern_notes": "The Romans understood nitrogen fixation by legumes empirically, 1,900 years before the science was explained. Their rotation principles remain best practice."
+    },
+    {
+      "id": "monastic_physic_garden",
+      "name": "The Monastic Physic Garden",
+      "tradition": "monastic",
+      "source": "st_gall",
+      "difficulty": "beginner",
+      "summary": "The Plan of Saint Gall shows a dedicated medicinal herb garden with 16 rectangular beds, each containing a single herb species, bordered by a path for easy access.",
+      "instructions": [
+        "Locate the physic garden near the infirmary or house for easy access",
+        "Lay out rectangular beds approximately 3-4 feet wide for easy reach",
+        "Plant one herb species per bed to simplify harvest and prevent cross-contamination",
+        "Include a central path wide enough to kneel beside any bed",
+        "Surround with a wall or dense hedge to create a sheltered microclimate",
+        "The 16 herbs of Saint Gall: lily, rose, kidney bean, savory, rosemary, mint, sage, rue, iris, pennyroyal, fenugreek, cumin, lovage, fennel, tansy, and watercress"
+      ],
+      "modern_notes": "This organized, single-species bed approach is excellent for beginners. The wall/hedge creates a warm microclimate that extends the growing season."
+    },
+    {
+      "id": "monastic_kitchen_garden",
+      "name": "The Monastic Kitchen Garden",
+      "tradition": "monastic",
+      "source": "st_gall",
+      "difficulty": "beginner",
+      "summary": "The Saint Gall kitchen garden contains 18 rectangular beds for vegetables, each dedicated to a single crop, arranged in a grid pattern.",
+      "instructions": [
+        "Lay out 18 rectangular beds in two rows of nine",
+        "Dedicate each bed to one crop for ease of cultivation",
+        "The 18 vegetables of Saint Gall: onion, leek, celery, coriander, dill, poppy, radish, chervil, lettuce, garlic, shallot, parsley, cabbage, beet, black cumin, parsnip, corn salad, and chard",
+        "Place the garden near the kitchen for daily harvesting",
+        "Maintain clean paths between beds for access and drainage"
+      ],
+      "modern_notes": "This is essentially a modern potager or kitchen garden layout. Many of these crops remain staples of home gardening."
+    },
+    {
+      "id": "walahfrid_herb_cultivation",
+      "name": "Walahfrid's Herb Garden Method",
+      "tradition": "monastic",
+      "source": "walahfrid",
+      "difficulty": "beginner",
+      "summary": "Walahfrid Strabo describes clearing, preparing, and planting his monastery herb garden at Reichenau Abbey, including dealing with weeds, nettles, and moles.",
+      "instructions": [
+        "Begin in early spring by clearing the bed of dead stalks and old growth",
+        "Pull nettles and weeds by hand, protecting hands with gloves or cloth",
+        "Break up the soil and raise the beds into mounded rows",
+        "Plant seeds or divisions in the raised mounds",
+        "Water newly planted beds with gentle rain-like sprinkling, not flooding",
+        "Walahfrid's 23 herbs: sage, rue, southernwood, gourd, melon, wormwood, horehound, fennel, iris, lovage, chervil, lily, poppy, clary sage, mint, pennyroyal, celery, betony, agrimony, tansy, catmint, radish, and rose"
+      ],
+      "modern_notes": "Walahfrid's poem is the earliest first-person account of hands-on gardening in Western literature. His practical, gentle approach resonates with modern organic gardening."
+    },
+    {
+      "id": "lunar_planting",
+      "name": "Lunar Planting Calendar",
+      "tradition": "monastic",
+      "source": "palladius",
+      "difficulty": "intermediate",
+      "summary": "Ancient and medieval gardeners planted according to moon phases. Root crops were sown during the waning moon, above-ground crops during the waxing moon.",
+      "instructions": [
+        "Plant leafy greens, herbs, and above-ground crops during the waxing moon (new to full)",
+        "Plant root crops (carrots, beets, radishes, onions) during the waning moon (full to new)",
+        "Transplant and graft during the waxing moon when sap rises",
+        "Prune and harvest for storage during the waning moon",
+        "Avoid planting on the day of the new moon or full moon itself",
+        "Combine lunar timing with seasonal awareness from Palladius's monthly calendar"
+      ],
+      "modern_notes": "Lunar planting remains practiced worldwide. While modern science is divided on its efficacy, it provides a useful rhythm and discipline for garden planning."
+    },
+    {
+      "id": "seed_saving_ancient",
+      "name": "Ancient Seed Selection & Storage",
+      "tradition": "roman",
+      "source": "cato",
+      "difficulty": "intermediate",
+      "summary": "Cato and Varro describe selecting the best seeds from the strongest plants and storing them properly for next season \u2014 the foundation of plant breeding.",
+      "instructions": [
+        "Select seeds only from the healthiest, most vigorous plants",
+        "Allow seed heads to fully ripen and dry on the plant before harvesting",
+        "Thresh seeds and winnow to remove chaff",
+        "Store in cool, dry conditions in clay pots sealed with pitch or wax",
+        "Test germination before planting by soaking a sample \u2014 discard any that float",
+        "Exchange seeds with neighboring farms to maintain genetic diversity"
+      ],
+      "modern_notes": "These seed saving principles are unchanged. The emphasis on selecting from the best plants is the basis of all traditional plant breeding."
+    },
+    {
+      "id": "islamic_irrigation",
+      "name": "Water-Wise Irrigation (Islamic Tradition)",
+      "tradition": "islamic",
+      "source": "ibn_al_awwam",
+      "difficulty": "intermediate",
+      "summary": "Ibn al-'Awwam describes efficient irrigation methods that deliver water directly to plant roots, minimizing waste \u2014 principles that align with modern drip irrigation.",
+      "instructions": [
+        "Channel water to the base of plants, not over the foliage",
+        "Water in the early morning or evening to reduce evaporation",
+        "Create shallow basins around individual trees and large plants to hold water",
+        "Use clay pots buried in the soil (ollas) to provide slow, steady moisture to roots",
+        "Mulch the soil surface to retain moisture between waterings",
+        "Observe the soil and plants for signs of water need rather than watering on a fixed schedule"
+      ],
+      "modern_notes": "The buried clay pot (olla) irrigation method is experiencing a revival in modern permaculture. These water conservation principles are critical for sustainable gardening."
+    },
+    {
+      "id": "companion_planting_ancient",
+      "name": "Ancient Companion Planting",
+      "tradition": "roman",
+      "source": "pliny",
+      "difficulty": "beginner",
+      "summary": "Pliny and other Roman writers observed that certain plants thrive together while others inhibit each other. These observations form the basis of companion planting.",
+      "instructions": [
+        "Plant basil near rue with caution \u2014 Pliny says they are enemies",
+        "Grow legumes (beans, peas) near crops that need rich soil \u2014 they enrich the ground",
+        "Plant aromatic herbs (rosemary, sage, thyme) near brassicas to repel pests",
+        "Keep fennel isolated \u2014 it was considered harmful to most neighboring plants",
+        "Alternate rows of tall and short plants so all receive adequate light",
+        "Grow vines and climbing beans on trellises to shade tender lettuce below"
+      ],
+      "modern_notes": "Many of Pliny's companion planting observations have been validated by modern research. Fennel's allelopathic properties are well documented."
+    },
+    {
+      "id": "soil_preparation_ancient",
+      "name": "Ancient Soil Reading & Preparation",
+      "tradition": "roman",
+      "source": "columella",
+      "difficulty": "beginner",
+      "summary": "Columella teaches how to evaluate soil by taste, smell, color, and texture before planting \u2014 a sensory approach to soil science.",
+      "instructions": [
+        "Taste the soil: sweet soil is fertile, bitter or salty soil needs amendment",
+        "Smell the soil: good soil has an earthy, pleasant smell after rain",
+        "Observe color: dark soil is generally richer than pale or reddish soil",
+        "Test texture: squeeze moist soil in your hand \u2014 it should hold together but crumble when poked",
+        "Dig a hole and refill it: if soil mounds above the hole, it is rich; if it sinks, it is lean",
+        "Amend lean soil with well-rotted compost, wood ash, and green manure crops",
+        "Amend heavy clay with sand and organic matter; amend sandy soil with clay and compost"
+      ],
+      "modern_notes": "The squeeze test and dig-and-refill test are still taught in modern soil science. Columella's sensory approach gives beginners an intuitive feel for soil quality."
+    },
+    {
+      "id": "tusser_monthly_calendar",
+      "name": "Tusser's Monthly Garden Calendar",
+      "tradition": "tudor_english",
+      "source": "tusser",
+      "difficulty": "beginner",
+      "summary": "Thomas Tusser's 1573 verse guide assigns specific gardening tasks to each month, creating a rhythm of work that carries the gardener through the year.",
+      "instructions": [
+        "January: Plan the garden, order seeds, repair tools and fences",
+        "February: Prepare beds, sow early peas and beans under cover",
+        "March: Sow most herb and vegetable seeds, transplant overwinted crops",
+        "April: Succession sow salads and radishes, set out tender herbs after frost",
+        "May: Plant out warm-season crops, begin regular weeding and watering",
+        "June: Harvest early crops, sow succession plantings, gather herbs for drying",
+        "July: Continue harvest, dry herbs at their peak, begin saving seeds",
+        "August: Harvest main crops, prepare storage, sow autumn crops",
+        "September: Plant garlic and overwintering onions, harvest roots for storage",
+        "October: Clear spent crops, spread compost, plant cover crops",
+        "November: Protect tender plants, continue composting, maintain tools",
+        "December: Rest, study, plan next year's garden"
+      ],
+      "modern_notes": "Tusser's calendar is for English climate zones (USDA 7-8). Adjust timing forward or back based on your local frost dates. The rhythm of monthly tasks remains valuable everywhere."
+    }
+  ],
+  "plants": [
+    {
+      "id": "sage",
+      "common_name": "Sage",
+      "latin_name": "Salvia officinalis",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Medicinal: digestion, memory, sore throat",
+        "Culinary: meat dishes, stuffings, teas",
+        "Symbolic: wisdom and immortality"
+      ],
+      "growing_notes": "Walahfrid placed sage first in his garden, calling it the most prized herb. Thrives in well-drained, sunny positions. Cut back after flowering to maintain vigor. Propagate from cuttings or division.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "well-drained, sandy"
+    },
+    {
+      "id": "rue",
+      "common_name": "Rue",
+      "latin_name": "Ruta graveolens",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny"
+      ],
+      "ancient_uses": [
+        "Medicinal: antidote to poison, eye health",
+        "Culinary: bitter flavoring (use sparingly)",
+        "Symbolic: repentance and grace"
+      ],
+      "growing_notes": "Walahfrid describes rue's blue-green fronds and heavy fragrance. Plant in dry, poor soil in full sun. An extremely hardy perennial. Handle with gloves \u2014 sap can cause skin irritation in sunlight.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "very low",
+      "soil": "poor, rocky, well-drained"
+    },
+    {
+      "id": "fennel",
+      "common_name": "Fennel",
+      "latin_name": "Foeniculum vulgare",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "columella"
+      ],
+      "ancient_uses": [
+        "Medicinal: digestion, eyesight, colic relief",
+        "Culinary: seeds, fronds, and bulb all edible",
+        "Symbolic: strength and courage"
+      ],
+      "growing_notes": "Plant fennel away from other herbs and vegetables \u2014 Pliny notes it inhibits neighboring plants. Loves full sun and well-drained soil. Self-seeds prolifically. Harvest seeds when they turn brown.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "well-drained, fertile"
+    },
+    {
+      "id": "mint",
+      "common_name": "Mint",
+      "latin_name": "Mentha spp.",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Medicinal: stomach ailments, headaches",
+        "Culinary: sauces, teas, salads",
+        "Household: strewing herb for freshening rooms"
+      ],
+      "growing_notes": "Walahfrid marvels at mint's vigor and spreading habit. Plant in containers or confined beds to prevent takeover. Prefers moist, partially shaded conditions. Harvest frequently to encourage bushy growth.",
+      "difficulty": "beginner",
+      "sun": "partial shade to full sun",
+      "water": "high",
+      "soil": "moist, rich"
+    },
+    {
+      "id": "rosemary",
+      "common_name": "Rosemary",
+      "latin_name": "Salvia rosmarinus",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "tusser",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Medicinal: memory, circulation, headaches",
+        "Culinary: roasted meats, breads, oils",
+        "Symbolic: remembrance and fidelity"
+      ],
+      "growing_notes": "Romans grew rosemary near doorways for protection. Needs excellent drainage and full sun. Tolerates drought once established. In cold climates (below USDA Zone 7), grow in pots and overwinter indoors.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "well-drained, alkaline"
+    },
+    {
+      "id": "cabbage",
+      "common_name": "Cabbage",
+      "latin_name": "Brassica oleracea",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "cato",
+        "columella",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: boiled, pickled, in stews",
+        "Medicinal: Cato considered it a cure-all",
+        "Economic: staple crop for monastery kitchens"
+      ],
+      "growing_notes": "Cato devoted more text to cabbage than any other plant, calling it superior to all vegetables for health. Start seeds indoors 6-8 weeks before last frost. Transplant to rich, firm soil. Needs consistent moisture and cool weather.",
+      "difficulty": "intermediate",
+      "sun": "full sun to partial shade",
+      "water": "high",
+      "soil": "rich, firm, slightly alkaline"
+    },
+    {
+      "id": "onion",
+      "common_name": "Onion",
+      "latin_name": "Allium cepa",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "columella",
+        "st_gall",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: foundation of most cooked dishes",
+        "Medicinal: colds, infections, poultices",
+        "Economic: long storage made it invaluable"
+      ],
+      "growing_notes": "Listed first among the 18 vegetables in the Saint Gall plan. Plant sets or seeds in early spring in loose, well-drained soil. Onions are heavy feeders \u2014 amend with compost. Stop watering when tops begin to fall over.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "loose, well-drained, fertile"
+    },
+    {
+      "id": "lettuce",
+      "common_name": "Lettuce",
+      "latin_name": "Lactuca sativa",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "columella",
+        "pliny",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: fresh salads, a Roman delicacy",
+        "Medicinal: sleep aid (the milky sap is mildly sedative)",
+        "Cultural: served at Roman banquets"
+      ],
+      "growing_notes": "Columella describes multiple varieties. Sow in succession every 2-3 weeks for continuous harvest. Prefers cool weather \u2014 provide shade in summer. Harvest outer leaves for cut-and-come-again, or let heads mature.",
+      "difficulty": "beginner",
+      "sun": "partial shade to full sun",
+      "water": "moderate to high",
+      "soil": "rich, moist, well-drained"
+    },
+    {
+      "id": "garlic",
+      "common_name": "Garlic",
+      "latin_name": "Allium sativum",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "columella",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Medicinal: antiseptic, immune support, circulation",
+        "Culinary: universal seasoning",
+        "Protective: ward off disease and evil"
+      ],
+      "growing_notes": "Plant individual cloves in autumn, pointed end up, 2 inches deep and 6 inches apart. Garlic needs a cold period to form bulbs. Harvest when lower leaves brown. Cure in a dry, airy space for 2 weeks before storage.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "loose, well-drained, fertile"
+    },
+    {
+      "id": "bean",
+      "common_name": "Broad Bean (Fava Bean)",
+      "latin_name": "Vicia faba",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "cato",
+        "varro",
+        "columella"
+      ],
+      "ancient_uses": [
+        "Culinary: dried, boiled, or ground into flour",
+        "Agricultural: primary nitrogen-fixing crop for rotation",
+        "Cultural: used in Roman religious ceremonies"
+      ],
+      "growing_notes": "The most important legume of the ancient world. Sow in autumn or very early spring \u2014 they prefer cool weather. Plants fix nitrogen, enriching the soil for the next crop. After harvest, turn the stalks into the soil as green manure.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "any reasonable soil"
+    },
+    {
+      "id": "parsley",
+      "common_name": "Parsley",
+      "latin_name": "Petroselinum crispum",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "st_gall",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: garnish and flavoring",
+        "Medicinal: diuretic, breath freshener",
+        "Symbolic: used in Roman funeral rites"
+      ],
+      "growing_notes": "Notoriously slow to germinate \u2014 soak seeds overnight and be patient (2-4 weeks). Biennial: produces leaves the first year, flowers and seeds the second. Grows well in partial shade. Rich, moist soil preferred.",
+      "difficulty": "beginner",
+      "sun": "partial shade to full sun",
+      "water": "moderate",
+      "soil": "rich, moist"
+    },
+    {
+      "id": "thyme",
+      "common_name": "Thyme",
+      "latin_name": "Thymus vulgaris",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "columella",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Medicinal: respiratory ailments, antiseptic",
+        "Culinary: meats, stews, oils",
+        "Beekeeping: Romans planted thyme fields for honey production"
+      ],
+      "growing_notes": "Pliny notes the finest honey comes from thyme-rich regions. Plant in full sun with excellent drainage. Tolerates poor, rocky soil \u2014 Mediterranean plants thrive on neglect. Trim after flowering. Propagate from cuttings or division.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "well-drained, poor to average"
+    },
+    {
+      "id": "leek",
+      "common_name": "Leek",
+      "latin_name": "Allium porrum",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "columella",
+        "pliny",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: soups, stews, eaten raw",
+        "Medicinal: throat and voice (Nero reportedly ate leeks daily to strengthen his voice)",
+        "Cultural: among the most popular Roman vegetables"
+      ],
+      "growing_notes": "Start seeds indoors in late winter. Transplant into deep holes or trenches and gradually fill soil around the stems to blanch them white. Heavy feeders \u2014 require rich, moist soil. Very cold-hardy; can overwinter in many climates.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "high",
+      "soil": "rich, deep, moist"
+    },
+    {
+      "id": "lavender",
+      "common_name": "Lavender",
+      "latin_name": "Lavandula angustifolia",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "rohde",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Medicinal: calming, headaches, antiseptic",
+        "Household: laundry scenting (the name comes from Latin 'lavare', to wash)",
+        "Cosmetic: perfumes and bathing oils"
+      ],
+      "growing_notes": "Romans used lavender extensively in their baths. Requires full sun and excellent drainage \u2014 add gravel to heavy soils. Prune annually after flowering, cutting to just above the woody growth. Do not overwater.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "well-drained, alkaline, poor"
+    },
+    {
+      "id": "beet",
+      "common_name": "Beet",
+      "latin_name": "Beta vulgaris",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "columella",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: roots and greens both eaten",
+        "Medicinal: blood health, digestion",
+        "Agricultural: easy to grow and store"
+      ],
+      "growing_notes": "Listed in the Saint Gall plan. Sow directly in the garden 2-4 weeks before last frost. Each 'seed' is actually a cluster \u2014 thin seedlings to 3-4 inches apart. Harvest when roots are 1-3 inches across. The greens are as nutritious as the roots.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "loose, fertile"
+    },
+    {
+      "id": "radish",
+      "common_name": "Radish",
+      "latin_name": "Raphanus sativus",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "pliny",
+        "walahfrid",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: eaten raw as appetizer",
+        "Medicinal: digestion, clearing sinuses",
+        "Cultural: Romans grew radishes the size of turnips"
+      ],
+      "growing_notes": "Walahfrid includes radish among his 23 herbs. The fastest vegetable from seed to table \u2014 as little as 3-4 weeks. Sow directly every 2 weeks for continuous harvest. Prefers cool weather; bolts in heat. Thin to 2 inches apart.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "loose, well-drained"
+    },
+    {
+      "id": "dill",
+      "common_name": "Dill",
+      "latin_name": "Anethum graveolens",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "st_gall",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: pickles, fish, breads",
+        "Medicinal: digestion, colic relief",
+        "Household: seed and leaf herb"
+      ],
+      "growing_notes": "Ancient kitchen and physic gardens both prized dill. Sow direct in cool weather; dislikes transplanting. Let some flower for pollinators and seed harvest.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "well-drained, fertile"
+    },
+    {
+      "id": "coriander",
+      "common_name": "Coriander/Cilantro",
+      "latin_name": "Coriandrum sativum",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "columella",
+        "st_gall",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: leaf and seed seasoning",
+        "Medicinal: digestion and cooling herb",
+        "Preserving: seed spice for meats and vegetables"
+      ],
+      "growing_notes": "A classic herb of Roman and Islamic gardens. Sow direct and succession plant because it bolts in heat. Harvest leaves young and seeds when brown.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "well-drained, average"
+    },
+    {
+      "id": "lovage",
+      "common_name": "Lovage",
+      "latin_name": "Levisticum officinale",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "st_gall",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Culinary: strong celery-like flavor",
+        "Medicinal: digestion and warming",
+        "Broths: stems, leaves, and seed"
+      ],
+      "growing_notes": "A towering perennial from monastery gardens. Give it rich soil and room; harvest young leaves for the best flavor. Divide every few years.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "rich, moist"
+    },
+    {
+      "id": "chervil",
+      "common_name": "Chervil",
+      "latin_name": "Anthriscus cerefolium",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "st_gall",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: delicate salad and soup herb",
+        "Medicinal: gentle tonic",
+        "Spring kitchen herb"
+      ],
+      "growing_notes": "A cool-season herb that prefers spring and autumn. Sow direct; heat makes it bolt fast. Excellent for new gardeners who need an easy soft herb.",
+      "difficulty": "beginner",
+      "sun": "partial shade",
+      "water": "moderate",
+      "soil": "rich, moist"
+    },
+    {
+      "id": "savory",
+      "common_name": "Summer Savory",
+      "latin_name": "Satureja hortensis",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "st_gall",
+        "pliny",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: beans, meats, stuffings",
+        "Medicinal: digestion",
+        "Bee plant and seasoning herb"
+      ],
+      "growing_notes": "One of the core old-world seasoning herbs. Sow after frost in light soil and full sun. Harvest before flowering for strongest flavor.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained, light"
+    },
+    {
+      "id": "hyssop",
+      "common_name": "Hyssop",
+      "latin_name": "Hyssopus officinalis",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "rohde",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Medicinal: respiratory support",
+        "Culinary: bitter herbal notes",
+        "Sacred and symbolic use"
+      ],
+      "growing_notes": "A hardy shrub herb for dry sunny places. Prune after bloom to keep it compact. Loved by bees and useful as a low hedge.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "well-drained, poor to average"
+    },
+    {
+      "id": "bay",
+      "common_name": "Bay Laurel",
+      "latin_name": "Laurus nobilis",
+      "category": "herb",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "rohde",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: soups, stews, beans",
+        "Medicinal: aromatic tonic",
+        "Symbolic: victory and learning"
+      ],
+      "growing_notes": "A classic Roman evergreen. In cold climates grow in a pot and overwinter indoors. Clip regularly to shape and harvest mature leaves.",
+      "difficulty": "intermediate",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "well-drained, fertile"
+    },
+    {
+      "id": "purslane",
+      "common_name": "Purslane",
+      "latin_name": "Portulaca oleracea",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: salads and sour pot herb",
+        "Medicinal: cooling herb",
+        "Drought food and summer green"
+      ],
+      "growing_notes": "Ancient growers valued purslane as both crop and volunteer edible. Thrives in heat and poor soil. Harvest tips often to keep tender growth coming.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "poor to average, well-drained"
+    },
+    {
+      "id": "chicory",
+      "common_name": "Chicory",
+      "latin_name": "Cichorium intybus",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "pliny",
+        "columella"
+      ],
+      "ancient_uses": [
+        "Culinary: bitter leaves and roots",
+        "Medicinal: liver and digestion",
+        "Salad and cooked green"
+      ],
+      "growing_notes": "Romans ate chicory raw and cooked. Sow direct in spring or late summer. Harvest young leaves mild, older leaves cooked.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "well-drained, average"
+    },
+    {
+      "id": "watercress",
+      "common_name": "Watercress",
+      "latin_name": "Nasturtium officinale",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic"
+      ],
+      "sources": [
+        "pliny",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Culinary: peppery salad green",
+        "Medicinal: spring tonic",
+        "Fresh garnish herb"
+      ],
+      "growing_notes": "Best in cool wet conditions. Grow near consistently moist soil or shallow flowing water. Harvest young tops regularly.",
+      "difficulty": "intermediate",
+      "sun": "partial sun",
+      "water": "high",
+      "soil": "wet, rich"
+    },
+    {
+      "id": "sorrel",
+      "common_name": "Sorrel",
+      "latin_name": "Rumex acetosa",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "rohde",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: sour soups and sauces",
+        "Medicinal: cooling spring herb",
+        "Early leafy green"
+      ],
+      "growing_notes": "A reliable perennial green. Grow in sun or part shade and cut leaves often. Remove flower stalks to keep leaves tender.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "average to rich"
+    },
+    {
+      "id": "mallow",
+      "common_name": "Mallow",
+      "latin_name": "Malva sylvestris",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: leaves as soft pot herb",
+        "Medicinal: soothing demulcent",
+        "Flowers for teas and garnish"
+      ],
+      "growing_notes": "Ancient cooks used mallow as both medicine and food. Easy from seed and tolerant of rough conditions. Harvest young leaves for best texture.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "average"
+    },
+    {
+      "id": "parsnip",
+      "common_name": "Parsnip",
+      "latin_name": "Pastinaca sativa",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "st_gall",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: sweet root after frost",
+        "Medicinal: nourishing winter food",
+        "Storage crop"
+      ],
+      "growing_notes": "An old staple root. Sow fresh seed directly in spring; germination is slow. Flavor improves after cold weather.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "deep, loose, fertile"
+    },
+    {
+      "id": "turnip",
+      "common_name": "Turnip",
+      "latin_name": "Brassica rapa subsp. rapa",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: roots and greens",
+        "Medicinal: humble staple food",
+        "Fast storage crop"
+      ],
+      "growing_notes": "A dependable ancient staple for beginners. Sow spring and late summer. Thin early and use thinnings as greens.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "loose, fertile"
+    },
+    {
+      "id": "pea",
+      "common_name": "Garden Pea",
+      "latin_name": "Pisum sativum",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "varro",
+        "st_gall",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: green and dried peas",
+        "Agricultural: rotation crop",
+        "Nitrogen-fixing staple"
+      ],
+      "growing_notes": "Direct sow early in cool weather with support for tall varieties. Peas enrich the soil and fit beautifully into an ancient rotation plan.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "well-drained, fertile"
+    },
+    {
+      "id": "lentil",
+      "common_name": "Lentil",
+      "latin_name": "Lens culinaris",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "varro",
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: dried staple pulse",
+        "Agricultural: rotation and soil improvement",
+        "Storage food"
+      ],
+      "growing_notes": "A foundational ancient food crop. Best in drier climates and lean soils. Harvest when pods dry and finish drying under cover.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained, lean to average"
+    },
+    {
+      "id": "chickpea",
+      "common_name": "Chickpea",
+      "latin_name": "Cicer arietinum",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: pulse for soups and pastes",
+        "Agricultural: dryland legume",
+        "Storage staple"
+      ],
+      "growing_notes": "A major Mediterranean crop. Sow after danger of hard frost in a spot that stays fairly dry. Avoid rich soil that pushes too much leaf growth.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained, lean"
+    },
+    {
+      "id": "celery",
+      "common_name": "Celery/Smallage",
+      "latin_name": "Apium graveolens",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "st_gall",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: soups, broths, salads",
+        "Medicinal: digestion and nerves",
+        "Aromatic household vegetable"
+      ],
+      "growing_notes": "Old celery was often stronger and leafier than modern types. Needs steady moisture and rich soil. Start early and never let it dry out.",
+      "difficulty": "intermediate",
+      "sun": "full sun to partial shade",
+      "water": "high",
+      "soil": "rich, moisture-retentive"
+    },
+    {
+      "id": "carrot",
+      "common_name": "Carrot",
+      "latin_name": "Daucus carota subsp. sativus",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: roots and tops",
+        "Medicinal: strengthening food",
+        "Storage root"
+      ],
+      "growing_notes": "Ancient carrots were often purple, yellow, or white. Sow directly in fine loose soil; thin carefully. Keep evenly moist until germination.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "deep, loose, stone-free"
+    },
+    {
+      "id": "cucumber",
+      "common_name": "Cucumber",
+      "latin_name": "Cucumis sativus",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: fresh eating and preserving",
+        "Medicinal: cooling summer food",
+        "Garden luxury crop"
+      ],
+      "growing_notes": "Romans famously prized cucumbers. Plant after warm weather arrives in rich soil with regular water. Trellising saves space and improves fruit quality.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "high",
+      "soil": "rich, warm, well-drained"
+    },
+    {
+      "id": "melon",
+      "common_name": "Melon",
+      "latin_name": "Cucumis melo",
+      "category": "fruit",
+      "traditions": [
+        "roman",
+        "monastic",
+        "islamic"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: sweet summer fruit",
+        "Medicinal: cooling and moistening",
+        "Garden prestige crop"
+      ],
+      "growing_notes": "Melons need warmth, fertility, and patience. Start indoors in short-season climates and plant into the warmest bed you have.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "moderate to high",
+      "soil": "rich, warm, well-drained"
+    },
+    {
+      "id": "gourd",
+      "common_name": "Bottle Gourd",
+      "latin_name": "Lagenaria siceraria",
+      "category": "vegetable",
+      "traditions": [
+        "monastic",
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: young fruits edible",
+        "Utility: dried shells for vessels and tools",
+        "Shade and trellis plant"
+      ],
+      "growing_notes": "Walahfrid wrote lovingly about gourds climbing high. Give them a strong trellis and a long warm season. Harvest young to eat or mature to dry.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "rich, warm"
+    },
+    {
+      "id": "pumpkin",
+      "common_name": "Pumpkin/Squash",
+      "latin_name": "Cucurbita spp.",
+      "category": "vegetable",
+      "traditions": [
+        "islamic",
+        "tudor_english"
+      ],
+      "sources": [
+        "ibn_al_awwam",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: soups, roasting, storage",
+        "Seed food: roasted seeds",
+        "Winter keeping crop"
+      ],
+      "growing_notes": "An abundant crop for new gardeners. Sow after frost or transplant carefully. Needs space, compost, and regular water while establishing.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "rich, well-drained"
+    },
+    {
+      "id": "artichoke",
+      "common_name": "Artichoke",
+      "latin_name": "Cynara cardunculus var. scolymus",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: flower buds",
+        "Medicinal: digestion and liver support",
+        "Garden status crop"
+      ],
+      "growing_notes": "Grown in the ancient Mediterranean as a prized delicacy. Needs rich soil and full sun; best as a perennial in mild climates.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "rich, well-drained"
+    },
+    {
+      "id": "asparagus",
+      "common_name": "Asparagus",
+      "latin_name": "Asparagus officinalis",
+      "category": "vegetable",
+      "traditions": [
+        "roman",
+        "tudor_english"
+      ],
+      "sources": [
+        "pliny",
+        "tusser"
+      ],
+      "ancient_uses": [
+        "Culinary: spring spears",
+        "Medicinal: diuretic",
+        "Long-lived perennial crop"
+      ],
+      "growing_notes": "Romans loved asparagus and even developed quick-cooking sayings around it. Plant crowns in deep prepared trenches and wait patiently; the reward lasts for years.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "deep, fertile, well-drained"
+    },
+    {
+      "id": "fenugreek",
+      "common_name": "Fenugreek",
+      "latin_name": "Trigonella foenum-graecum",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "st_gall",
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: leaves and seeds",
+        "Medicinal: soothing and strengthening",
+        "Soil-improving legume"
+      ],
+      "growing_notes": "Listed in the Saint Gall physic garden. Easy from seed in warm weather. Can be cut young for greens or grown to maturity for aromatic seed.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "well-drained, average"
+    },
+    {
+      "id": "cumin",
+      "common_name": "Cumin",
+      "latin_name": "Cuminum cyminum",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman",
+        "islamic"
+      ],
+      "sources": [
+        "st_gall",
+        "pliny",
+        "ibn_al_awwam"
+      ],
+      "ancient_uses": [
+        "Culinary: seed spice",
+        "Medicinal: digestion",
+        "Trade-linked garden spice"
+      ],
+      "growing_notes": "A warm-season spice crop from the old world. Needs heat and a longer season than dill or coriander. Harvest seed heads when dry and tan.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained, light"
+    },
+    {
+      "id": "rose",
+      "common_name": "Rose",
+      "latin_name": "Rosa spp.",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman",
+        "tudor_english"
+      ],
+      "sources": [
+        "st_gall",
+        "pliny",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Culinary: petals in syrups and conserves",
+        "Medicinal: cooling and astringent",
+        "Devotional and household use"
+      ],
+      "growing_notes": "The Saint Gall plan included roses in the physic garden. Choose fragrant old varieties for best culinary and medicinal use. Full sun and airflow keep plants healthy.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "moderate",
+      "soil": "rich, well-drained"
+    },
+    {
+      "id": "iris",
+      "common_name": "Iris",
+      "latin_name": "Iris germanica",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman"
+      ],
+      "sources": [
+        "walahfrid",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Medicinal: rhizome use",
+        "Ornamental and sacred garden plant",
+        "Perfumery roots (orris)"
+      ],
+      "growing_notes": "Valued for both beauty and useful rhizomes. Plant in sun with rhizomes partly exposed. Divide clumps every few years.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained"
+    },
+    {
+      "id": "tansy",
+      "common_name": "Tansy",
+      "latin_name": "Tanacetum vulgare",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "st_gall"
+      ],
+      "ancient_uses": [
+        "Medicinal: traditional vermifuge",
+        "Household: strewing and insect-repelling herb",
+        "Culinary: used cautiously in historic dishes"
+      ],
+      "growing_notes": "A strong old herb with vigorous growth. Best treated as a boundary or utility plant, not a main kitchen herb. Use cautiously; historical significance is greater than modern culinary use.",
+      "difficulty": "intermediate",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "average to poor"
+    },
+    {
+      "id": "betony",
+      "common_name": "Betony",
+      "latin_name": "Stachys officinalis",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Medicinal: headaches, nerves, wounds",
+        "Sacred and protective herb",
+        "Tea herb"
+      ],
+      "growing_notes": "A major medieval medicinal herb. Grow in sun or part shade in ordinary soil. Harvest leaves before flowering.",
+      "difficulty": "beginner",
+      "sun": "full sun to partial shade",
+      "water": "moderate",
+      "soil": "average"
+    },
+    {
+      "id": "catmint",
+      "common_name": "Catmint",
+      "latin_name": "Nepeta cataria",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Medicinal: calming tea",
+        "Household: insect-repelling herb",
+        "Animal herb: beloved by cats"
+      ],
+      "growing_notes": "Easy, forgiving, and useful. Grow in sun and trim after bloom to renew growth. Let some flower for pollinators.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low to moderate",
+      "soil": "well-drained, average"
+    },
+    {
+      "id": "wormwood",
+      "common_name": "Wormwood",
+      "latin_name": "Artemisia absinthium",
+      "category": "herb",
+      "traditions": [
+        "monastic",
+        "roman",
+        "tudor_english"
+      ],
+      "sources": [
+        "walahfrid",
+        "pliny",
+        "rohde"
+      ],
+      "ancient_uses": [
+        "Medicinal: digestive bitter",
+        "Household: moth and insect deterrent",
+        "Ritual and tonic herb"
+      ],
+      "growing_notes": "A silver-leaved bitter herb from many old gardens. Best in dry sun and poor soil. Grow for tradition and utility more than kitchen use.",
+      "difficulty": "beginner",
+      "sun": "full sun",
+      "water": "low",
+      "soil": "poor, well-drained"
+    }
+  ],
+  "seasonal_calendar": {
+    "description": "A synthesis of Palladius's monthly calendar, Tusser's verse guide, and monastic planting traditions, adapted for modern gardeners. Adjust timing based on your local frost dates.",
+    "months": [
+      {
+        "month": 1,
+        "name": "January",
+        "theme": "Planning & Preparation",
+        "tasks": [
+          "Study seed catalogs and plan the garden layout",
+          "Sharpen and repair tools",
+          "Turn compost piles on mild days",
+          "Order seeds from heritage/heirloom sources",
+          "Start a garden journal"
+        ]
+      },
+      {
+        "month": 2,
+        "name": "February",
+        "theme": "Awakening",
+        "tasks": [
+          "Start onions, leeks, and celery seeds indoors",
+          "Prune fruit trees and grape vines while dormant",
+          "Prepare cold frames for early sowing",
+          "Spread aged compost on beds as snow melts",
+          "Test soil if possible"
+        ]
+      },
+      {
+        "month": 3,
+        "name": "March",
+        "theme": "First Sowings",
+        "tasks": [
+          "Sow peas, broad beans, and spinach outdoors as soil thaws",
+          "Start brassica seeds indoors (cabbage, kale, broccoli)",
+          "Plant parsley, chervil, and coriander seeds",
+          "Divide perennial herbs (mint, chives, thyme)",
+          "Prepare new beds with the Roman raised bed method"
+        ]
+      },
+      {
+        "month": 4,
+        "name": "April",
+        "theme": "The Garden Springs to Life",
+        "tasks": [
+          "Direct sow lettuce, radish, beet, and carrot",
+          "Transplant onion and leek seedlings",
+          "Sow herbs: dill, cilantro, chamomile",
+          "Begin succession planting of salad greens",
+          "Weed diligently \u2014 Walahfrid's first spring task"
+        ]
+      },
+      {
+        "month": 5,
+        "name": "May",
+        "theme": "Planting in Earnest",
+        "tasks": [
+          "After last frost: transplant tomatoes, peppers, squash",
+          "Plant bean and cucumber seeds directly",
+          "Set out tender herbs: basil, rosemary (in cold zones)",
+          "Mulch beds to conserve moisture (Islamic water-wise method)",
+          "Begin regular watering schedule"
+        ]
+      },
+      {
+        "month": 6,
+        "name": "June",
+        "theme": "Growth & First Harvest",
+        "tasks": [
+          "Harvest early lettuce, radishes, peas, and herbs",
+          "Succession sow beans, lettuce, and root vegetables",
+          "Gather herbs for drying at peak potency (before flowering)",
+          "Train and stake climbing plants",
+          "Watch for pests \u2014 plant aromatic companions"
+        ]
+      },
+      {
+        "month": 7,
+        "name": "July",
+        "theme": "Abundance",
+        "tasks": [
+          "Main herb harvest for drying and preserving",
+          "Harvest garlic when lower leaves brown",
+          "Continue succession sowing for fall crops",
+          "Save seeds from best-performing plants",
+          "Water deeply in morning (Columella's advice)"
+        ]
+      },
+      {
+        "month": 8,
+        "name": "August",
+        "theme": "Harvest & Transition",
+        "tasks": [
+          "Harvest and preserve: dry herbs, pickle vegetables, make vinegars",
+          "Sow fall crops: lettuce, spinach, radish, turnip",
+          "Plant overwintering onion sets and garlic",
+          "Begin collecting seeds for next year",
+          "Turn first compost pit into second (Roman two-pit method)"
+        ]
+      },
+      {
+        "month": 9,
+        "name": "September",
+        "theme": "Autumn Planting",
+        "tasks": [
+          "Plant garlic cloves for next year's harvest",
+          "Sow cover crops (clover, vetch, rye) on empty beds",
+          "Harvest root vegetables for winter storage",
+          "Dry remaining herbs",
+          "Transplant perennial herbs to permanent positions"
+        ]
+      },
+      {
+        "month": 10,
+        "name": "October",
+        "theme": "Putting the Garden to Bed",
+        "tasks": [
+          "Clear spent annual crops and compost the debris",
+          "Spread well-aged manure on empty beds (Columella method)",
+          "Protect tender perennials with mulch",
+          "Plant broad beans for overwintering (mild climates)",
+          "Clean and oil tools for winter storage"
+        ]
+      },
+      {
+        "month": 11,
+        "name": "November",
+        "theme": "Rest & Reflection",
+        "tasks": [
+          "Continue composting kitchen and garden waste",
+          "Protect cold frames and cloches",
+          "Prune dormant herbs (sage, thyme, lavender)",
+          "Review garden journal and note successes and failures",
+          "Study ancient texts for next year's experiments"
+        ]
+      },
+      {
+        "month": 12,
+        "name": "December",
+        "theme": "Stillness & Study",
+        "tasks": [
+          "The garden rests \u2014 honor the dormant season",
+          "Read and study: Columella, Walahfrid, Tusser",
+          "Design next year's garden plan",
+          "Inventory seeds and order what's needed",
+          "Sharpen tools and mend fences"
+        ]
+      }
+    ]
+  },
+  "quotes": [
+    {
+      "text": "What reason have we for thinking that those things which the earth bears of her own accord are of no use for preserving health?",
+      "author": "Cato the Elder",
+      "source": "cato"
+    },
+    {
+      "text": "The first consideration of all for the farmer is knowledge of the soil.",
+      "author": "Columella",
+      "source": "columella"
+    },
+    {
+      "text": "From a small patch of ground, in its gifted season, Nature can bring so many kinds of fragrance and healing.",
+      "author": "Walahfrid Strabo",
+      "source": "walahfrid"
+    },
+    {
+      "text": "In March and in April, from morning to night, in sowing and setting good housewives delight.",
+      "author": "Thomas Tusser",
+      "source": "tusser"
+    },
+    {
+      "text": "No occupation is so delightful to me as the culture of the earth, and no culture comparable to that of the garden.",
+      "author": "Thomas Jefferson",
+      "source": "general"
+    },
+    {
+      "text": "The garden is the poor man's apothecary.",
+      "author": "German Proverb",
+      "source": "general"
+    },
+    {
+      "text": "A garden requires patient labor and attention. Plants do not grow merely to satisfy ambitions or to fulfill good intentions. They thrive because someone expended effort on them.",
+      "author": "Liberty Hyde Bailey",
+      "source": "general"
+    }
+  ]
+}
