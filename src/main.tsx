@@ -26,7 +26,7 @@ createRoot(root).render(
   <StrictMode>
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <AppRouter />
         </BrowserRouter>
       </QueryClientProvider>

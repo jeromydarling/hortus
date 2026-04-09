@@ -11,6 +11,7 @@
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AppShell } from "../layout/AppShell";
+import { App as ScaffoldNavigator } from "@/App";
 
 // Auth pages
 import Login from "@/pages/auth/Login";
@@ -120,7 +121,10 @@ export function AppRouter() {
         <Route path="calendar" element={<AncientCalendar />} />
       </Route>
 
-      {/* Fallback */}
+      {/* Scaffold navigator at root */}
+      <Route path="/" element={<ScaffoldNavigator />} />
+
+      {/* Fallback — unknown routes go to home */}
       <Route path="*" element={<Navigate to="/app/home" replace />} />
     </Routes>
   );
