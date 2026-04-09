@@ -53,6 +53,13 @@ import AncientTraditions from "@/pages/ancient/Traditions";
 import AncientCalendar from "@/pages/ancient/Calendar";
 import { AncientLibraryProvider } from "@/ancientLibrary";
 
+// Coordinator pages
+import CoordinatorDashboard from "@/pages/coordinator/Dashboard";
+import CoordinatorGardenDetail from "@/pages/coordinator/GardenDetail";
+import CoordinatorVisitLog from "@/pages/coordinator/VisitLog";
+import CoordinatorRouteOptimizer from "@/pages/coordinator/RouteOptimizer";
+import CoordinatorReports from "@/pages/coordinator/Reports";
+
 // Resilience pages (use existing components directly)
 import { FoodSystemMap } from "@/components/FoodSystemMap";
 import { FoodResilienceScore } from "@/components/FoodResilienceScore";
@@ -99,6 +106,13 @@ export function AppRouter() {
         <Route path="impact" element={<EconomicImpact />} />
         <Route path="compost" element={<CompostTracker />} />
         <Route path="garden-ready" element={<GardenReadyFinder />} />
+
+        {/* Coordinator */}
+        <Route path="coordinator" element={<CoordinatorDashboard />} />
+        <Route path="coordinator/garden/:gardenId" element={<CoordinatorGardenDetail />} />
+        <Route path="coordinator/visits" element={<CoordinatorVisitLog />} />
+        <Route path="coordinator/route" element={<CoordinatorRouteOptimizer />} />
+        <Route path="coordinator/reports" element={<CoordinatorReports />} />
 
         {/* Community */}
         <Route path="community/people" element={<People />} />
