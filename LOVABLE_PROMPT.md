@@ -128,6 +128,114 @@ Mobile-first. Bottom nav on mobile. Sidebar on desktop (≥768px). Compass butto
 
 ---
 
+## DEFINITION OF DONE — Read This Before You Think You're Finished
+
+**The site is NOT done when it compiles. The site is NOT done when pages render. The site is done when EVERYTHING is wired front to back.**
+
+A page that renders with demo data but doesn't read from Supabase is scaffolding, not a feature. A form that displays inputs but doesn't submit to the database is decoration. An Edge Function shell with TODO comments is unfinished work.
+
+### Every feature must be wired end-to-end:
+
+**Auth must work:**
+- [ ] Login with email+password calls `supabase.auth.signInWithPassword()` and redirects to `/app/home`
+- [ ] Signup creates a real user, triggers `handle_new_user()`, creates a profile row
+- [ ] Magic link sends a real email and the callback at `/auth/callback` completes the session
+- [ ] Rate limiting calls `check_rate_limit` RPC before every auth action
+- [ ] Protected routes redirect unauthenticated users to `/auth/login`
+- [ ] Users without a land record redirect to `/onboarding`
+
+**Onboarding must persist:**
+- [ ] Step 1 address is geocoded and stored on the land record
+- [ ] Step 2 garden_mode is written to the profiles table
+- [ ] Step 4 parcel data is fetched from GIS or skipped with `parcel_skipped: true`
+- [ ] Step 5 budget preference is stored on the land record
+- [ ] Step 6 philosophy is stored on the land record
+- [ ] NWS grid point is resolved from lat/lon and stored on the land record
+- [ ] SSURGO soil data is fetched and stored as `soil_profile` on the land record
+- [ ] Hardiness zone is resolved and stored
+- [ ] NRI ground reading is generated via the `nri-ground-read` Edge Function
+- [ ] After step 7, the user lands on `/app/home` with real data, not demo data
+
+**Every screen must read from Supabase, not demo fixtures:**
+- [ ] Home screen shows the user's real land name, phase, weather, and Rule of Life
+- [ ] Loam Map shows the user's real soil profile from SSURGO
+- [ ] Weather screen shows real NWS forecast data
+- [ ] Planner shows the user's real plots and crops
+- [ ] Memory shows the user's real observation history
+- [ ] NRI Chat sends real messages to the `nri-chat` Edge Function and stores responses
+- [ ] Common Year shows the user's real phase history
+- [ ] Harvest log reads from and writes to `harvest_logs` table
+- [ ] Settings reads from and writes to `profiles` table
+- [ ] All community screens read from real community data when `garden_mode === 'community'`
+
+**Every form must submit to the database:**
+- [ ] "Add note" on Memory creates a row in `observations`
+- [ ] "Log harvest" creates a row in `harvest_logs`
+- [ ] "Add Bed" creates a row in `plots`
+- [ ] "Post Seeds" creates a row in `seed_exchanges`
+- [ ] "Log Hours" creates a row in `volunteer_hour_logs`
+- [ ] "RSVP" creates/updates a row in `workday_rsvps`
+- [ ] "Post Surplus" creates a row in `sharing_posts`
+- [ ] Settings changes update the `profiles` row
+- [ ] Onboarding steps write to `lands` and `profiles`
+
+**Every Edge Function must have real business logic:**
+- [ ] `nri-chat` calls Anthropic API with the verbatim system prompt and full context object
+- [ ] `nri-ground-read` calls SSURGO, then Anthropic for trilingual interpretation
+- [ ] `nri-phase-detect` queries user data and calls Anthropic for phase detection
+- [ ] `nri-rule-of-life` generates weekly rhythm from real user data via Anthropic
+- [ ] `nri-voice-log` processes transcripts and extracts structured tags
+- [ ] `create-checkout` creates a real Stripe Checkout session
+- [ ] `stripe-webhook` verifies signature and updates `profiles` subscription fields
+- [ ] `search-food-systems` calls Perplexity and stores results in `food_system_points`
+- [ ] `frost-monitor` fetches NWS hourly forecast and fires push notifications
+- [ ] `morning-briefing` generates personalized NRI briefings via Anthropic
+- [ ] `photo-analyze` calls Plant.id API and stores results
+- [ ] `nri-whatsapp` receives WhatsApp webhooks and responds via NRI
+
+**API keys are the LAST step, not a reason to skip wiring:**
+- [ ] All Edge Functions that call external APIs (Anthropic, Stripe, Plant.id, Perplexity, WhatsApp) must be fully coded with the API call structure, error handling, and response processing. The ONLY thing missing should be the actual API key value in the Supabase dashboard secrets. If you can't test because you don't have a key, that's fine — but the code must be complete and correct.
+- [ ] Never leave a `// TODO: call API` comment. Write the fetch call, the request body, the response parsing, the error handling, and the database storage. Just leave the key as `Deno.env.get("KEY_NAME")`.
+
+**Navigation must work end-to-end:**
+- [ ] Bottom nav navigates between all 5 main sections
+- [ ] NRI compass button opens the NRI chat
+- [ ] Sidebar (desktop) shows all sections including Community (if community mode) and coordinator routes
+- [ ] Clicking a seed exchange post navigates to detail
+- [ ] Ancient Library CTA cards navigate to the correct sub-pages
+- [ ] "Back" buttons work everywhere
+- [ ] Browser back/forward works on all routes
+
+**The NRI intelligence layer must be mounted:**
+- [ ] `useNRINudgeEngine` is called with real signals from the user's data
+- [ ] `useNRIGlow` makes the compass button glow when high-confidence nudges exist
+- [ ] `useNRIAutoOpen` opens the NRI drawer on first daily login
+- [ ] `useNRIGuide` shows first-visit explanations for the first 3 days
+- [ ] `useNRIPosture` adapts NRI's opening line based on the current route
+
+**Offline must work:**
+- [ ] `OfflineIndicator` shows in the app shell when offline
+- [ ] Observations queue in IndexedDB when offline and sync when back online
+- [ ] Visits queue in IndexedDB when offline
+
+**How to verify you're actually done:**
+1. Create a new account with email+password
+2. Complete all 7 onboarding steps with a real address
+3. Verify the home screen shows real data (not "Sundown Edge" demo data)
+4. Log an observation and verify it appears in the Memory screen
+5. Send a message to NRI and verify you get a response
+6. Add a bed in the Planner and verify it persists on reload
+7. Log a harvest and verify it appears in the Harvest log
+8. Check the Food Resilience Score updates based on your actual data
+9. Toggle language to Spanish and verify all strings change
+10. Go offline, log an observation, go back online, verify it syncs
+11. If community mode: create a community, invite a member, schedule a workday
+12. If coordinator: see the coordinator dashboard with real assigned gardens
+
+**If any of these fail, you are not done. Keep building.**
+
+---
+
 ## Files to read first
 
 | Priority | File | What it tells you |
